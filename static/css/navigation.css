@@ -1,0 +1,44 @@
+.main-navigation {
+    height: 70px;
+    padding: 0 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.nav-logo {
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link {
+    font-size: 15px;
+    color: #444;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.nav-logout-form {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-logout {
+    border: none;
+    background: none;
+    padding: 8px 0;
+    font-family: inherit;
+    cursor: pointer;
+}

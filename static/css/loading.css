@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.loading-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.loading-content h1 {
+    margin-bottom: 10px;
+}
+
+.loading-content p {
+    margin-bottom: 25px;
+}
+
+.loading-indicator {
+    font-size: 14px;
+}
