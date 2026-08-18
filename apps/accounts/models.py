@@ -1,14 +1,25 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="profile"
+    )
+
     google_id = models.CharField(
         max_length=255,
-        unique=True
+        unique=True,
+        null=True,
+        blank=True
     )
 
     email = models.EmailField(
-        unique=True
+        unique=True,
+        null=True,
+        blank=True
     )
 
     email_verified = models.BooleanField(
@@ -83,4 +94,4 @@ class Profile(models.Model):
     )
 
     def __str__(self):
-        return self.email
+        return self.email or self.user.username
