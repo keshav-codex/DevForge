@@ -4,49 +4,65 @@ from apps.accounts.models import Profile
 
 
 class Email(models.Model):
+
     STATUS_CHOICES = [
-        ('draft', 'Draft'),
-        ('pending', 'Pending'),
-        ('sent', 'Sent'),
-        ('failed', 'Failed'),
+        ("draft", "Draft"),
+        ("pending", "Pending"),
+        ("sent", "Sent"),
+        ("failed", "Failed"),
     ]
 
     profile = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE,
-        related_name='emails'
+        related_name="emails",
     )
 
-    recipients = models.JSONField()
+    # Primary recipients.
+    to = models.JSONField()
 
+    # Carbon-copy recipients.
+    cc = models.JSONField(
+        default=list,
+        blank=True,
+    )
+
+    # Blind-carbon-copy recipients.
+    bcc = models.JSONField(
+        default=list,
+        blank=True,
+    )
+
+    # Email subject.
     subject = models.CharField(
-        max_length=255
+        max_length=300,
     )
 
+    # Email body.
     body = models.TextField()
 
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='draft'
+        default="draft",
     )
 
     message_id = models.CharField(
         max_length=255,
-        blank=True
+        blank=True,
     )
 
     sent_at = models.DateTimeField(
         null=True,
-        blank=True
+        blank=True,
     )
 
     created_at = models.DateTimeField(
-        auto_now_add=True
+        auto_now_add=True,
     )
 
     updated_at = models.DateTimeField(
-        auto_now=True
+        auto_now=True,
     )
 
     def __str__(self):
