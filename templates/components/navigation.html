@@ -1,0 +1,43 @@
+<nav id="main-navigation" class="main-navigation">
+
+    <div id="nav-logo" class="nav-logo">
+        DevForge
+    </div>
+
+    <div id="nav-menu" class="nav-menu">
+
+        <a id="nav-dashboard" class="nav-link"
+           href="{% url 'dashboard' %}">
+            Dashboard
+        </a>
+
+        <a id="nav-activity" class="nav-link"
+           href="{% url 'activity' %}">
+            Activity
+        </a>
+
+        <a id="nav-reports" class="nav-link"
+           href="{% url 'reports' %}">
+            Reports
+        </a>
+
+        <a id="nav-analytics" class="nav-link"
+           href="{% url 'analytics' %}">
+            Analytics
+        </a>
+
+        <form method="post"
+            action="{% url 'account_logout' %}"
+            class="nav-logout-form">
+
+            {% csrf_token %}
+
+            <button type="submit" class="nav-link nav-logout">
+                Logout
+            </button>
+
+        </form>
+
+    </div>
+
+</nav>

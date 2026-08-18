@@ -1,0 +1,348 @@
+{% extends "base.html" %}
+
+{% block title %}Location Activity | DevForge{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="location-activity-page" class="page">
+
+    <div id="location-activity-container" class="page-container">
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
+
+        <header id="location-activity-header" class="page-header">
+
+            <h1>Location Activity</h1>
+
+            <p>
+                Save a meaningful place as visited or planned.
+            </p>
+
+        </header>
+
+
+        <!-- =================================================
+             MESSAGES
+        ================================================== -->
+
+        {% if messages %}
+
+            <div id="location-messages">
+
+                {% for message in messages %}
+
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+        {% if error %}
+
+            <div class="message error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- =================================================
+             LOCATION COMPOSER
+        ================================================== -->
+
+        <section id="location-composer" class="card">
+
+            <!-- Composer Header -->
+
+            <div class="location-composer-header">
+
+                <h2 class="card-title">
+                    Save Location
+                </h2>
+
+                <p class="location-helper-text">
+                    Search for a place or select a location directly
+                    from the map.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 LOCATION FORM
+            ================================================== -->
+
+            <form
+                id="location-form"
+                method="POST"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =============================================
+                     PLACE NAME
+                ============================================== -->
+
+                <div class="location-form-row">
+
+                    <label
+                        for="location-place-name"
+                        class="location-field-label"
+                    >
+                        Place Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location-place-name"
+                        name="place_name"
+                        class="form-control"
+                        placeholder="Enter place name"
+                        maxlength="255"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <div
+                        id="location-place-name-error"
+                        class="field-error"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     STATUS
+                ============================================== -->
+
+                <div class="location-form-row">
+
+                    <label
+                        for="location-status"
+                        class="location-field-label"
+                    >
+                        Status
+                    </label>
+
+                    <select
+                        id="location-status"
+                        name="status"
+                        class="form-control"
+                        required
+                    >
+
+                        <option value="">
+                            Select status
+                        </option>
+
+                        <option value="visited">
+                            Visited
+                        </option>
+
+                        <option value="planned">
+                            Planned
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =============================================
+                     DESCRIPTION / PLAN
+                ============================================== -->
+
+                <div class="location-form-row">
+
+                    <div class="location-description-header">
+
+                        <label
+                            for="location-description"
+                            id="location-description-label"
+                            class="location-field-label"
+                        >
+                            Description
+                        </label>
+
+                        <button
+                            type="button"
+                            id="location-ai-button"
+                            class="ai-assist-button"
+                        >
+                            AI Assist
+                        </button>
+
+                    </div>
+
+                    <textarea
+                        id="location-description"
+                        name="description"
+                        class="form-control"
+                        rows="6"
+                        placeholder="Add details about this place."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- =============================================
+                     ADDRESS
+                ============================================== -->
+
+                <div class="location-form-row">
+
+                    <label
+                        for="location-address"
+                        class="location-field-label"
+                    >
+                        Address
+                    </label>
+
+                    <textarea
+                        id="location-address"
+                        name="address"
+                        class="form-control location-readonly-field"
+                        rows="2"
+                        placeholder="Select a location on the map"
+                        readonly
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- =============================================
+                     COORDINATES
+                ============================================== -->
+
+                <input
+                    type="hidden"
+                    id="location-latitude"
+                    name="latitude"
+                >
+
+                <input
+                    type="hidden"
+                    id="location-longitude"
+                    name="longitude"
+                >
+
+
+                <!-- =============================================
+                     MAP
+                ============================================== -->
+
+                <div class="location-map-section">
+
+                    <div class="location-map-header">
+
+                        <div>
+
+                            <h3 class="location-map-title">
+                                Select Location
+                            </h3>
+
+                            <p class="location-map-description">
+                                Search for a place or click directly
+                                on the map.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Map Search -->
+
+                    <div class="location-map-search">
+
+                        <input
+                            type="text"
+                            id="location-search-input"
+                            class="form-control"
+                            placeholder="Search for a place..."
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            id="location-search-button"
+                            class="primary-button"
+                        >
+                            Search
+                        </button>
+
+                    </div>
+
+
+                    <!-- Search Status -->
+
+                    <div
+                        id="location-search-message"
+                        class="location-search-message"
+                    ></div>
+
+
+                    <!-- Map -->
+
+                    <div
+                        id="location-map"
+                        class="location-map"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     FORM ACTION
+                ============================================== -->
+
+                <div class="location-form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Save Location
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     MAP JAVASCRIPT
+========================================================= -->
+
+{% block extra_js %}
+
+    {% load static %}
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script src="{% static 'js/map.js' %}"></script>
+
+{% endblock %}
+
+{% endblock %}

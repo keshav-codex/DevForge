@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Reports | DevForge{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="reports-page" class="page">
+
+    <div id="reports-container" class="page-container">
+
+        <header id="reports-header" class="page-header">
+
+            <h1>Reports</h1>
+
+            <p>
+                Select a report to view your processed data and insights.
+            </p>
+
+        </header>
+
+        <section id="reports-content" class="card-container">
+
+            <!-- Email Reports -->
+
+            <a id="reports-email-card"
+               class="card"
+               href="{% url 'email_report' %}">
+
+                <h2 class="card-title">
+                    Email Reports
+                </h2>
+
+                <p class="card-description">
+                    View reports generated from your email activity
+                    and connected email data.
+                </p>
+
+                <span class="card-action">
+                    View Email Reports
+                </span>
+
+            </a>
+
+
+            <!-- Map Reports -->
+
+            <a id="reports-map-card"
+               class="card"
+               href="{% url 'map_report' %}">
+
+                <h2 class="card-title">
+                    Map Reports
+                </h2>
+
+                <p class="card-description">
+                    View reports generated from your map and
+                    location-related activity.
+                </p>
+
+                <span class="card-action">
+                    View Map Reports
+                </span>
+
+            </a>
+
+
+            <!-- AI Reports -->
+
+            <a id="reports-ai-card"
+               class="card"
+               href="{% url 'ai_report' %}">
+
+                <h2 class="card-title">
+                    AI Reports
+                </h2>
+
+                <p class="card-description">
+                    View reports and insights generated from
+                    AI-related activity.
+                </p>
+
+                <span class="card-action">
+                    View AI Reports
+                </span>
+
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}

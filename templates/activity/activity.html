@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Activity | DevForge{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="activity-page" class="page">
+
+    <div id="activity-container" class="page-container">
+
+        <header id="activity-header" class="page-header">
+
+            <h1>Activity</h1>
+
+            <p>
+                Select an activity to view and manage.
+            </p>
+
+        </header>
+
+        <section id="activity-content" class="card-container">
+
+            <a id="activity-email-card"
+               class="card"
+               href="{% url 'email_activity' %}">
+
+                <h2 class="card-title">
+                    Email Activity
+                </h2>
+
+                <p class="card-description">
+                    View and manage your email-related activity.
+                </p>
+
+                <span class="card-action">
+                    View Email Activity
+                </span>
+
+            </a>
+
+
+            <a id="activity-map-card"
+               class="card"
+               href="{% url 'map_activity' %}">
+
+                <h2 class="card-title">
+                    Map Activity
+                </h2>
+
+                <p class="card-description">
+                    View and manage your map and location-related activity.
+                </p>
+
+                <span class="card-action">
+                    View Map Activity
+                </span>
+
+            </a>
+
+
+            <a id="activity-ai-card"
+               class="card"
+               href="{% url 'ai_activity' %}">
+
+                <h2 class="card-title">
+                    AI Activity
+                </h2>
+
+                <p class="card-description">
+                    View and manage your AI-related activity.
+                </p>
+
+                <span class="card-action">
+                    View AI Activity
+                </span>
+
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}

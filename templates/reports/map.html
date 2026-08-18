@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Map Reports | DevForge{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="map-report-page" class="page">
+
+    <div id="map-report-container" class="page-container">
+
+        <header id="map-report-header" class="page-header">
+
+            <h1>Map Reports</h1>
+
+            <p>
+                View reports and insights generated from your
+                map and location-related activity.
+            </p>
+
+        </header>
+
+        <section id="map-report-content" class="card-container">
+
+            <div id="map-report-status-card" class="card">
+
+                <h2 class="card-title">
+                    Map Report
+                </h2>
+
+                <p class="card-description">
+                    Map and location reports will be generated
+                    from your activity and displayed here.
+                </p>
+
+                <span class="card-action">
+                    Coming Soon
+                </span>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}

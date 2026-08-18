@@ -1,0 +1,58 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Welcome | DevForge</title>
+
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+</head>
+
+<body>
+
+    <main class="welcome-page">
+
+        <section class="welcome-container">
+
+            <div class="welcome-content">
+
+                <h1>Welcome to DevForge</h1>
+
+                <p class="welcome-tagline">
+                    Build. Explore. Learn.
+                </p>
+
+                <p class="welcome-description">
+                    DevForge is a platform for exploring development,
+                    technology, tools, and practical projects in one place.
+                </p>
+
+                <div class="login-section">
+
+                    <p>
+                        Sign in with your Google account to continue.
+                    </p>
+
+                    <form action="{% provider_login_url 'google' %}" method="post">
+                        {% csrf_token %}
+
+                        <button type="submit">
+                            Continue with Google
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

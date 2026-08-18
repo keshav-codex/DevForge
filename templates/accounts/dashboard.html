@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | DevForge{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="dashboard-page" class="page">
+
+    <div id="dashboard-container" class="page-container">
+
+        <!-- Dashboard Header -->
+        <header id="dashboard-header" class="page-header">
+
+            <h1>
+                Welcome, {{ user.first_name|default:user.username }}
+            </h1>
+
+            <p>
+                Welcome to your DevForge dashboard.
+                Use the navigation menu to access your activities,
+                reports, and analytics.
+            </p>
+
+        </header>
+
+
+        <!-- Dashboard Overview -->
+        <section id="dashboard-overview">
+
+            <div class="dashboard-welcome">
+
+                <h2>
+                    Your workspace is ready.
+                </h2>
+
+                <p>
+                    Manage your email, map, and AI activities,
+                    review generated reports, and explore analytics
+                    from the navigation menu.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}

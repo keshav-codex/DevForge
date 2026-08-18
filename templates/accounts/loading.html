@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DevForge</title>
+
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+</head>
+
+<body>
+
+    <main class="loading-page">
+
+        <section class="loading-content">
+            <h1>DevForge</h1>
+            <p>Learn. Build. Integrate. Deploy.</p>
+
+            <div class="loading-indicator">
+                Loading...
+            </div>
+        </section>
+
+    </main>
+
+    <script src="{% static 'js/loading.js' %}"></script>
+
+</body>
+</html>

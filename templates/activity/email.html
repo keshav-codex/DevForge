@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+{% block title %}Email Activity | DevForge{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="email-activity-page" class="page">
+
+    <div id="email-activity-container" class="page-container">
+
+        <!-- Page Header -->
+        <header id="email-activity-header" class="page-header">
+
+            <h1>Email Activity</h1>
+
+            <p>
+                Compose and send an email from your connected Gmail account.
+            </p>
+
+        </header>
+
+
+        <!-- Success Message -->
+        {% if success %}
+
+            <div class="message success">
+                {{ success }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- Error Message -->
+        {% if error %}
+
+            <div class="message error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- Email Composer -->
+        <section id="email-composer" class="card">
+
+            <!-- Composer Header -->
+            <div class="email-composer-header">
+
+                <div>
+
+                    <h2 class="card-title">
+                        New Email
+                    </h2>
+
+                    <p class="email-sender-info">
+                        Sending from
+                        <strong>{{ connected_email }}</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Email Form -->
+            <form
+                id="email-activity-form"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =========================================
+                     TO
+                ========================================== -->
+
+                <div class="email-form-row">
+
+                    <label
+                        for="email-to-input"
+                        class="email-field-label"
+                    >
+                        To
+                    </label>
+
+                    <div class="recipient-field">
+
+                        <div
+                            id="email-to-chips"
+                            class="recipient-chips"
+                        ></div>
+
+                        <input
+                            type="email"
+                            id="email-to-input"
+                            class="recipient-input"
+                            placeholder="Add recipient"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     CC / BCC
+                ========================================== -->
+
+                <div class="email-recipient-actions">
+
+                    <button
+                        type="button"
+                        id="email-show-cc"
+                        class="recipient-action"
+                    >
+                        + Cc
+                    </button>
+
+                    <button
+                        type="button"
+                        id="email-show-bcc"
+                        class="recipient-action"
+                    >
+                        + Bcc
+                    </button>
+
+                </div>
+
+
+                <!-- =========================================
+                     CC
+                ========================================== -->
+
+                <div
+                    id="email-cc-section"
+                    class="email-form-row recipient-hidden"
+                >
+
+                    <label
+                        for="email-cc-input"
+                        class="email-field-label"
+                    >
+                        Cc
+                    </label>
+
+                    <div class="recipient-field">
+
+                        <div
+                            id="email-cc-chips"
+                            class="recipient-chips"
+                        ></div>
+
+                        <input
+                            type="email"
+                            id="email-cc-input"
+                            class="recipient-input"
+                            placeholder="Add Cc recipient"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     BCC
+                ========================================== -->
+
+                <div
+                    id="email-bcc-section"
+                    class="email-form-row recipient-hidden"
+                >
+
+                    <label
+                        for="email-bcc-input"
+                        class="email-field-label"
+                    >
+                        Bcc
+                    </label>
+
+                    <div class="recipient-field">
+
+                        <div
+                            id="email-bcc-chips"
+                            class="recipient-chips"
+                        ></div>
+
+                        <input
+                            type="email"
+                            id="email-bcc-input"
+                            class="recipient-input"
+                            placeholder="Add Bcc recipient"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     SUBJECT
+                ========================================== -->
+
+                <div class="email-form-row">
+
+                    <label
+                        for="id_subject"
+                        class="email-field-label"
+                    >
+                        Subject
+                    </label>
+
+                    {{ form.subject }}
+
+                </div>
+
+
+                <!-- =========================================
+                     MESSAGE
+                ========================================== -->
+
+                <div class="email-message-section">
+
+                    <div class="email-message-header">
+
+                        <label
+                            for="id_body"
+                            class="email-field-label"
+                        >
+                            Message
+                        </label>
+
+                        <button
+                            type="button"
+                            id="email-ai-button"
+                            class="ai-assist-button"
+                        >
+                            AI Assist
+                        </button>
+
+                    </div>
+
+                    {{ form.body }}
+
+                </div>
+
+
+                <!-- =========================================
+                     ATTACHMENTS
+                ========================================== -->
+
+                <div class="email-attachments-section">
+
+                    <div class="email-section-label">
+                        Attachments
+                    </div>
+
+                    <label
+                        id="email-attachment-dropzone"
+                        for="email-attachments"
+                    >
+
+                        <strong>
+                            Add files
+                        </strong>
+
+                        <span>
+                            PDF, DOC, DOCX or TXT ·
+                            Up to 5 files ·
+                            10 MB total
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="email-attachments"
+                        name="attachments"
+                        multiple
+                        accept=".pdf,.doc,.docx,.txt"
+                        hidden
+                    >
+
+                    <div id="email-attachment-list"></div>
+
+                </div>
+
+
+                <!-- =========================================
+                     SEND
+                ========================================== -->
+
+                <div class="email-send-footer">
+
+                    <button
+                        type="submit"
+                        class="primary-button email-send-button"
+                    >
+                        Send Email
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}
