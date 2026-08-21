@@ -1,0 +1,507 @@
+DEVFORGE — PUBLIC AUTHENTICATION UI GENERATION SPECIFICATION
+
+Generate the complete public authentication interface from this specification alone.
+
+Do not assume that any existing HTML, CSS, or JavaScript file is available.
+Do not ask questions.
+Do not depend on the main application base template.
+
+Generate exactly:
+
+1. templates/public/base.html
+2. templates/public/login.html
+3. templates/public/logout.html
+4. static/css/public/auth.css
+
+No JavaScript is required for these pages.
+
+==================================================
+1. ARCHITECTURE
+==================================================
+
+The public authentication system is completely independent from the main
+application template.
+
+public/base.html MUST NOT extend the main templates/base.html.
+
+public/base.html must be a complete standalone HTML document containing:
+
+- DOCTYPE
+- html element
+- head
+- viewport configuration
+- title block
+- static CSS loading
+- body
+- authentication page wrapper
+- authentication container
+- authentication card
+- DevForge brand area
+- authentication content block
+
+login.html and logout.html must extend:
+
+public/base.html
+
+Do not make either page extend the main application base.
+
+==================================================
+2. DJANGO TEMPLATE CONTRACT
+==================================================
+
+Preserve Django/Allauth backend connections exactly.
+
+Login:
+
+- extend public/base.html
+- use the account_login URL
+- use POST
+- include csrf_token
+- render the supplied authentication form
+- preserve redirect_field_value
+- preserve redirect_field_name
+
+Login must provide navigation to:
+
+- account_signup
+- account_reset_password
+
+Logout:
+
+- extend public/base.html
+- use the account_logout URL
+- use POST
+- include csrf_token
+
+Do not invent backend variables.
+
+Do not rename backend variables.
+
+Do not replace Django template tags with hardcoded URLs.
+
+Do not modify authentication logic.
+
+Only presentation and user-facing text may be improved.
+
+==================================================
+3. STATIC CSS
+==================================================
+
+Use one shared stylesheet:
+
+static/css/public/auth.css
+
+public/base.html must load this stylesheet.
+
+Do not create separate:
+
+login.css
+logout.css
+public-base.css
+
+Do not load the main application's base.css.
+
+Do not load component navigation.css.
+
+Do not load component footer.css.
+
+The public authentication pages are intentionally isolated from the
+main application styling system.
+
+==================================================
+4. VISUAL IDENTITY
+==================================================
+
+Maintain the established DevForge visual language.
+
+Primary background:
+
+#12141c
+
+Surface:
+
+#1a1d27
+
+Primary text:
+
+#f5f6fa
+
+Muted text:
+
+#9aa0ae
+
+Dim text:
+
+#6b7080
+
+Ember:
+
+#ffa35c
+#ff7a45
+#ff5b2e
+
+Spark:
+
+#6fe3ff
+#4fd1ff
+
+Use the colors consistently rather than introducing unrelated colors.
+
+==================================================
+5. DESIGN LEVEL
+==================================================
+
+These are authentication pages.
+
+They must intentionally be simpler than the main DevForge product pages.
+
+The design should feel:
+
+- clean
+- professional
+- trustworthy
+- focused
+- modern
+- lightweight
+- consistent with DevForge
+
+Do NOT add:
+
+- large animated backgrounds
+- particles
+- glowing orbs
+- complex gradients
+- glassmorphism-heavy effects
+- decorative illustrations
+- elaborate entrance animations
+- JavaScript-based visual effects
+
+Use restrained visual hierarchy.
+
+==================================================
+6. AUTHENTICATION CARD
+==================================================
+
+Place the authentication interface in a centered card.
+
+The card should:
+
+- have a dark surface
+- use subtle borders
+- have moderate rounded corners
+- have restrained shadow
+- have comfortable internal spacing
+- have a reasonable maximum width around 440px
+
+The card must remain visually balanced on both mobile and desktop.
+
+Large screens must not cause the authentication card to become excessively wide.
+
+==================================================
+7. DEVFORGE BRAND
+==================================================
+
+Show a compact DevForge identity inside the card.
+
+Use a small brand mark representing:
+
+DF
+
+alongside:
+
+DevForge
+
+The brand mark should subtly use the Spark palette.
+
+The branding must remain minimal.
+
+==================================================
+8. LOGIN PAGE
+==================================================
+
+The login page should communicate:
+
+"Welcome back"
+
+Supporting UI text should clearly explain that the user is signing in
+to continue to their DevForge workspace.
+
+Keep the Django-generated form intact.
+
+Style the generated form through CSS.
+
+The interface should visually support:
+
+- labels
+- text inputs
+- password input
+- validation/error output generated by Django
+- submit button
+- authentication links
+
+Primary button text:
+
+Sign In
+
+Provide links for:
+
+Create an account
+
+Forgot password?
+
+Do not hardcode form fields because the Django form is responsible for
+providing them.
+
+==================================================
+9. LOGOUT PAGE
+==================================================
+
+The logout page should communicate:
+
+"Sign out"
+
+Provide concise supporting text explaining that the user is about to
+leave the DevForge workspace and asking for confirmation.
+
+Primary button:
+
+Sign Out
+
+Keep the page intentionally simple.
+
+Do not add unnecessary navigation or controls.
+
+==================================================
+10. TYPOGRAPHY
+==================================================
+
+Use a modern system font stack.
+
+Use a clean display-style font family for important DevForge branding
+and headings when available.
+
+Maintain:
+
+- strong heading hierarchy
+- readable body text
+- compact labels
+- comfortable line height
+- clear button typography
+
+Do not make the authentication interface typography oversized.
+
+==================================================
+11. FORM STYLING
+==================================================
+
+Style Django-generated form markup without changing its backend structure.
+
+Inputs should:
+
+- fill the available width
+- have a dark background
+- have subtle borders
+- have comfortable padding
+- use readable text
+- have rounded corners
+
+Focus state:
+
+- Spark-colored border
+- subtle Spark focus ring
+
+Error/help text generated by Django must remain visible.
+
+Do not hide Django validation messages.
+
+==================================================
+12. BUTTON
+==================================================
+
+Use the Ember palette for the primary authentication button.
+
+Normal state:
+
+#ff7a45
+
+Hover state:
+
+#ffa35c
+
+The button should have:
+
+- full available width
+- comfortable vertical padding
+- moderate border radius
+- clear readable text
+- pointer cursor
+
+Hover interaction:
+
+- slight upward movement of approximately 1px
+- subtle color transition
+
+Active state:
+
+- return to the original position
+
+Focus-visible state:
+
+- clear accessible outline using the Spark palette
+
+Do not use JavaScript for these interactions.
+
+==================================================
+13. LINKS
+==================================================
+
+Authentication links should use the Spark palette.
+
+Normal:
+
+#6fe3ff
+
+Hover:
+
+Ember palette
+
+Use subtle color transitions.
+
+Links must remain clearly identifiable as links.
+
+==================================================
+14. ANIMATION AND INTERACTION
+==================================================
+
+CSS is the ONLY mechanism allowed for styling and animation.
+
+Do not use JavaScript for:
+
+- hover effects
+- transitions
+- animations
+- layout changes
+- visual effects
+
+Use only subtle transitions.
+
+No continuous decorative animations are required.
+
+Authentication pages should feel responsive without feeling animated.
+
+==================================================
+15. RESPONSIVE DESIGN
+==================================================
+
+The design must work across the complete practical viewport range:
+
+- very small phones
+- small phones
+- normal phones
+- tablets
+- laptops
+- desktops
+- large monitors
+- very large displays
+
+Do not design only around three fixed screen sizes.
+
+Use fluid sizing and maximum widths.
+
+At approximately 480px and below:
+
+- reduce card padding
+- reduce page side spacing
+- preserve readable typography
+- preserve usable controls
+
+At approximately 360px and below:
+
+- reduce card padding further
+- prevent horizontal overflow
+- maintain usable input and button dimensions
+
+On large screens:
+
+- keep the card centered
+- keep its width constrained
+- maintain generous surrounding whitespace
+- never stretch the authentication UI across the viewport
+
+No horizontal scrolling should occur at normal viewport sizes.
+
+==================================================
+16. ACCESSIBILITY
+==================================================
+
+Use semantic HTML.
+
+Maintain keyboard accessibility.
+
+Do not remove Django-generated accessibility attributes.
+
+Inputs must have usable focus states.
+
+Buttons must remain actual button elements.
+
+Links must remain actual anchor elements.
+
+Maintain sufficient text/background contrast.
+
+==================================================
+17. JAVASCRIPT
+==================================================
+
+Do not create JavaScript for this section.
+
+No JS file is required.
+
+CSS must handle all styling, responsiveness, hover effects,
+focus effects and transitions.
+
+Django/Allauth handles authentication behavior.
+
+==================================================
+18. CODE QUALITY
+==================================================
+
+Keep the HTML clean and semantic.
+
+Avoid unnecessary wrappers.
+
+Use meaningful class names.
+
+Keep CSS organized into logical sections.
+
+Use CSS custom properties for the DevForge color system so the palette
+can be maintained consistently.
+
+Do not duplicate large blocks of CSS between login and logout.
+
+The shared auth.css must style both pages.
+
+==================================================
+19. REPRODUCIBILITY REQUIREMENT
+==================================================
+
+Another AI must be able to generate the complete public authentication
+system from this specification alone.
+
+It must NOT need the original HTML, CSS, or JavaScript.
+
+The generated result must:
+
+- preserve all Django/Allauth backend contracts
+- produce standalone public/base.html
+- produce login.html extending public/base.html
+- produce logout.html extending public/base.html
+- use one shared auth.css
+- use the exact DevForge color palette
+- remain simple compared with the main application
+- be responsive from very small to very large screens
+- use CSS exclusively for styling and interaction effects
+- contain no unnecessary JavaScript
+- avoid backend/template errors caused by renamed or invented variables
+
+The final implementation should look like a deliberately designed
+DevForge authentication product rather than a generic Django form.
