@@ -1,1127 +1,323 @@
-/* =========================================================
-   DEVFORGE - BASE STYLES
-   Shared styles used across the application.
-   ========================================================= */
+/* ==========================================================================
+   DEVFORGE — BASE / GLOBAL FOUNDATION
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 
-/* =========================================================
-   01. GLOBAL RESET
-   ========================================================= */
+/* ==========================================================================
+   DESIGN TOKENS
+   ========================================================================== */
 
-* {
+:root {
+
+    /* surfaces */
+    --df-bg-primary: #12141c;
+    --df-bg-surface: #1a1d27;
+    --df-border: rgba(255, 255, 255, 0.08);
+    --df-border-soft: rgba(255, 255, 255, 0.05);
+
+    /* ember */
+    --df-ember-400: #ffa35c;
+    --df-ember-500: #ff7a45;
+    --df-ember-600: #ff5b2e;
+
+    /* spark */
+    --df-spark-400: #6fe3ff;
+    --df-spark-500: #4fd1ff;
+
+    /* status */
+    --df-danger-500: #ff4d6d;
+    --df-danger-600: #ff2f56;
+
+    /* text */
+    --df-text-primary: #f5f6fa;
+    --df-text-muted: #9aa0ae;
+    --df-text-dim: #6b7080;
+
+    /* shape */
+    --df-radius-sm: 8px;
+    --df-radius-md: 14px;
+    --df-radius-pill: 999px;
+
+    /* motion */
+    --df-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --df-duration: 0.35s;
+
+    /* typography */
+    --df-font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --df-font-body: 'Inter', 'Segoe UI', sans-serif;
+
+    /* layout */
+    --df-content-width: 1440px;
+    --df-content-padding: clamp(16px, 4vw, 60px);
+}
+
+
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+    background: var(--df-bg-primary);
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f5f6f8;
-    color: #222;
+    min-height: 100vh;
+    margin: 0;
+
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(255, 122, 69, 0.035),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(79, 209, 255, 0.025),
+            transparent 30%
+        ),
+        var(--df-bg-primary);
+
+    color: var(--df-text-primary);
+
+    font-family: var(--df-font-body);
+    font-size: 16px;
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+}
+
+img,
+video {
+    height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    color: inherit;
 }
 
 a {
     color: inherit;
-    text-decoration: none;
 }
 
 
-/* =========================================================
-   02. COMMON PAGE LAYOUT
-   ========================================================= */
+/* ==========================================================================
+   GLOBAL SELECTION
+   ========================================================================== */
 
-.page {
-    min-height: calc(100vh - 70px);
-    padding: 45px 60px;
-}
-
-.page-container {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.page-header {
-    margin-bottom: 40px;
-}
-
-.page-header h1 {
-    margin: 0 0 10px;
-    font-size: 32px;
-}
-
-.page-header p {
-    margin: 0;
-    color: #666;
-    font-size: 16px;
+::selection {
+    color: var(--df-text-primary);
+    background: rgba(255, 122, 69, 0.28);
 }
 
 
-/* =========================================================
-   03. COMMON CARDS
-   ========================================================= */
+/* ==========================================================================
+   GLOBAL SCROLLBAR
+   ========================================================================== */
 
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+html {
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(255, 122, 69, 0.45)
+        var(--df-bg-primary);
 }
 
-.card {
-    display: block;
-    padding: 28px;
-    background: #ffffff;
-    border: 1px solid #e2e2e2;
-    border-radius: 10px;
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.card-title {
-    margin: 0 0 12px;
-    font-size: 21px;
+::-webkit-scrollbar-track {
+    background: var(--df-bg-primary);
 }
 
-.card-description {
-    margin: 0;
-    color: #666;
-    line-height: 1.6;
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        var(--df-ember-500),
+        var(--df-spark-500)
+    );
+
+    border-radius: var(--df-radius-pill);
+    border: 2px solid var(--df-bg-primary);
 }
 
-.card-action {
-    display: inline-block;
-    margin-top: 22px;
-    font-weight: 600;
-    color: #2563eb;
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        var(--df-ember-400),
+        var(--df-spark-400)
+    );
 }
 
 
-/* =========================================================
-   04. COMMON FORM ELEMENTS
-   ========================================================= */
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY
+   ========================================================================== */
 
-.form-group {
-    margin-bottom: 22px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+
+    font-family: var(--df-font-display);
+    color: var(--df-text-primary);
+
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+p {
+    margin-top: 0;
 }
 
-.form-control {
-    width: 100%;
-    padding: 10px 12px;
+small {
+    color: var(--df-text-muted);
+}
 
-    border: 1px solid #ced4da;
-    border-radius: 7px;
 
-    background: #ffffff;
-    color: #222;
+/* ==========================================================================
+   GLOBAL FORM FOUNDATION
+   ========================================================================== */
 
-    font-size: 15px;
-    font-family: inherit;
+input,
+textarea,
+select {
+    color: var(--df-text-primary);
+    background: var(--df-bg-surface);
+
+    border: 1px solid var(--df-border);
+    border-radius: var(--df-radius-sm);
 
     outline: none;
-}
-
-.form-control:focus {
-    border-color: #86b7fe;
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
-}
-
-textarea.form-control {
-    resize: vertical;
-}
-
-
-/* =========================================================
-   05. COMMON BUTTONS
-   ========================================================= */
-
-.primary-button {
-    padding: 11px 18px;
-
-    border: none;
-    border-radius: 7px;
-
-    background: #2563eb;
-    color: #ffffff;
-
-    font-size: 15px;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.primary-button:hover {
-    background: #1d4ed8;
-}
-
-.secondary-button {
-    padding: 9px 15px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-
-    background: #ffffff;
-    color: #333;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.secondary-button:hover {
-    background: #f5f6f8;
-}
-
-.form-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-
-/* =========================================================
-   06. COMMON MESSAGES
-   ========================================================= */
-
-.message {
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    border-radius: 7px;
-    font-size: 14px;
-}
-
-.success {
-    background: #ecfdf3;
-    border: 1px solid #bbf7d0;
-    color: #166534;
-}
-
-.error {
-    background: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #991b1b;
-}
-
-
-/* =========================================================
-   07. FOOTER
-   ========================================================= */
-
-.main-footer {
-    margin-top: 60px;
-    background: #ffffff;
-    border-top: 1px solid #e2e2e2;
-}
-
-.footer-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 35px 60px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.footer-brand h3 {
-    margin: 0 0 8px;
-    font-size: 18px;
-}
-
-.footer-brand p {
-    margin: 0;
-    color: #666;
-    font-size: 14px;
-}
-
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.footer-link {
-    color: #555;
-    font-size: 14px;
-}
-
-.footer-link:hover {
-    color: #111;
-}
-
-.footer-copyright p {
-    margin: 0;
-    color: #777;
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   08. AUTHENTICATION
-   ========================================================= */
-
-.auth-card {
-    width: 420px;
-    margin: 40px auto;
-    padding: 35px;
-
-    background: #ffffff;
-    border: 1px solid #e2e2e2;
-    border-radius: 10px;
-}
-
-.auth-card h1 {
-    margin: 0 0 10px;
-    font-size: 28px;
-}
-
-.auth-description {
-    margin-bottom: 25px;
-    color: #666;
-}
-
-.auth-card form p {
-    margin-bottom: 18px;
-}
-
-.auth-card input {
-    width: 100%;
-    padding: 10px 12px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-
-    font-size: 15px;
-}
-
-.auth-button {
-    width: 100%;
-    padding: 11px 15px;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #2563eb;
-    color: #ffffff;
-
-    font-size: 15px;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.auth-button:hover {
-    background: #1d4ed8;
-}
-
-.auth-link {
-    margin-top: 18px;
-    text-align: center;
-}
-
-.auth-link a {
-    color: #2563eb;
-}
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-#dashboard-page {
-    width: 100%;
-}
-
-#dashboard-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-
-/* Dashboard Header */
-
-#dashboard-header {
-    margin-bottom: 32px;
-}
-
-
-/* Welcome Section */
-
-#dashboard-overview {
-    width: 100%;
-}
-
-.dashboard-welcome {
-    padding: 32px;
-
-    background: #ffffff;
-
-    border: 1px solid #e2e2e2;
-    border-radius: 10px;
-}
-
-
-.dashboard-welcome h2 {
-    margin: 0 0 12px;
-
-    color: #222222;
-
-    font-size: 22px;
-    font-weight: 600;
-}
-
-
-.dashboard-welcome p {
-    max-width: 700px;
-
-    margin: 0;
-
-    color: #666666;
-
-    font-size: 15px;
-    line-height: 1.7;
-}
-
-
-/* Responsive */
-
-@media (max-width: 700px) {
-
-    #dashboard-page {
-        padding: 30px 20px;
-    }
-
-    .dashboard-welcome {
-        padding: 24px;
-    }
-
-    .dashboard-welcome h2 {
-        font-size: 20px;
-    }
-
-}
-
-/* =========================================================
-   EMAIL ACTIVITY
-========================================================= */
-
-#email-activity-container {
-    max-width: 1050px;
-    margin: 0 auto;
-}
-
-
-/* Composer */
-
-#email-composer {
-    padding: 0;
-    overflow: hidden;
-}
-
-
-/* Header */
-
-.email-composer-header {
-    padding: 26px 32px;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.email-composer-header .card-title {
-    margin: 0 0 6px;
-    font-size: 22px;
-}
-
-.email-sender-info {
-    margin: 0;
-    color: #6b7280;
-    font-size: 14px;
-}
-
-.email-sender-info strong {
-    color: #374151;
-    font-weight: 600;
-}
-
-
-/* Form */
-
-#email-activity-form {
-    padding: 30px 32px;
-}
-
-
-/* Generic row */
-
-.email-form-row {
-    margin-bottom: 22px;
-}
-
-
-/* Labels */
-
-.email-field-label,
-.email-section-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #374151;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-
-/* Recipient field */
-
-.recipient-field {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 7px;
-
-    min-height: 48px;
-    width: 100%;
-
-    padding: 6px 10px;
-
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
 
     transition:
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
+        border-color var(--df-duration) var(--df-ease),
+        box-shadow var(--df-duration) var(--df-ease),
+        background var(--df-duration) var(--df-ease);
 }
 
-.recipient-field:focus-within {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
-}
-
-
-/* Recipient chips */
-
-.recipient-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-
-.recipient-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 6px 9px;
-
-    background: #eef2f7;
-    border-radius: 6px;
-
-    color: #374151;
-    font-size: 13px;
-}
-
-
-.recipient-chip button {
-    border: 0;
-    padding: 0;
-
-    background: transparent;
-
-    color: #6b7280;
-    font-size: 16px;
-    line-height: 1;
-
-    cursor: pointer;
-}
-
-
-.recipient-chip button:hover {
-    color: #111827;
-}
-
-
-/* Recipient input */
-
-.recipient-input {
-    flex: 1;
-
-    min-width: 180px;
-
-    padding: 7px 4px;
-
-    border: 0;
-    outline: 0;
-
-    background: transparent;
-
-    font-size: 14px;
-}
-
-
-/* Cc / Bcc */
-
-.email-recipient-actions {
-    display: flex;
-    gap: 16px;
-
-    margin-top: -10px;
-    margin-bottom: 22px;
-}
-
-
-.recipient-action {
-    border: 0;
-    padding: 0;
-
-    background: transparent;
-
-    color: #2563eb;
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-
-.recipient-action:hover {
-    color: #1d4ed8;
-}
-
-
-.recipient-hidden {
-    display: none;
-}
-
-
-/* Subject */
-
-#id_subject {
-    display: block;
-
-    width: 100%;
-    min-height: 48px;
-
-    padding: 12px 14px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #111827;
-    font-size: 15px;
-
-    outline: none;
-}
-
-
-#id_subject:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
-}
-
-
-/* Message */
-
-.email-message-section {
-    margin-top: 6px;
-    margin-bottom: 25px;
-}
-
-
-.email-message-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 8px;
-}
-
-
-/* Large message editor */
-
-#id_body {
-    display: block;
-
-    width: 100%;
-    min-height: 330px;
-
-    padding: 15px;
-
-    resize: vertical;
-
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #111827;
-    font-family: inherit;
-    font-size: 15px;
-    line-height: 1.6;
-
-    outline: none;
-}
-
-
-#id_body:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
-}
-
-
-/* AI Assist */
-
-.ai-assist-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 34px;
-    padding: 7px 13px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-
-    background: #ffffff;
-
-    color: #374151;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        background 0.15s ease,
-        border-color 0.15s ease;
-}
-
-
-.ai-assist-button:hover {
-    background: #f8fafc;
-    border-color: #9ca3af;
-}
-
-
-/* Attachments */
-
-.email-attachments-section {
-    margin-top: 10px;
-}
-
-
-#email-attachment-dropzone {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 100px;
-
-    padding: 18px;
-
-    border: 1px dashed #cbd5e1;
-    border-radius: 8px;
-
-    background: #fafafa;
-
-    text-align: center;
-
-    cursor: pointer;
-}
-
-
-#email-attachment-dropzone:hover {
-    background: #f8fafc;
-    border-color: #94a3b8;
-}
-
-
-#email-attachment-dropzone strong {
-    margin-bottom: 5px;
-
-    color: #374151;
-    font-size: 14px;
-}
-
-
-#email-attachment-dropzone span {
-    color: #6b7280;
-    font-size: 12px;
-}
-
-
-/* Attachment list */
-
-#email-attachment-list {
-    margin-top: 12px;
-}
-
-
-.attachment-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 11px 13px;
-    margin-bottom: 7px;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 7px;
-
-    background: #ffffff;
-}
-
-
-.attachment-info {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
-
-.attachment-name {
-    color: #374151;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-
-.attachment-size {
-    color: #6b7280;
-    font-size: 12px;
-}
-
-
-.attachment-remove {
-    border: 0;
-    background: transparent;
-
-    color: #6b7280;
-    font-size: 18px;
-
-    cursor: pointer;
-}
-
-
-.attachment-remove:hover {
-    color: #dc2626;
-}
-
-
-/* Send footer */
-
-.email-send-footer {
-    display: flex;
-    justify-content: flex-end;
-
-    margin-top: 28px;
-    padding-top: 22px;
-
-    border-top: 1px solid #e5e7eb;
-}
-
-
-.email-send-button {
-    min-width: 120px;
-}
-
-
-/* Responsive */
-
-@media (max-width: 700px) {
-
-    #email-activity-form {
-        padding: 22px 18px;
-    }
-
-    .email-composer-header {
-        padding: 22px 18px;
-    }
-
-    #id_body {
-        min-height: 260px;
-    }
-
-    .email-send-button {
-        width: 100%;
-    }
-
-    .email-send-footer {
-        display: block;
-    }
-}
-
-
-/* =========================================================
-   LOCATION / MAP ACTIVITY
-========================================================= */
-
-#location-activity-page {
-    width: 100%;
-}
-
-#location-activity-container {
-    max-width: 1050px;
-    margin: 0 auto;
-}
-
-
-/* Composer */
-
-#location-composer {
-    padding: 0;
-    overflow: hidden;
-}
-
-
-/* Header */
-
-.location-composer-header {
-    padding: 26px 32px;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.location-composer-header .card-title {
-    margin: 0 0 6px;
-}
-
-.location-helper-text {
-    margin: 0;
-    color: #6b7280;
-    font-size: 14px;
-}
-
-
-/* Form */
-
-#location-form {
-    padding: 30px 32px;
-}
-
-.location-form-row {
-    margin-bottom: 22px;
-}
-
-
-/* Labels */
-
-.location-field-label {
-    display: block;
-    margin-bottom: 8px;
-
-    color: #374151;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-
-/* Inputs */
-
-#location-form .form-control {
-    display: block;
-
-    width: 100%;
-    min-height: 48px;
-
-    padding: 11px 14px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-
-    background: #ffffff;
-    color: #111827;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    outline: none;
-}
-
-
-#location-form .form-control:focus {
-    border-color: #2563eb;
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: rgba(79, 209, 255, 0.55);
 
     box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.10);
+        0 0 0 3px rgba(79, 209, 255, 0.10),
+        0 0 18px rgba(79, 209, 255, 0.06);
+}
+
+::placeholder {
+    color: var(--df-text-dim);
 }
 
 
-/* Description */
+/* ==========================================================================
+   GLOBAL ACCESSIBILITY
+   ========================================================================== */
 
-#location-description {
-    min-height: 150px;
-
-    resize: vertical;
-
-    line-height: 1.6;
-}
-
-/*  LOCATION AI ASSIST  */
-
-.location-description-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 8px;
-}
-
-.location-description-header .location-field-label {
-    margin-bottom: 0;
+:focus-visible {
+    outline: 2px solid rgba(79, 209, 255, 0.75);
+    outline-offset: 3px;
 }
 
 
-/* Address */
+/* ==========================================================================
+   GLOBAL UTILITIES
+   ========================================================================== */
 
-.location-readonly-field {
-    background: #f8fafc !important;
-    color: #4b5563 !important;
+.df-container {
+    width: min(
+        calc(100% - (var(--df-content-padding) * 2)),
+        var(--df-content-width)
+    );
 
-    cursor: default;
+    margin-inline: auto;
+}
+
+.df-surface {
+    background: rgba(26, 29, 39, 0.82);
+    border: 1px solid var(--df-border);
+    border-radius: var(--df-radius-md);
 }
 
 
-/* Map Section */
+/* ==========================================================================
+   RESPONSIVE FOUNDATION
+   ========================================================================== */
 
-.location-map-section {
-    margin-top: 30px;
-    margin-bottom: 28px;
-}
+@media (max-width: 900px) {
 
-
-.location-map-header {
-    margin-bottom: 10px;
-}
-
-
-.location-map-title {
-    margin: 0 0 5px;
-
-    color: #374151;
-
-    font-size: 16px;
-    font-weight: 600;
-}
-
-
-.location-map-description {
-    margin: 0;
-
-    color: #6b7280;
-
-    font-size: 13px;
-}
-
-
-/* Map */
-
-.location-map {
-    width: 100%;
-    height: 430px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    background: #f3f4f6;
-}
-
-/* =========================================================
-   LOCATION MAP SEARCH
-========================================================= */
-
-.location-map-search {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.location-map-search .form-control {
-    flex: 1;
-}
-
-.location-map-search .primary-button {
-    min-width: 100px;
-}
-
-.location-search-message {
-    min-height: 20px;
-    margin-bottom: 8px;
-
-    color: #6b7280;
-    font-size: 13px;
-}
-
-.field-error {
-    margin-top: 6px;
-
-    color: #dc2626;
-    font-size: 13px;
-}
-
-.form-control.field-invalid {
-    border-color: #dc2626 !important;
-
-    box-shadow:
-        0 0 0 3px rgba(220, 38, 38, 0.08) !important;
-}
-
-@media (max-width: 600px) {
-
-    .location-map-search {
-        flex-direction: column;
+    body {
+        font-size: 15px;
     }
 
-    .location-map-search .primary-button {
-        width: 100%;
-    }
 }
 
 
-/* Save */
+@media (max-width: 560px) {
 
-.location-form-actions {
-    display: flex;
-    justify-content: flex-end;
+    body {
+        font-size: 14px;
+    }
 
-    padding-top: 22px;
-
-    border-top: 1px solid #e5e7eb;
 }
 
 
-/* Responsive */
+@media (max-width: 360px) {
 
-@media (max-width: 700px) {
-
-    #location-form {
-        padding: 22px 18px;
+    body {
+        font-size: 13px;
     }
 
-    .location-composer-header {
-        padding: 22px 18px;
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
     }
 
-    .location-map {
-        height: 350px;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 
-    .location-form-actions {
-        display: block;
-    }
-
-    .location-form-actions .primary-button {
-        width: 100%;
-    }
 }

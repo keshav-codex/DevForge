@@ -10,6 +10,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
+    <meta name="theme-color"
+          content="#12141c">
+
     <title>
         {% block title %}DevForge{% endblock %}
     </title>
@@ -17,14 +20,14 @@
     <link rel="stylesheet"
           href="{% static 'css/base.css' %}">
 
-    
     <link rel="stylesheet"
-          href="{% static 'css/navigation.css' %}">
+          href="{% static 'css/components/navigation.css' %}">
 
-    <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
+    <link rel="stylesheet"
+          href="{% static 'css/components/footer.css' %}">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
     {% block extra_css %}
     {% endblock %}
@@ -42,7 +45,6 @@
     {% include "components/footer.html" %}
 
     {% block extra_js %}
-        {% load static %}
         <script src="{% static 'js/base.js' %}"></script>
     {% endblock %}
 
