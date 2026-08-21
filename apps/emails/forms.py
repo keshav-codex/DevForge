@@ -1,101 +1,79 @@
 from django import forms
-from django.core.exceptions import ValidationError
 
 
 class EmailActivityForm(forms.Form):
     """
     Form for the Email Activity page.
 
-    To, Cc and Bcc are submitted as multiple values
-    from the recipient-chip JavaScript.
+    All email fields are optional at form level because
+    the same form is used for both normal email sending
+    and AI email assistance.
+
+    Recipient validation is handled by Django when
+    recipient values are actually provided.
     """
 
-    # Email subject.
     subject = forms.CharField(
         max_length=300,
-        required=True,
+        required=False,
     )
 
-    # Email body.
     body = forms.CharField(
-        required=True,
+        required=False,
         widget=forms.Textarea,
     )
 
-    def clean_recipients(self, field_name, required=False):
+    def clean_recipients(self, field_name):
         """
-        Validate a group of email recipients.
+        Read and validate a recipient group.
 
-        Example:
-            to = [
-                "person1@gmail.com",
-                "person2@gmail.com"
-            ]
+        To, Cc and Bcc are submitted as multiple values
+        by the recipient-chip JavaScript.
         """
 
-        # Django's QueryDict can contain multiple values
-        # with the same field name.
         values = self.data.getlist(field_name)
 
-        # Remove empty values.
         values = [
             value.strip().lower()
             for value in values
             if value.strip()
         ]
 
-        # To must contain at least one recipient.
-        if required and not values:
-            raise ValidationError(
-                "Please add at least one recipient."
-            )
-
-        # Prevent duplicate recipients inside the same field.
-        if len(values) != len(set(values)):
-            raise ValidationError(
-                f"Duplicate {field_name.upper()} recipient."
-            )
-
-        # Validate every email address.
         email_validator = forms.EmailField()
 
         for email in values:
             email_validator.clean(email)
 
+        # Prevent duplicates within the same field.
+        if len(values) != len(set(values)):
+            raise forms.ValidationError(
+                f"Duplicate {field_name.upper()} recipient."
+            )
+
         return values
 
     def clean(self):
         """
-        Validate To, Cc and Bcc together.
+        Validate recipient groups without making any
+        recipient mandatory at form level.
         """
 
         cleaned_data = super().clean()
 
-        # Get and validate recipients.
-        to = self.clean_recipients(
-            "to",
-            required=True
-        )
+        to = self.clean_recipients("to")
+        cc = self.clean_recipients("cc")
+        bcc = self.clean_recipients("bcc")
 
-        cc = self.clean_recipients(
-            "cc"
-        )
-
-        bcc = self.clean_recipients(
-            "bcc"
-        )
-
-        # Prevent the same email from appearing
-        # in different recipient groups.
+        # Prevent the same address from appearing
+        # in multiple recipient groups.
         all_recipients = to + cc + bcc
 
         if len(all_recipients) != len(set(all_recipients)):
-            raise ValidationError(
+            raise forms.ValidationError(
                 "The same email address cannot appear in "
                 "To, Cc or Bcc more than once."
             )
 
-        # Store the cleaned recipient lists.
         cleaned_data["to"] = to
         cleaned_data["cc"] = cc
         cleaned_data["bcc"] = bcc
