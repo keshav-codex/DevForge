@@ -1,0 +1,862 @@
+/* =========================================================
+   DEVFORGE — MAP / LOCATION ACTIVITY
+   Page-specific stylesheet
+   ========================================================= */
+
+
+/* =========================================================
+   PAGE FOUNDATION
+   ========================================================= */
+
+#location-activity-page {
+    width: 100%;
+    min-height: 100%;
+    background: #0f1219;
+}
+
+#location-activity-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+    padding-inline: clamp(1rem, 4vw, 3.75rem);
+
+    /*
+       BUG FIX 1:
+       Single source of top spacing (same pattern as
+       #email-activity-container in email.css) instead of
+       being split across the container AND the header,
+       which is what caused the header to sit too close
+       to the navigation bar.
+    */
+    padding-top: clamp(2.75rem, 5vw, 4.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+
+/* =========================================================
+   LOCATION PAGE HEADER
+   ========================================================= */
+
+#location-activity-header {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto clamp(1.75rem, 3vw, 2.75rem);
+
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   BUG FIX 2:
+   Single, clean gradient + animation declaration for the
+   title (previously redeclared twice with two different
+   gradients/animations later in the file, which was fragile
+   and stopped the motion from rendering reliably). This is
+   the same technique used successfully in email.css, applied
+   with a 3-color ember -> spark -> violet flow.
+========================================================= */
+
+#location-activity-header h1 {
+    margin: 0;
+
+    font-family: var(--df-font-display);
+    font-size: clamp(2rem, 3vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+
+    background: linear-gradient(
+        110deg,
+        #ffffff 0%,
+        #ffffff 12%,
+
+        #ffa35c 28%,
+        #ff5b2e 40%,
+
+        #4fd1ff 55%,
+        #6fe3ff 66%,
+
+        #8b7cff 78%,
+
+        #ffffff 92%,
+        #ffffff 100%
+    );
+
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    animation: location-title-gradient 7s ease-in-out infinite;
+}
+
+@keyframes location-title-gradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 35% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 65% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#location-activity-header p {
+    max-width: 720px;
+
+    margin: 0.75rem 0 0;
+
+    color: #aeb7c5;
+
+    font-family: var(--df-font-body);
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   LOCATION COMPOSER
+   ========================================================= */
+
+#location-composer {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: clamp(1rem, 2vw, 2rem);
+
+    box-sizing: border-box;
+
+    background: #1b2029;
+    border: 1px solid #303846;
+    border-radius: 14px;
+
+    box-shadow:
+        0 1rem 2.5rem rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.location-composer-header {
+    margin-bottom: 1.75rem;
+}
+
+.location-composer-header .card-title {
+    margin: 0;
+    color: #f5f7fb;
+}
+
+.location-helper-text {
+    margin: 0.5rem 0 0;
+    color: #aeb7c5;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+#location-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+}
+
+.location-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+.location-field-label {
+    color: #f2f5f9;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   ALL FORM CONTROLS
+   ========================================================= */
+
+#location-form .form-control {
+    width: 100%;
+    min-height: 46px;
+
+    box-sizing: border-box;
+
+    padding: 0.75rem 0.9rem;
+
+    color: #f5f7fb !important;
+    background: #292f39 !important;
+
+    border: 1px solid #414b59 !important;
+    border-radius: 9px;
+
+    font: inherit;
+    line-height: 1.5;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+#location-form textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+#location-form .form-control::placeholder {
+    color: #a5afbd !important;
+    opacity: 1;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+#location-form .form-control:hover {
+    background: #303743 !important;
+    border-color: #515d6d !important;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+#location-form .form-control:focus {
+    outline: none;
+
+    color: #ffffff !important;
+    background: #333b48 !important;
+
+    border-color: #4fd1ff !important;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 209, 255, 0.12);
+}
+
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
+#location-status {
+    color: #f5f7fb !important;
+    background-color: #292f39 !important;
+}
+
+#location-status option {
+    color: #f5f7fb;
+    background: #292f39;
+}
+
+
+/* =========================================================
+   DESCRIPTION HEADER
+   ========================================================= */
+
+.location-description-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+
+/* =========================================================
+   AI ASSIST BUTTON
+   ========================================================= */
+
+#location-ai-button {
+    flex-shrink: 0;
+
+    min-height: 40px;
+
+    padding: 0.55rem 0.9rem;
+
+    color: #071017 !important;
+    background: #4fd1ff !important;
+
+    border: 1px solid #4fd1ff !important;
+    border-radius: 8px;
+
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    -webkit-text-fill-color: #071017 !important;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+}
+
+#location-ai-button:hover {
+    color: #071017 !important;
+    background: #78dcff !important;
+    border-color: #78dcff !important;
+    -webkit-text-fill-color: #071017 !important;
+}
+
+#location-ai-button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================================================
+   AI ASSISTANT PANEL
+   ========================================================= */
+
+#location-ai-panel {
+    margin-top: 0.9rem;
+
+    padding: 1rem;
+
+    color: #f5f7fb;
+
+    background: #232a35;
+
+    border: 1px solid #3d4756;
+    border-radius: 10px;
+}
+
+.location-ai-header {
+    margin-bottom: 1rem;
+}
+
+.location-ai-title {
+    margin: 0;
+
+    color: #f5f7fb;
+    font-size: 1.05rem;
+}
+
+.location-ai-description {
+    margin: 0.45rem 0 0;
+
+    color: #aeb7c5;
+    line-height: 1.55;
+}
+
+#location-ai-instruction {
+    min-height: 110px !important;
+}
+
+.location-ai-actions {
+    display: flex;
+    justify-content: flex-start;
+
+    margin-top: 0.75rem;
+}
+
+#location-ai-generate {
+    color: #071017 !important;
+    background: #4fd1ff !important;
+
+    border: 1px solid #4fd1ff !important;
+
+    -webkit-text-fill-color: #071017 !important;
+}
+
+#location-ai-generate:hover {
+    color: #071017 !important;
+    background: #78dcff !important;
+
+    border-color: #78dcff !important;
+
+    -webkit-text-fill-color: #071017 !important;
+}
+
+#location-ai-message {
+    margin-top: 0.8rem;
+
+    min-height: 1.2rem;
+
+    color: #c5ced9;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ADDRESS
+   ========================================================= */
+
+#location-address {
+    color: #dfe5ec !important;
+    background: #252c36 !important;
+
+    cursor: not-allowed;
+}
+
+#location-address::placeholder {
+    color: #a5afbd !important;
+}
+
+
+/* =========================================================
+   MAP SECTION
+   ========================================================= */
+
+.location-map-section {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.85rem;
+
+    padding: 1rem;
+
+    background: #202630;
+
+    border: 1px solid #394352;
+    border-radius: 11px;
+}
+
+.location-map-header {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+.location-map-title {
+    margin: 0;
+
+    color: #f5f7fb;
+    font-size: 1.05rem;
+}
+
+.location-map-description {
+    margin: 0.4rem 0 0;
+
+    color: #aeb7c5;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   MAP SEARCH
+   ========================================================= */
+
+.location-map-search {
+    display: flex;
+    align-items: stretch;
+
+    gap: 0.7rem;
+}
+
+#location-search-input {
+    flex: 1;
+}
+
+#location-search-button {
+    flex: 0 0 auto;
+
+    min-width: 105px;
+    min-height: 46px;
+
+    padding: 0.7rem 1rem;
+
+    color: #071017 !important;
+    background: #4fd1ff !important;
+
+    border: 1px solid #4fd1ff !important;
+    border-radius: 9px;
+
+    font: inherit;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    -webkit-text-fill-color: #071017 !important;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+}
+
+#location-search-button:hover {
+    color: #071017 !important;
+    background: #78dcff !important;
+    border-color: #78dcff !important;
+    -webkit-text-fill-color: #071017 !important;
+}
+
+#location-search-button:active {
+    transform: translateY(1px);
+}
+
+.location-search-message {
+    min-height: 1.25rem;
+
+    color: #aeb7c5;
+
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   MAP
+   ========================================================= */
+
+.location-map {
+    width: 100%;
+    height: clamp(300px, 42vw, 520px);
+
+    overflow: hidden;
+
+    background: #252c36;
+
+    border: 1px solid #3e4857;
+    border-radius: 9px;
+}
+
+
+/* =========================================================
+   LEAFLET CONTROL CONTRAST
+   ========================================================= */
+
+.location-map .leaflet-control-zoom a {
+    color: #f5f7fb !important;
+    background: #252c36 !important;
+
+    border-color: #414b59 !important;
+}
+
+.location-map .leaflet-control-zoom a:hover {
+    color: #ffffff !important;
+    background: #343d4a !important;
+}
+
+
+/* =========================================================
+   FORM ACTION
+   ========================================================= */
+
+.location-form-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-top: 0.25rem;
+}
+
+.location-form-actions .primary-button {
+    min-width: 145px;
+    min-height: 46px;
+
+    padding: 0.7rem 1.2rem;
+
+    color: #071017 !important;
+    background: #4fd1ff !important;
+
+    border: 1px solid #4fd1ff !important;
+    border-radius: 9px;
+
+    font: inherit;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    -webkit-text-fill-color: #071017 !important;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+}
+
+.location-form-actions .primary-button:hover {
+    color: #071017 !important;
+    background: #78dcff !important;
+
+    border-color: #78dcff !important;
+
+    -webkit-text-fill-color: #071017 !important;
+}
+
+.location-form-actions .primary-button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================================================
+   FIELD ERRORS
+   ========================================================= */
+
+.field-error {
+    color: #ff9b9b;
+
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   PAGE ERROR
+   ========================================================= */
+
+#location-activity-page .message.error {
+    margin-bottom: 1rem;
+
+    color: #ffb0b0;
+    background: #321f24;
+
+    border: 1px solid #65343c;
+    border-radius: 9px;
+
+    padding: 0.8rem 1rem;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #location-activity-container {
+        padding-top: 2.75rem;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    #location-activity-container {
+        padding-inline: 0.9rem;
+
+        padding-top: 2.25rem;
+        padding-bottom: 3rem;
+    }
+
+    #location-activity-header {
+        margin-bottom: 1.5rem;
+    }
+
+    #location-activity-header h1 {
+        font-size: clamp(1.9rem, 8vw, 2.35rem);
+        letter-spacing: -0.025em;
+    }
+
+    #location-composer {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .location-description-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    #location-ai-button {
+        width: 100%;
+    }
+
+    .location-map-section {
+        padding: 0.8rem;
+    }
+
+    .location-map-search {
+        flex-direction: column;
+    }
+
+    #location-search-button {
+        width: 100%;
+    }
+
+    .location-form-actions {
+        justify-content: stretch;
+    }
+
+    .location-form-actions .primary-button {
+        width: 100%;
+    }
+
+    .location-map {
+        height: 300px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    #location-activity-container {
+        padding-top: 2rem;
+    }
+
+    #location-activity-header h1 {
+        font-size: 1.75rem;
+    }
+
+    #location-composer {
+        padding: 0.9rem;
+    }
+}
+
+
+/* =========================================================
+   LARGE PHONES / SMALL TABLETS
+   ========================================================= */
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .location-map {
+        height: 350px;
+    }
+}
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    #location-activity-header,
+    #location-composer {
+        max-width: 900px;
+    }
+
+    .location-map {
+        height: 400px;
+    }
+}
+
+
+/* =========================================================
+   LAPTOPS
+   ========================================================= */
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+
+    #location-activity-header,
+    #location-composer {
+        max-width: 1100px;
+    }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1440px) {
+
+    #location-activity-header,
+    #location-composer {
+        max-width: 1200px;
+    }
+}
+
+
+/* =========================================================
+   VERY LARGE / ULTRAWIDE
+   ========================================================= */
+
+@media (min-width: 1920px) {
+
+    #location-activity-header,
+    #location-composer {
+        max-width: 1400px;
+    }
+
+    .location-map {
+        height: 560px;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+    #location-form .form-control,
+    #location-ai-button,
+    #location-ai-generate,
+    #location-search-button,
+    .location-form-actions .primary-button {
+        min-height: 46px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #location-activity-header h1 {
+        animation: none;
+        background-position: 50% 50%;
+    }
+
+    #location-form .form-control,
+    #location-ai-button,
+    #location-ai-generate,
+    #location-search-button,
+    .location-form-actions .primary-button {
+        transition: none;
+    }
+}

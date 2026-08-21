@@ -1,6 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Location Activity | DevForge{% endblock %}
+{% block extra_css %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/activity/activity_common.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/activity/map.css' %}"
+    >
+
+{% endblock %}
 
 {% block navigation %}
     {% include "components/navigation.html" %}
@@ -28,25 +42,8 @@
 
 
         <!-- =================================================
-             MESSAGES
+             LOCATION-SPECIFIC ERROR
         ================================================== -->
-
-        {% if messages %}
-
-            <div id="location-messages">
-
-                {% for message in messages %}
-
-                    <div class="message {{ message.tags }}">
-                        {{ message }}
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-        {% endif %}
-
 
         {% if error %}
 
@@ -194,6 +191,77 @@
                         placeholder="Add details about this place."
                     ></textarea>
 
+
+                    <!-- =========================================
+                         AI ASSISTANT
+                    ========================================== -->
+
+                    <section
+                        id="location-ai-panel"
+                        class="location-ai-panel"
+                        hidden
+                    >
+
+                        <div class="location-ai-header">
+
+                            <div>
+
+                                <h3 class="location-ai-title">
+                                    AI Assistant
+                                </h3>
+
+                                <p class="location-ai-description">
+                                    Use the place name, status and
+                                    your instruction to create or
+                                    improve the description.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="location-form-row">
+
+                            <label
+                                for="location-ai-instruction"
+                                class="location-field-label"
+                            >
+                                Instruction
+                            </label>
+
+                            <textarea
+                                id="location-ai-instruction"
+                                name="ai_instruction"
+                                class="form-control location-ai-instruction"
+                                rows="4"
+                                placeholder="Example: Write a short and meaningful description about why I want to visit this place."
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="location-ai-actions">
+
+                            <button
+                                type="button"
+                                id="location-ai-generate"
+                                class="primary-button"
+                            >
+                                Generate Description
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="location-ai-message"
+                            class="location-ai-message"
+                            role="status"
+                        ></div>
+
+                    </section>
+
                 </div>
 
 
@@ -328,6 +396,7 @@
 
 </main>
 
+{% endblock %}
 
 <!-- =========================================================
      MAP JAVASCRIPT
@@ -341,8 +410,7 @@
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
     </script>
 
-    <script src="{% static 'js/map.js' %}"></script>
+    <script src="{% static 'js/activity/map.js' %}"></script>
 
 {% endblock %}
 
-{% endblock %}
