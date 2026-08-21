@@ -1,38 +1,527 @@
-.dashboard-page {
-    max-width: 1100px;
-    margin: auto;
-    padding: 40px 25px;
+/* ==========================================================================
+   DEVFORGE — DASHBOARD
+   Page-specific styling
+
+   Depends on:
+   - base.css
+   - shared .page / .page-container foundation
+   ========================================================================== */
+
+
+/* ==========================================================================
+   PAGE FOUNDATION
+   ========================================================================== */
+
+#dashboard-page {
+    width: 100%;
+    min-width: 0;
 }
 
-.dashboard-header {
-    text-align: center;
-    margin-bottom: 40px;
+#dashboard-container {
+    width: min(
+        calc(100% - (var(--df-content-padding) * 2)),
+        var(--df-content-width)
+    );
+
+    margin-inline: auto;
+
+    padding-top: clamp(56px, 7vw, 96px);
+    padding-bottom: clamp(64px, 7vw, 92px);
 }
 
-.dashboard-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+
+/* ==========================================================================
+   DASHBOARD HEADER
+   ========================================================================== */
+
+#dashboard-header {
+    max-width: 820px;
+
+    margin-bottom: clamp(48px, 6vw, 76px);
+
+    animation:
+        dashboard-header-rise
+        0.65s
+        var(--df-ease)
+        both;
 }
 
-.dashboard-card {
-    padding: 25px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: #fff;
+
+/* ==========================================================================
+   EYEBROW
+   ========================================================================== */
+
+#dashboard-header .page-eyebrow {
+    margin: 0 0 12px;
+
+    color: var(--df-spark-400);
+
+    font-family: var(--df-font-body);
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+
+    text-transform: uppercase;
 }
 
-.dashboard-card h2 {
-    margin-top: 0;
+
+/* ==========================================================================
+   MAIN DASHBOARD TITLE
+   ========================================================================== */
+
+#dashboard-header h1 {
+    margin: 0;
+
+    font-family: var(--df-font-display);
+    font-size: clamp(34px, 5vw, 64px);
+    font-weight: 700;
+
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+
+    color: var(--df-text-primary);
+
+    /*
+       White → Orange → Sky Blue
+    */
+
+    background: linear-gradient(
+        105deg,
+        var(--df-text-primary) 0%,
+        var(--df-text-primary) 30%,
+        var(--df-ember-400) 52%,
+        var(--df-ember-500) 68%,
+        var(--df-spark-400) 88%,
+        var(--df-spark-500) 100%
+    );
+
+    background-size: 220% 100%;
+    background-position: 0% 50%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        dashboard-title-gradient
+        7s
+        ease-in-out
+        infinite;
 }
 
-.dashboard-card a {
-    display: inline-block;
-    margin-top: 15px;
+
+/* ==========================================================================
+   HEADER DESCRIPTION
+   ========================================================================== */
+
+#dashboard-header .page-description {
+    max-width: 680px;
+
+    margin: 22px 0 0;
+
+    color: var(--df-text-muted);
+
+    font-family: var(--df-font-body);
+    font-size: clamp(15px, 1.5vw, 18px);
+
+    line-height: 1.75;
 }
+
+
+/* ==========================================================================
+   WORKSPACE OVERVIEW
+   ========================================================================== */
+
+#dashboard-overview {
+    position: relative;
+
+    width: 100%;
+
+    padding: clamp(28px, 4vw, 52px);
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 122, 69, 0.055),
+            rgba(79, 209, 255, 0.035)
+        ),
+        rgba(26, 29, 39, 0.82);
+
+    border: 1px solid var(--df-border);
+
+    border-radius: var(--df-radius-md);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    animation:
+        dashboard-card-rise
+        0.7s
+        var(--df-ease)
+        0.08s
+        both;
+}
+
+
+/* ==========================================================================
+   TOP ACCENT
+   ========================================================================== */
+
+#dashboard-overview::before {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 120px;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        var(--df-ember-500),
+        var(--df-spark-500),
+        transparent
+    );
+
+    content: "";
+
+    animation:
+        dashboard-accent-drift
+        5s
+        ease-in-out
+        infinite;
+}
+
+
+/* ==========================================================================
+   SOFT DECORATIVE GLOW
+   ========================================================================== */
+
+#dashboard-overview::after {
+    position: absolute;
+
+    top: -170px;
+    right: -100px;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(79, 209, 255, 0.045);
+
+    filter: blur(30px);
+
+    content: "";
+
+    pointer-events: none;
+}
+
+
+/* ==========================================================================
+   WORKSPACE CONTENT
+   ========================================================================== */
+
+.dashboard-welcome {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 760px;
+}
+
+
+/* ==========================================================================
+   SECTION EYEBROW
+   ========================================================================== */
+
+.dashboard-welcome .section-eyebrow {
+    margin: 0 0 12px;
+
+    color: var(--df-spark-400);
+
+    font-family: var(--df-font-body);
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.14em;
+
+    line-height: 1.2;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   WORKSPACE HEADING
+   ========================================================================== */
+
+#dashboard-overview-title {
+    margin: 0;
+
+    color: var(--df-text-primary);
+
+    font-family: var(--df-font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600;
+
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+
+/* ==========================================================================
+   WORKSPACE DESCRIPTION
+   ========================================================================== */
+
+.dashboard-welcome > p:last-child {
+    max-width: 680px;
+
+    margin: 16px 0 0;
+
+    color: var(--df-text-muted);
+
+    font-family: var(--df-font-body);
+    font-size: clamp(14px, 1.4vw, 16px);
+
+    line-height: 1.75;
+}
+
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes dashboard-header-rise {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes dashboard-title-gradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+@keyframes dashboard-card-rise {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes dashboard-accent-drift {
+
+    0%,
+    100% {
+        width: 90px;
+        opacity: 0.7;
+    }
+
+    50% {
+        width: 180px;
+        opacity: 1;
+    }
+
+}
+
+
+/* ==========================================================================
+   TABLET / SMALL LAPTOP
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    #dashboard-container {
+        width: min(
+            calc(100% - 64px),
+            1100px
+        );
+
+        padding-top: 64px;
+        padding-bottom: 72px;
+    }
+
+    #dashboard-header {
+        margin-bottom: 48px;
+    }
+
+}
+
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
 
 @media (max-width: 768px) {
-    .dashboard-content {
-        grid-template-columns: 1fr;
+
+    #dashboard-page {
+        min-height: calc(100vh - 64px);
     }
+
+    #dashboard-container {
+        width: min(
+            calc(100% - 40px),
+            680px
+        );
+
+        padding-top: 48px;
+        padding-bottom: 60px;
+    }
+
+    #dashboard-header {
+        margin-bottom: 40px;
+    }
+
+    #dashboard-overview {
+        padding: 28px 24px;
+    }
+
+}
+
+
+/* ==========================================================================
+   SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+    #dashboard-container {
+        width: calc(100% - 32px);
+
+        padding-top: 38px;
+        padding-bottom: 48px;
+    }
+
+    #dashboard-header {
+        margin-bottom: 34px;
+    }
+
+    #dashboard-header .page-eyebrow,
+    #dashboard-overview .section-eyebrow {
+        font-size: 10px;
+    }
+
+    #dashboard-header h1 {
+        font-size: clamp(32px, 9vw, 42px);
+
+        letter-spacing: -0.03em;
+    }
+
+    #dashboard-header .page-description {
+        margin-top: 16px;
+
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+    #dashboard-overview {
+        padding: 24px 20px;
+    }
+
+    #dashboard-overview-title {
+        font-size: 24px;
+    }
+
+    .dashboard-welcome > p:last-child {
+        margin-top: 14px;
+
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+}
+
+
+/* ==========================================================================
+   VERY SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+
+    #dashboard-container {
+        width: calc(100% - 24px);
+
+        padding-top: 32px;
+        padding-bottom: 42px;
+    }
+
+    #dashboard-header {
+        margin-bottom: 30px;
+    }
+
+    #dashboard-header h1 {
+        font-size: 30px;
+    }
+
+    #dashboard-overview {
+        padding: 20px 16px;
+    }
+
+    #dashboard-overview-title {
+        font-size: 22px;
+    }
+
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #dashboard-header,
+    #dashboard-header h1,
+    #dashboard-overview,
+    #dashboard-overview::before {
+        animation: none;
+    }
+
 }

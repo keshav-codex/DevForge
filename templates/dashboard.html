@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard | DevForge{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet"
+          href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="dashboard-page" class="page">
+
+    <div id="dashboard-container" class="page-container">
+
+        <header id="dashboard-header" class="page-header">
+
+            <p class="page-eyebrow">
+                DEVFORGE WORKSPACE
+            </p>
+
+            <h1>
+                Welcome, {{ user.first_name|default:user.username }}
+            </h1>
+
+            <p class="page-description">
+                Your development workspace is ready.
+                Manage activity, review reports, and explore
+                insights from one place.
+            </p>
+
+        </header>
+
+        <section id="dashboard-overview"
+                 class="dashboard-overview"
+                 aria-labelledby="dashboard-overview-title">
+
+            <div class="dashboard-welcome">
+
+                <p class="section-eyebrow">
+                    WORKSPACE OVERVIEW
+                </p>
+
+                <h2 id="dashboard-overview-title">
+                    Everything in one workspace.
+                </h2>
+
+                <p>
+                    Track your email, map, and AI activities,
+                    review generated reports, and explore
+                    analytics through the DevForge workspace.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}
