@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#12141c">
+
+    <title>
+        {% block title %}DevForge Authentication{% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/public/auth.css' %}">
+
+</head>
+
+<body>
+
+    <main id="auth-page"
+          class="auth-page">
+
+        <div id="auth-container"
+             class="auth-container">
+
+            <section id="auth-card"
+                     class="auth-card">
+
+                <header class="auth-brand">
+
+                    <span class="auth-brand-mark"
+                          aria-hidden="true">
+                        DF
+                    </span>
+
+                    <span class="auth-brand-name">
+                        DevForge
+                    </span>
+
+                </header>
+
+                <div class="auth-content">
+
+                    {% block auth_content %}
+                    {% endblock %}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

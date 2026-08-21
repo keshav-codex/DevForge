@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#12141c">
+
+    <title>DevForge</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/public/loading.css' %}">
+
+</head>
+
+<body>
+
+    <main id="loading-page"
+          class="loading-page">
+
+        <section id="loading-content"
+                 class="loading-content"
+                 aria-label="DevForge loading screen">
+
+            <div class="loading-brand">
+
+                <span class="brand-mark"
+                      aria-hidden="true">
+                    DF
+                </span>
+
+                <h1>
+                    DevForge
+                </h1>
+
+            </div>
+
+            <p class="loading-tagline">
+                Learn. Build. Integrate. Deploy.
+            </p>
+
+            <div class="loading-status"
+                 role="status"
+                 aria-live="polite">
+
+                <span class="loading-spinner"
+                      aria-hidden="true"></span>
+
+                <span class="loading-status-text">
+                    Preparing your workspace
+                </span>
+
+                <span class="loading-dots"
+                      aria-hidden="true">
+                    ...
+                </span>
+
+            </div>
+
+            <div class="loading-progress"
+                 aria-hidden="true">
+
+                <span class="loading-progress-bar"></span>
+
+            </div>
+
+        </section>
+
+        <div class="loading-atmosphere"
+             aria-hidden="true">
+
+            <span class="atmosphere-orb atmosphere-orb-one"></span>
+            <span class="atmosphere-orb atmosphere-orb-two"></span>
+
+        </div>
+
+    </main>
+
+    <script src="{% static 'js/public/loading.js' %}"></script>
+
+</body>
+
+</html>
