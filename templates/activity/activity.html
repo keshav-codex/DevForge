@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Activity | DevForge{% endblock %}
+
+{% block extra_css %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/activity/activity_common.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/activity/activity.css' %}"
+    >
+
+{% endblock %}
 
 {% block navigation %}
     {% include "components/navigation.html" %}
@@ -12,70 +28,159 @@
 
     <div id="activity-container" class="page-container">
 
+        <!-- =================================================
+             ACTIVITY HEADER
+        ================================================== -->
+
         <header id="activity-header" class="page-header">
 
-            <h1>Activity</h1>
+            <p class="page-eyebrow">
+                DEVFORGE WORKSPACE
+            </p>
 
-            <p>
-                Select an activity to view and manage.
+            <h1>
+                Your Activity Center
+            </h1>
+
+            <p class="page-description">
+                Access your email, location, and AI activity
+                from one workspace.
             </p>
 
         </header>
 
-        <section id="activity-content" class="card-container">
 
-            <a id="activity-email-card"
-               class="card"
-               href="{% url 'email_activity' %}">
+        <!-- =================================================
+             ACTIVITY OPTIONS
+        ================================================== -->
 
-                <h2 class="card-title">
-                    Email Activity
-                </h2>
+        <section
+            id="activity-content"
+            class="card-container"
+            aria-label="Activity options"
+        >
 
-                <p class="card-description">
-                    View and manage your email-related activity.
-                </p>
+            <!-- =============================================
+                 EMAIL ACTIVITY
+            ============================================== -->
+
+            <a
+                id="activity-email-card"
+                class="card activity-card"
+                href="{% url 'email_activity' %}"
+            >
+
+                <div class="activity-card-content">
+
+                    <span class="activity-card-label">
+                        Communication
+                    </span>
+
+                    <h2 class="card-title">
+                        Email Activity
+                    </h2>
+
+                    <p class="card-description">
+                        Review email activity, messages, recipients,
+                        attachments, and delivery information.
+                    </p>
+
+                </div>
 
                 <span class="card-action">
-                    View Email Activity
+
+                    <span>
+                        Open Email Activity
+                    </span>
+
+                    <span aria-hidden="true">
+                        →
+                    </span>
+
                 </span>
 
             </a>
 
 
-            <a id="activity-map-card"
-               class="card"
-               href="{% url 'map_activity' %}">
+            <!-- =============================================
+                 MAP ACTIVITY
+            ============================================== -->
 
-                <h2 class="card-title">
-                    Map Activity
-                </h2>
+            <a
+                id="activity-map-card"
+                class="card activity-card"
+                href="{% url 'map_activity' %}"
+            >
 
-                <p class="card-description">
-                    View and manage your map and location-related activity.
-                </p>
+                <div class="activity-card-content">
+
+                    <span class="activity-card-label">
+                        Location
+                    </span>
+
+                    <h2 class="card-title">
+                        Map Activity
+                    </h2>
+
+                    <p class="card-description">
+                        Explore saved locations, addresses,
+                        coordinates, and location activity.
+                    </p>
+
+                </div>
 
                 <span class="card-action">
-                    View Map Activity
+
+                    <span>
+                        Open Map Activity
+                    </span>
+
+                    <span aria-hidden="true">
+                        →
+                    </span>
+
                 </span>
 
             </a>
 
 
-            <a id="activity-ai-card"
-               class="card"
-               href="{% url 'ai_activity' %}">
+            <!-- =============================================
+                 AI ACTIVITY
+            ============================================== -->
 
-                <h2 class="card-title">
-                    AI Activity
-                </h2>
+            <a
+                id="activity-ai-card"
+                class="card activity-card"
+                href="{% url 'ai_activity' %}"
+            >
 
-                <p class="card-description">
-                    View and manage your AI-related activity.
-                </p>
+                <div class="activity-card-content">
+
+                    <span class="activity-card-label">
+                        Intelligence
+                    </span>
+
+                    <h2 class="card-title">
+                        AI Activity
+                    </h2>
+
+                    <p class="card-description">
+                        Explore AI interactions, generated responses,
+                        and supporting documents.
+                    </p>
+
+                </div>
 
                 <span class="card-action">
-                    View AI Activity
+
+                    <span>
+                        Open AI Activity
+                    </span>
+
+                    <span aria-hidden="true">
+                        →
+                    </span>
+
                 </span>
 
             </a>
