@@ -1,6 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}AI Reports | DevForge{% endblock %}
+{% block title %}AI Report | DevForge{% endblock %}
+
+{% block extra_css %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/reports/reports_common.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/reports/ai.css' %}"
+    >
+
+{% endblock %}
 
 {% block navigation %}
     {% include "components/navigation.html" %}
@@ -14,7 +29,7 @@
 
         <header id="ai-report-header" class="page-header">
 
-            <h1>AI Reports</h1>
+            <h1>AI Report</h1>
 
             <p>
                 View reports and insights generated from your AI activity.
@@ -24,27 +39,24 @@
 
         <section id="ai-report-content" class="card-container">
 
-            <div id="ai-report-status-card" class="card">
-
-                <h2 class="card-title">
-                    AI Report
-                </h2>
+            <div id="ai-report-loading" class="card">
 
                 <p class="card-description">
-                    AI-generated reports and insights will be
-                    displayed here.
+                    Loading AI reports...
                 </p>
-
-                <span class="card-action">
-                    Coming Soon
-                </span>
 
             </div>
 
         </section>
 
+        <nav id="ai-report-pagination"
+             aria-label="AI report pagination">
+        </nav>
+
     </div>
 
 </main>
+
+<script src="{% static 'js/reports/ai.js' %}"></script>
 
 {% endblock %}

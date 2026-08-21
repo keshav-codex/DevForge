@@ -1,0 +1,616 @@
+/* =========================================================
+   DEVFORGE — EMAIL REPORT
+   Page-specific styling
+   ========================================================= */
+
+
+/* =========================================================
+   EMAIL REPORT HEADER
+   ========================================================= */
+
+#email-report-header {
+    width: 100%;
+}
+
+
+/* =========================================================
+   EMAIL REPORT EYEBROW
+   ========================================================= */
+
+#email-report-eyebrow {
+    margin: 0 0 0.4rem;
+
+    font-family: var(--df-font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   EMAIL REPORT DESCRIPTION
+   ========================================================= */
+
+#email-report-description {
+    max-width: 760px;
+}
+
+
+/* =========================================================
+   EMAIL REPORT CARD
+   ========================================================= */
+
+.email-report-card {
+    width: 100%;
+    min-width: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   EMAIL CARD HEADER
+   ========================================================= */
+
+.email-report-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: clamp(0.8rem, 1.5vw, 1.5rem);
+
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   EMAIL SUBJECT
+   ========================================================= */
+
+.email-report-header .card-title,
+.email-report-subject {
+    margin: 0;
+
+    min-width: 0;
+    max-width: 100%;
+
+    flex: 1 1 auto;
+
+    font-family: var(--df-font-display);
+
+    font-size: clamp(1.05rem, 1.25vw, 1.3rem);
+    font-weight: 650;
+
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   EMAIL STATUS
+   ========================================================= */
+
+.email-report-status {
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================================================
+   EMAIL DETAILS
+   ========================================================= */
+
+.email-report-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        clamp(0.7rem, 1vw, 1rem)
+        clamp(1rem, 2vw, 2rem);
+
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   EMAIL DETAIL ITEM
+   ========================================================= */
+
+.email-report-details p {
+    margin: 0;
+
+    min-width: 0;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+.email-report-details strong {
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   EMAIL BODY
+   ========================================================= */
+
+.email-report-body {
+    width: 100%;
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+.email-report-body h3 {
+    margin: 0 0 0.65rem;
+
+    font-family: var(--df-font-display);
+
+    font-size: 0.95rem;
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   EMAIL BODY CONTENT
+   ========================================================= */
+
+.email-report-body-content {
+    width: 100%;
+    min-width: 0;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   EMAIL CONTENT
+   ========================================================= */
+
+.email-report-content {
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   EMAIL ATTACHMENTS
+   ========================================================= */
+
+.email-report-files {
+    width: 100%;
+    min-width: 0;
+}
+
+
+.email-report-attachments {
+    width: 100%;
+    min-width: 0;
+}
+
+
+.email-report-attachments h3 {
+    margin: 0 0 0.7rem;
+
+    font-family: var(--df-font-display);
+
+    font-size: 0.95rem;
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   EMAIL FILE
+   ========================================================= */
+
+.email-report-file {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        auto;
+
+    align-items: center;
+
+    gap:
+        clamp(0.5rem, 1vw, 0.8rem);
+
+    width: 100%;
+    min-width: 0;
+}
+
+
+.email-report-file strong {
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+.email-report-file span {
+    max-width: 100%;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   EMAIL NO FILES
+   ========================================================= */
+
+.email-report-no-files {
+    margin: 0;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+#email-report-pagination {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   REPORT PAGINATION
+   ========================================================= */
+
+.report-pagination {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.75rem;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   1201px+
+   ========================================================= */
+
+@media (min-width: 1201px) {
+
+    .email-report-details {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap:
+            clamp(0.8rem, 1vw, 1rem)
+            clamp(1.25rem, 2vw, 2.25rem);
+    }
+
+}
+
+
+/* =========================================================
+   VERY LARGE DESKTOP
+   1600px+
+   ========================================================= */
+
+@media (min-width: 1600px) {
+
+    .email-report-card {
+        padding:
+            clamp(26px, 1.8vw, 34px);
+    }
+
+
+    .email-report-details {
+        gap:
+            clamp(0.9rem, 1vw, 1.1rem)
+            clamp(1.75rem, 2.5vw, 2.75rem);
+    }
+
+}
+
+
+/* =========================================================
+   ULTRAWIDE
+   1920px+
+   ========================================================= */
+
+@media (min-width: 1920px) {
+
+    .email-report-details {
+        gap:
+            1.1rem
+            clamp(2rem, 2.3vw, 3rem);
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP / TABLET
+   769px – 1200px
+   ========================================================= */
+
+@media (min-width: 769px) and (max-width: 1200px) {
+
+    .email-report-details {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap:
+            0.8rem
+            clamp(1rem, 2vw, 1.6rem);
+    }
+
+}
+
+
+/* =========================================================
+   LARGE TABLET
+   601px – 768px
+   ========================================================= */
+
+@media (min-width: 601px) and (max-width: 768px) {
+
+    .email-report-header {
+        gap: 0.8rem;
+    }
+
+
+    .email-report-details {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            0.8rem
+            1.25rem;
+    }
+
+
+    .email-report-file {
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+
+        align-items: start;
+    }
+
+
+    .email-report-file span:last-child {
+        grid-column: 2;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   481px – 600px
+   ========================================================= */
+
+@media (min-width: 481px) and (max-width: 600px) {
+
+    .email-report-header {
+        gap: 0.7rem;
+    }
+
+
+    .email-report-details {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            0.75rem
+            1rem;
+    }
+
+
+    .email-report-file {
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+
+        align-items: start;
+    }
+
+
+    .email-report-file span:last-child {
+        grid-column: 2;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   361px – 480px
+   ========================================================= */
+
+@media (min-width: 361px) and (max-width: 480px) {
+
+    .email-report-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 0.6rem;
+    }
+
+
+    .email-report-status {
+        align-self: flex-start;
+    }
+
+
+    .email-report-details {
+        grid-template-columns: 1fr;
+
+        gap: 0.7rem;
+    }
+
+
+    .email-report-file {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 0.3rem;
+    }
+
+
+    .email-report-file span {
+        white-space: normal;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ≤ 360px
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .email-report-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 0.55rem;
+    }
+
+
+    .email-report-status {
+        align-self: flex-start;
+    }
+
+
+    .email-report-subject,
+    .email-report-header .card-title {
+        font-size: 1rem;
+
+        line-height: 1.35;
+    }
+
+
+    .email-report-details {
+        grid-template-columns: 1fr;
+
+        gap: 0.65rem;
+    }
+
+
+    .email-report-details p {
+        font-size: 13px;
+    }
+
+
+    .email-report-file {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 0.25rem;
+    }
+
+
+    .email-report-file span {
+        white-space: normal;
+    }
+
+}
+
+
+/* =========================================================
+   EXTREMELY NARROW DEVICES
+   ≤ 320px
+   ========================================================= */
+
+@media (max-width: 320px) {
+
+    .email-report-subject,
+    .email-report-header .card-title {
+        font-size: 0.95rem;
+    }
+
+
+    .email-report-details p {
+        font-size: 12.5px;
+    }
+
+
+    .email-report-body-content {
+        font-size: 13px;
+    }
+
+
+    .email-report-file {
+        gap: 0.25rem;
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .email-report-file {
+        min-height: 44px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .email-report-card,
+    .email-report-file,
+    .report-pagination button {
+        transition: none;
+    }
+
+}

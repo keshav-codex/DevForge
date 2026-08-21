@@ -1,0 +1,204 @@
+/* =========================================================
+   DEVFORGE — MAP REPORT
+   Page-specific styling
+   ========================================================= */
+
+
+/* =========================================================
+   MAP REPORT CARD
+   ========================================================= */
+
+.map-report-card {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAP REPORT HEADER
+   ========================================================= */
+
+.map-report-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    min-width: 0;
+}
+
+.map-report-header .card-title {
+    min-width: 0;
+
+    font-size: 1.15rem;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   MAP STATUS
+   ========================================================= */
+
+.map-report-status {
+    flex-shrink: 0;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================================================
+   LOCATION DETAILS
+   ========================================================= */
+
+.map-report-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 0.85rem 1.5rem;
+
+    min-width: 0;
+}
+
+.map-report-details p {
+    margin: 0;
+
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   COORDINATES
+   ========================================================= */
+
+.map-report-coordinates {
+    min-width: 0;
+}
+
+.map-report-coordinates h3 {
+    margin-bottom: 0.75rem;
+}
+
+.map-report-coordinates p {
+    margin: 0 0 0.45rem;
+
+    overflow-wrap: anywhere;
+}
+
+.map-report-coordinates p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   COORDINATE VALUES
+   ========================================================= */
+
+.map-report-coordinates strong {
+    color: #dfe5ed;
+}
+
+
+/* =========================================================
+   LOCATION DATES
+   ========================================================= */
+
+.map-report-dates {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 0.75rem 1.5rem;
+
+    min-width: 0;
+}
+
+.map-report-dates p {
+    margin: 0;
+
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1201px) {
+
+    .map-report-details,
+    .map-report-dates {
+        gap: 1rem 2rem;
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP / TABLET
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .map-report-details {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .map-report-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 0.7rem;
+    }
+
+    .map-report-status {
+        align-self: flex-start;
+    }
+
+    .map-report-details {
+        grid-template-columns: 1fr;
+    }
+
+    .map-report-dates {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .map-report-header .card-title {
+        font-size: 1.05rem;
+    }
+
+    .map-report-dates {
+        grid-template-columns: 1fr;
+    }
+
+}

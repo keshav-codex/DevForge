@@ -1,6 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Reports | DevForge{% endblock %}
+
+{% block extra_css %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/reports/reports_common.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/reports/reports.css' %}"
+    >
+
+{% endblock %}
 
 {% block navigation %}
     {% include "components/navigation.html" %}
@@ -12,84 +27,234 @@
 
     <div id="reports-container" class="page-container">
 
+        <!-- =================================================
+             REPORTS HEADER
+        ================================================== -->
+
         <header id="reports-header" class="page-header">
 
-            <h1>Reports</h1>
+            <p class="page-eyebrow">
+                DEVFORGE REPORTS
+            </p>
 
-            <p>
-                Select a report to view your processed data and insights.
+            <h1>
+                Activity Report, Organized.
+            </h1>
+
+            <p class="page-description">
+                Explore reports from your email, location,
+                and AI activity in one place.
             </p>
 
         </header>
 
-        <section id="reports-content" class="card-container">
 
-            <!-- Email Reports -->
+        <!-- =================================================
+             REPORTS OVERVIEW
+        ================================================== -->
 
-            <a id="reports-email-card"
-               class="card"
-               href="{% url 'email_report' %}">
+        <section
+            id="reports-overview"
+            aria-labelledby="reports-overview-title"
+        >
 
-                <h2 class="card-title">
-                    Email Reports
+            <div id="reports-overview-heading">
+
+                <h2 id="reports-overview-title">
+                    Explore your reports
                 </h2>
 
-                <p class="card-description">
-                    View reports generated from your email activity
-                    and connected email data.
+                <p>
+                    Choose an activity to view its detailed report.
                 </p>
 
-                <span class="card-action">
-                    View Email Reports
-                </span>
-
-            </a>
+            </div>
 
 
-            <!-- Map Reports -->
+            <div
+                id="reports-content"
+                class="card-container"
+                aria-label="Available reports"
+            >
 
-            <a id="reports-map-card"
-               class="card"
-               href="{% url 'map_report' %}">
+                <!-- =============================================
+                     EMAIL REPORT
+                ============================================== -->
 
-                <h2 class="card-title">
-                    Map Reports
-                </h2>
+                <a
+                    id="reports-email-card"
+                    class="card report-card"
+                    href="{% url 'email_report' %}"
+                >
 
-                <p class="card-description">
-                    View reports generated from your map and
-                    location-related activity.
-                </p>
+                    <div class="report-card-content">
 
-                <span class="card-action">
-                    View Map Reports
-                </span>
+                        <div
+                            class="report-card-icon"
+                            aria-hidden="true"
+                        >
+                            ✉
+                        </div>
 
-            </a>
+                        <div class="report-card-text">
+
+                            <p class="report-card-category">
+                                Communication
+                            </p>
+
+                            <h3 class="card-title">
+                                Email Report
+                            </h3>
+
+                            <p class="card-description">
+                                Review sent emails, recipients,
+                                delivery status, and attachments.
+                            </p>
+
+                        </div>
+
+                    </div>
 
 
-            <!-- AI Reports -->
+                    <div class="report-card-action">
 
-            <a id="reports-ai-card"
-               class="card"
-               href="{% url 'ai_report' %}">
+                        <span>
+                            Open Email Report
+                        </span>
 
-                <h2 class="card-title">
-                    AI Reports
-                </h2>
+                        <span aria-hidden="true">
+                            →
+                        </span>
 
-                <p class="card-description">
-                    View reports and insights generated from
-                    AI-related activity.
-                </p>
+                    </div>
 
-                <span class="card-action">
-                    View AI Reports
-                </span>
+                </a>
 
-            </a>
+
+                <!-- =============================================
+                     MAP / LOCATION REPORT
+                ============================================== -->
+
+                <a
+                    id="reports-map-card"
+                    class="card report-card"
+                    href="{% url 'map_report' %}"
+                >
+
+                    <div class="report-card-content">
+
+                        <div
+                            class="report-card-icon"
+                            aria-hidden="true"
+                        >
+                            ◉
+                        </div>
+
+                        <div class="report-card-text">
+
+                            <p class="report-card-category">
+                                Locations
+                            </p>
+
+                            <h3 class="card-title">
+                                Location Report
+                            </h3>
+
+                            <p class="card-description">
+                                Explore visited and planned places,
+                                addresses, and geographic coordinates.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-card-action">
+
+                        <span>
+                            Open Location Report
+                        </span>
+
+                        <span aria-hidden="true">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- =============================================
+                     AI REPORT
+                ============================================== -->
+
+                <a
+                    id="reports-ai-card"
+                    class="card report-card"
+                    href="{% url 'ai_report' %}"
+                >
+
+                    <div class="report-card-content">
+
+                        <div
+                            class="report-card-icon"
+                            aria-hidden="true"
+                        >
+                            ✦
+                        </div>
+
+                        <div class="report-card-text">
+
+                            <p class="report-card-category">
+                                Intelligence
+                            </p>
+
+                            <h3 class="card-title">
+                                AI Report
+                            </h3>
+
+                            <p class="card-description">
+                                Review AI interactions, generated
+                                responses, and supporting files.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-card-action">
+
+                        <span>
+                            Open AI Report
+                        </span>
+
+                        <span aria-hidden="true">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
 
         </section>
+
+
+        <!-- =================================================
+             REPORTS FOOTER NOTE
+        ================================================== -->
+
+        <footer id="reports-footer">
+
+            <p>
+                Reports are generated from your DevForge activity
+                and are available only to your account.
+            </p>
+
+        </footer>
 
     </div>
 

@@ -1,10 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Email Reports | DevForge{% endblock %}
 
-{% block navigation %}
-    {% include "components/navigation.html" %}
+
+{% block extra_css %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/reports/reports_common.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/reports/email.css' %}"
+    >
+
 {% endblock %}
+
+
+{% block navigation %}
+
+    {% include "components/navigation.html" %}
+
+{% endblock %}
+
 
 {% block content %}
 
@@ -12,39 +32,52 @@
 
     <div id="email-report-container" class="page-container">
 
+
+        <!-- Page Header -->
+
         <header id="email-report-header" class="page-header">
 
-            <h1>Email Reports</h1>
+            <h1>
+                Email Report
+            </h1>
 
-            <p>
-                View reports and insights generated from your email activity.
+            <p id="email-report-description">
+                Review your email activity, recipients,
+                message content, and attached files.
             </p>
 
         </header>
 
-        <section id="email-report-content" class="card-container">
 
-            <div id="email-report-status-card" class="card">
+        <!-- Email Reports -->
 
-                <h2 class="card-title">
-                    Email Report
-                </h2>
+        <section id="email-report-content"
+                 class="card-container">
+
+            <div id="email-report-loading"
+                 class="card">
 
                 <p class="card-description">
-                    Email reports will be generated from your connected
-                    email activity and displayed here.
+                    Loading email reports...
                 </p>
-
-                <span class="card-action">
-                    Coming Soon
-                </span>
 
             </div>
 
         </section>
 
+
+        <!-- Pagination -->
+
+        <nav id="email-report-pagination"
+             aria-label="Email report pagination">
+        </nav>
+
+
     </div>
 
 </main>
+
+
+<script src="{% static 'js/reports/email.js' %}"></script>
 
 {% endblock %}
