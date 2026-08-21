@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
+from apps.ai.services import generate_location_description
 from apps.location.models import Location
 
 
@@ -14,14 +16,134 @@ def activity(request):
     # Handle form submission.
     if request.method == "POST":
 
-        # Get submitted values.
-        place_name = request.POST.get("place_name", "").strip()
-        status = request.POST.get("status", "").strip()
-        description = request.POST.get("description", "").strip()
-        address = request.POST.get("address", "").strip()
-        latitude = request.POST.get("latitude", "").strip()
-        longitude = request.POST.get("longitude", "").strip()
+        # =====================================================
+        # AI LOCATION DESCRIPTION
+        # =====================================================
 
+        ai_action = request.POST.get(
+            "ai_action",
+            ""
+        ).strip()
+
+        if ai_action == "location_description":
+
+            place_name = request.POST.get(
+                "place_name",
+                ""
+            ).strip()
+
+            status = request.POST.get(
+                "status",
+                ""
+            ).strip()
+
+            instruction = request.POST.get(
+                "ai_instruction",
+                ""
+            ).strip()
+
+            description = request.POST.get(
+                "description",
+                ""
+            ).strip()
+
+            # AI requires place name, status and instruction.
+            if not place_name:
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "error": "Please enter a place name."
+                    },
+                    status=400,
+                )
+
+            if status not in ["visited", "planned"]:
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "error": "Please select Visited or Planned."
+                    },
+                    status=400,
+                )
+
+            if not instruction:
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "error": "Please enter an instruction."
+                    },
+                    status=400,
+                )
+
+            try:
+
+                ai_description = generate_location_description(
+                    place_name=place_name,
+                    status=status,
+                    instruction=instruction,
+                    description=description,
+                )
+
+                return JsonResponse(
+                    {
+                        "success": True,
+                        "description": ai_description,
+                    }
+                )
+
+            except Exception as error:
+
+                print(
+                    "LOCATION AI ERROR:",
+                    error,
+                )
+
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "error": (
+                            "Unable to generate an AI response. "
+                            "Please try again."
+                        ),
+                    },
+                    status=500,
+                )
+
+
+        # =====================================================
+        # NORMAL LOCATION SAVE
+        # =====================================================
+
+        # Get submitted values.
+        place_name = request.POST.get(
+            "place_name",
+            ""
+        ).strip()
+
+        status = request.POST.get(
+            "status",
+            ""
+        ).strip()
+
+        description = request.POST.get(
+            "description",
+            ""
+        ).strip()
+
+        address = request.POST.get(
+            "address",
+            ""
+        ).strip()
+
+        latitude = request.POST.get(
+            "latitude",
+            ""
+        ).strip()
+
+        longitude = request.POST.get(
+            "longitude",
+            ""
+        ).strip()
         # Validate place name.
         if not place_name:
             messages.error(
