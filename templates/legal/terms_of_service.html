@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Terms of Service | DevForge
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/legal.css' %}"
+>
+
+{% endblock %}
+
+
+{% block navigation %}
+
+    {% include "components/navigation.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<main id="terms-page" class="page">
+
+    <div id="terms-container" class="page-container">
+
+
+        <header class="legal-header">
+
+            <p class="legal-eyebrow">
+                Legal
+            </p>
+
+            <h1>
+                Terms of Service
+            </h1>
+
+            <p class="legal-intro">
+                These Terms describe the basic rules and conditions
+                for using DevForge and its available features.
+            </p>
+
+            <p class="legal-updated">
+                Last updated: August 21, 2026
+            </p>
+
+        </header>
+
+
+        <section class="legal-content">
+
+
+            <article class="legal-section">
+
+                <h2>1. About DevForge</h2>
+
+                <p>
+                    DevForge is a learning and portfolio project
+                    created to demonstrate software development
+                    concepts and technologies.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>2. Acceptable Use</h2>
+
+                <p>
+                    You agree to use DevForge only for lawful purposes
+                    and must not use the application for harmful,
+                    fraudulent, abusive, malicious, or unlawful
+                    activities.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>3. User Accounts</h2>
+
+                <p>
+                    Some features require authentication. You are
+                    responsible for activity performed through your
+                    authenticated account and session.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>4. Google Authentication</h2>
+
+                <p>
+                    DevForge may use Google Sign-In for authentication.
+                    By signing in, you authorize DevForge to receive
+                    information permitted through the Google
+                    authentication process.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>5. Gmail Functionality</h2>
+
+                <p>
+                    DevForge may allow authorized users to send emails
+                    through their Gmail account. Users are responsible
+                    for the content, recipients, attachments, and
+                    purpose of emails they send.
+                </p>
+
+                <p>
+                    Gmail functionality must not be used for spam,
+                    fraud, harassment, abuse, or unlawful activity.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>6. AI Features</h2>
+
+                <p>
+                    Some features may use AI systems or external APIs.
+                    AI-generated information may be inaccurate or
+                    incomplete and should be reviewed before being
+                    relied upon.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>7. User Responsibilities</h2>
+
+                <p>
+                    You are responsible for information and content
+                    submitted to DevForge and must have the necessary
+                    rights and permissions to use that content.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>8. Service Availability</h2>
+
+                <p>
+                    DevForge is a learning and portfolio project.
+                    Features may change, become temporarily unavailable,
+                    or be discontinued during development.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>9. Third-Party Services</h2>
+
+                <p>
+                    DevForge may depend on services such as Google
+                    and external APIs. Their availability or changes
+                    may affect related DevForge functionality.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>10. Limitation of Liability</h2>
+
+                <p>
+                    DevForge is provided as a learning and portfolio
+                    project. To the extent permitted by applicable law,
+                    the developer is not responsible for losses,
+                    damages, interruptions, or issues resulting from
+                    use of the application or third-party services.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>11. Changes to the Service and Terms</h2>
+
+                <p>
+                    DevForge may be updated or modified as development
+                    continues. Features and these Terms may therefore
+                    change over time. The updated date at the top of
+                    this page indicates the latest revision.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>12. Contact</h2>
+
+                <p>
+                    For questions regarding these Terms or the DevForge
+                    project, please use the contact information provided
+                    in the application or portfolio website.
+                </p>
+
+            </article>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}

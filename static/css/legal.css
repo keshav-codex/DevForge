@@ -1,0 +1,471 @@
+/* ==========================================================================
+   DEVFORGE — LEGAL PAGES
+   Privacy Policy + Terms of Service
+   ========================================================================== */
+
+
+/* ==========================================================================
+   PAGE FOUNDATION
+   ========================================================================== */
+
+#privacy-policy-page,
+#terms-page {
+    width: 100%;
+}
+
+#privacy-policy-container,
+#terms-container {
+    width: min(
+        calc(100% - (var(--df-content-padding) * 2)),
+        1000px
+    );
+
+    margin-inline: auto;
+
+    padding-top: clamp(64px, 8vw, 110px);
+    padding-bottom: clamp(64px, 8vw, 110px);
+}
+
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.legal-header {
+    width: 100%;
+
+    margin: 0 auto clamp(42px, 5vw, 64px);
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   EYEBROW
+   ========================================================================== */
+
+.legal-eyebrow {
+    margin: 0 0 12px;
+
+    color: var(--df-spark-400);
+
+    font-family: var(--df-font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   MAIN HEADING
+   ========================================================================== */
+
+.legal-header h1 {
+    display: inline-block;
+
+    margin: 0;
+
+    font-family: var(--df-font-display);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+
+    background: linear-gradient(
+        110deg,
+        #ff7a45 0%,
+        #ff5b2e 25%,
+        #4fd1ff 50%,
+        #8b7cff 72%,
+        #ff7a45 100%
+    );
+
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    animation: legal-h1-colors 7s ease-in-out infinite;
+}
+
+
+/* ==========================================================================
+   HEADER DESCRIPTION
+   ========================================================================== */
+
+.legal-intro {
+    width: min(100%, 720px);
+
+    margin: 18px auto 0;
+
+    color: var(--df-text-muted);
+
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.75;
+}
+
+
+/* ==========================================================================
+   LAST UPDATED
+   ========================================================================== */
+
+.legal-updated {
+    margin: 14px 0 0;
+
+    color: var(--df-text-dim);
+
+    font-size: 0.82rem;
+}
+
+
+/* ==========================================================================
+   LEGAL CONTENT
+   ========================================================================== */
+
+.legal-content {
+    width: 100%;
+
+    margin-inline: auto;
+
+    padding: clamp(24px, 4vw, 48px);
+
+    background: rgba(26, 29, 39, 0.72);
+
+    border: 1px solid var(--df-border);
+
+    border-radius: var(--df-radius-md);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.16),
+        0 0 30px rgba(79, 209, 255, 0.025);
+}
+
+
+/* ==========================================================================
+   INDIVIDUAL SECTION
+   ========================================================================== */
+
+.legal-section {
+    padding: 0 0 34px;
+
+    margin: 0 0 34px;
+
+    border-bottom: 1px solid var(--df-border-soft);
+}
+
+.legal-section:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+
+/* ==========================================================================
+   SECTION HEADING
+   ========================================================================== */
+
+.legal-section h2 {
+    margin: 0 0 14px;
+
+    color: var(--df-text-primary);
+
+    font-family: var(--df-font-display);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 600;
+
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+}
+
+
+/* ==========================================================================
+   SECTION PARAGRAPHS
+   ========================================================================== */
+
+.legal-section p {
+    max-width: 850px;
+
+    margin: 0 0 14px;
+
+    color: var(--df-text-muted);
+
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.legal-section p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   LISTS
+   ========================================================================== */
+
+.legal-section ul {
+    margin: 12px 0 0;
+    padding-left: 1.4rem;
+
+    color: var(--df-text-muted);
+}
+
+.legal-section li {
+    margin-bottom: 8px;
+
+    padding-left: 4px;
+
+    line-height: 1.7;
+}
+
+.legal-section li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   STRONG TEXT
+   ========================================================================== */
+
+.legal-section strong {
+    color: var(--df-text-primary);
+
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   LINKS
+   ========================================================================== */
+
+.legal-section a {
+    color: var(--df-spark-400);
+
+    text-decoration: none;
+
+    transition:
+        color var(--df-duration) var(--df-ease),
+        opacity var(--df-duration) var(--df-ease);
+}
+
+.legal-section a:hover {
+    color: var(--df-spark-500);
+}
+
+
+/* ==========================================================================
+   H1 ANIMATION
+   ========================================================================== */
+
+@keyframes legal-h1-colors {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 35% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 65% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* ==========================================================================
+   LARGE DESKTOP
+   ========================================================================== */
+
+@media (min-width: 1441px) {
+
+    #privacy-policy-container,
+    #terms-container {
+        width: min(
+            calc(100% - (var(--df-content-padding) * 2)),
+            1050px
+        );
+    }
+
+    .legal-content {
+        padding: 52px;
+    }
+
+}
+
+
+/* ==========================================================================
+   TABLET / SMALL DESKTOP
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    #privacy-policy-container,
+    #terms-container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .legal-content {
+        padding: 32px;
+    }
+
+}
+
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 560px) {
+
+    #privacy-policy-container,
+    #terms-container {
+        width: calc(100% - 32px);
+
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .legal-header {
+        margin-bottom: 34px;
+    }
+
+    .legal-eyebrow {
+        margin-bottom: 10px;
+
+        font-size: 0.75rem;
+    }
+
+    .legal-header h1 {
+        font-size: 2rem;
+    }
+
+    .legal-intro {
+        margin-top: 14px;
+
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .legal-content {
+        padding: 24px 20px;
+    }
+
+    .legal-section {
+        padding-bottom: 28px;
+        margin-bottom: 28px;
+    }
+
+    .legal-section h2 {
+        margin-bottom: 12px;
+
+        font-size: 1.1rem;
+    }
+
+    .legal-section p {
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+
+    .legal-section ul {
+        padding-left: 1.2rem;
+    }
+
+}
+
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 360px) {
+
+    #privacy-policy-container,
+    #terms-container {
+        width: calc(100% - 24px);
+
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .legal-header {
+        margin-bottom: 30px;
+    }
+
+    .legal-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .legal-content {
+        padding: 20px 16px;
+    }
+
+    .legal-section {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+    }
+
+    .legal-section h2 {
+        font-size: 1.05rem;
+    }
+
+    .legal-section p,
+    .legal-section li {
+        font-size: 0.86rem;
+    }
+
+}
+
+
+/* ==========================================================================
+   VERY SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 320px) {
+
+    #privacy-policy-container,
+    #terms-container {
+        width: calc(100% - 20px);
+
+        padding-top: 34px;
+        padding-bottom: 34px;
+    }
+
+    .legal-header h1 {
+        font-size: 1.65rem;
+    }
+
+    .legal-content {
+        padding: 18px 14px;
+    }
+
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .legal-header h1 {
+        animation: none;
+
+        background-position: 50% 50%;
+    }
+
+}

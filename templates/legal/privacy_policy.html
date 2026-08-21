@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Privacy Policy | DevForge{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'css/legal.css' %}"
+>
+{% endblock %}
+
+{% block navigation %}
+    {% include "components/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="privacy-policy-page" class="page">
+
+    <div id="privacy-policy-container" class="page-container">
+
+        <header class="legal-header">
+
+            <p class="legal-eyebrow">
+                Legal
+            </p>
+
+            <h1>
+                Privacy Policy
+            </h1>
+
+            <p class="legal-intro">
+                This Privacy Policy explains how DevForge handles
+                information and permissions when you use the application.
+            </p>
+
+            <p class="legal-updated">
+                Last updated: August 21, 2026
+            </p>
+
+        </header>
+
+
+        <section class="legal-content">
+
+            <article class="legal-section">
+
+                <h2>1. About DevForge</h2>
+
+                <p>
+                    DevForge is a learning and portfolio project created
+                    to demonstrate web development, authentication,
+                    email integration, reporting, and AI/API functionality.
+                    It is not intended to operate as a large commercial
+                    or enterprise service.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>2. Information We Collect</h2>
+
+                <p>
+                    Depending on the features you use, DevForge may process
+                    your name, email address, Google profile information,
+                    profile photo, authentication information, and other
+                    information required to provide application features.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>3. Google Sign-In</h2>
+
+                <p>
+                    DevForge may use Google Sign-In for authentication.
+                    When you sign in with Google, information such as your
+                    name, email address, and profile image may be provided
+                    according to the permissions granted during authentication.
+                </p>
+
+                <p>
+                    This information is used to create and maintain your
+                    DevForge account and provide authenticated features.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>4. Gmail Access and Email Sending</h2>
+
+                <p>
+                    Some features may request the
+                    <strong>gmail.send</strong> permission so DevForge can
+                    send emails through your authorized Gmail account.
+                </p>
+
+                <p>
+                    Emails are sent using the Gmail account you authorize.
+                    You are responsible for the recipients, message content,
+                    attachments, and other information included in emails
+                    you choose to send.
+                </p>
+
+                <p>
+                    DevForge does not request broader Gmail access than
+                    required for the implemented functionality.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>5. AI and External APIs</h2>
+
+                <p>
+                    Certain features may use artificial intelligence or
+                    external APIs for analysis, summaries, reports, or
+                    other functionality.
+                </p>
+
+                <p>
+                    Information sent to these services depends on the
+                    feature being used and the data required to perform
+                    that operation. Third-party services have their own
+                    privacy policies and terms.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>6. Data Storage</h2>
+
+                <p>
+                    Application information may be stored in the
+                    application's database and associated storage systems.
+                    The information stored depends on the features you use.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>7. Cookies and Sessions</h2>
+
+                <p>
+                    DevForge may use cookies and server-side sessions to
+                    maintain authentication, security, preferences, and
+                    application functionality.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>8. Security</h2>
+
+                <p>
+                    Reasonable technical measures are used to protect
+                    application information and authentication credentials.
+                    However, no internet-based application can guarantee
+                    absolute security.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>9. Data Deletion and Access Revocation</h2>
+
+                <p>
+                    You may request deletion of your DevForge account or
+                    associated information by contacting the project
+                    developer through the contact information provided
+                    on the application or portfolio website.
+                </p>
+
+                <p>
+                    Where applicable, you may also revoke DevForge's
+                    Google access through your Google Account settings.
+                </p>
+
+            </article>
+
+
+            <article class="legal-section">
+
+                <h2>10. Contact</h2>
+
+                <p>
+                    For privacy-related questions, requests, or concerns,
+                    please contact the DevForge project developer using
+                    the contact information provided on the application
+                    or portfolio website.
+                </p>
+
+            </article>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}
