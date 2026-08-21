@@ -1,0 +1,399 @@
+/* ==========================================================================
+   DevForge — Global Footer
+   --------------------------------------------------------------------------
+   Uses the SAME project color system defined in navigation.css.
+   If navigation.css is already loaded on the page, these :root vars are
+   redundant (browser just reuses them) — kept here too so footer.css also
+   works standalone.
+
+   --df-primary        #6C5CE7
+   --df-primary-dark    #5643d1
+   --df-primary-light   #A29BFE
+   --df-accent          #00D4B8
+   --df-accent-dark     #00b39c
+   --df-danger          #FF5C7A
+   --df-danger-dark     #e14563
+   --df-bg              #FFFFFF
+   --df-bg-alt          #F7F7FC
+   --df-border          #E9E9F3
+   --df-text            #2D2D3A
+   --df-text-light      #7A7A8C
+   ========================================================================== */
+
+:root {
+    --df-primary: #6C5CE7;
+    --df-primary-dark: #5643d1;
+    --df-primary-light: #A29BFE;
+    --df-accent: #00D4B8;
+    --df-accent-dark: #00b39c;
+    --df-danger: #FF5C7A;
+    --df-danger-dark: #e14563;
+    --df-bg: #FFFFFF;
+    --df-bg-alt: #F7F7FC;
+    --df-border: #E9E9F3;
+    --df-text: #2D2D3A;
+    --df-text-light: #7A7A8C;
+
+    --df-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Base                                                                    */
+/* ---------------------------------------------------------------------- */
+
+.main-footer {
+    margin-top: 60px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--df-bg-alt) 100%);
+    border-top: 1px solid var(--df-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--df-primary), var(--df-accent), var(--df-primary-light));
+    background-size: 200% auto;
+    animation: footerGlow 8s linear infinite;
+}
+
+@keyframes footerGlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 45px 60px 35px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+
+    animation: footerRise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes footerRise {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Brand                                                                   */
+/* ---------------------------------------------------------------------- */
+
+.footer-brand h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 700;
+
+    background: linear-gradient(90deg, var(--df-primary), var(--df-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--df-primary);
+    display: inline-block;
+}
+
+.footer-brand p {
+    margin: 0;
+    color: var(--df-text-light);
+    font-size: 14px;
+    max-width: 260px;
+    line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Contact                                                                 */
+/* ---------------------------------------------------------------------- */
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-link {
+    position: relative;
+    color: var(--df-text-light);
+    font-size: 14px;
+    width: fit-content;
+    transition: color var(--df-transition), transform var(--df-transition);
+}
+
+.footer-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1.5px;
+    width: 100%;
+
+    background: linear-gradient(90deg, var(--df-primary), var(--df-accent));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--df-transition);
+}
+
+.footer-link:hover {
+    color: var(--df-primary);
+    transform: translateX(2px);
+}
+
+.footer-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Social (new section — disabled placeholder links)                      */
+/* ---------------------------------------------------------------------- */
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-social-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--df-text);
+}
+
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-social-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    background: var(--df-bg-alt);
+    border: 1.5px solid var(--df-border);
+    color: var(--df-text-light);
+
+    cursor: not-allowed;
+    overflow: hidden;
+
+    transition: transform var(--df-transition),
+                box-shadow var(--df-transition),
+                border-color var(--df-transition),
+                color var(--df-transition);
+}
+
+.footer-social-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform var(--df-transition);
+}
+
+/* text labels hidden — icon-only chips, tooltip on hover */
+.footer-social-link span {
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--df-bg);
+    background: var(--df-text);
+    padding: 3px 8px;
+    border-radius: 6px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--df-transition), bottom var(--df-transition);
+}
+
+.footer-social-link:hover {
+    transform: translateY(-3px) rotate(-4deg);
+    border-color: var(--df-primary-light);
+    color: var(--df-primary);
+    box-shadow: 0 8px 18px rgba(108, 92, 231, 0.18);
+}
+
+.footer-social-link:hover .footer-social-icon {
+    transform: scale(1.1);
+}
+
+.footer-social-link:hover span {
+    opacity: 1;
+    bottom: -26px;
+}
+
+.footer-social-link:active {
+    transform: translateY(-1px) rotate(0deg);
+}
+
+.footer-social-link:focus-visible {
+    outline: 2px solid var(--df-primary-light);
+    outline-offset: 3px;
+}
+
+/* Per-platform hover tint (purely decorative, no structural change) */
+.footer-social-link[data-platform="linkedin"]:hover { color: #0A66C2; border-color: #0A66C2; }
+.footer-social-link[data-platform="github"]:hover { color: #24292f; border-color: #24292f; }
+.footer-social-link[data-platform="hackerrank"]:hover { color: #00A162; border-color: #00A162; }
+.footer-social-link[data-platform="leetcode"]:hover { color: #FFA116; border-color: #FFA116; }
+.footer-social-link[data-platform="instagram"]:hover { color: #E1306C; border-color: #E1306C; }
+
+/* ---------------------------------------------------------------------- */
+/* Copyright                                                               */
+/* ---------------------------------------------------------------------- */
+
+.footer-copyright {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid var(--df-border);
+}
+
+.footer-copyright p {
+    margin: 0;
+    color: var(--df-text-light);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Responsive — large desktops / wide monitors                            */
+/* ---------------------------------------------------------------------- */
+
+@media (min-width: 1440px) {
+    .footer-container {
+        max-width: 1300px;
+        padding: 55px 100px 40px;
+    }
+
+    .footer-brand h3 {
+        font-size: 20px;
+    }
+
+    .footer-social-link {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Responsive — tablets                                                    */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .footer-container {
+        padding: 40px 32px 30px;
+        gap: 32px;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Responsive — small tablets / large phones                              */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 20px 24px;
+        gap: 26px;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+    }
+
+    .footer-social {
+        width: 100%;
+    }
+
+    .footer-social-links {
+        gap: 10px;
+    }
+
+    .footer-social-link span {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Responsive — phones                                                     */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+    .main-footer {
+        margin-top: 40px;
+    }
+
+    .footer-container {
+        padding: 26px 16px 20px;
+        gap: 22px;
+    }
+
+    .footer-brand h3 {
+        font-size: 16px;
+    }
+
+    .footer-brand p,
+    .footer-link {
+        font-size: 13px;
+    }
+
+    .footer-social-link {
+        width: 34px;
+        height: 34px;
+    }
+
+    .footer-social-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .footer-copyright p {
+        font-size: 12px;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Reduced motion                                                          */
+/* ---------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .main-footer::before,
+    .footer-container,
+    .footer-link,
+    .footer-social-link,
+    .footer-social-icon,
+    .footer-social-link span {
+        animation: none !important;
+        transition: none !important;
+    }
+}

@@ -1,0 +1,395 @@
+/* ==========================================================================
+   DEVFORGE — GLOBAL DESIGN TOKENS
+   Keep this block identical across every stylesheet in the project so
+   colors, radii and easing stay consistent site-wide.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    /* surfaces */
+    --df-bg-primary:   #12141c;
+    --df-bg-surface:   #1a1d27;
+    --df-border:       rgba(255, 255, 255, 0.08);
+    --df-border-soft:  rgba(255, 255, 255, 0.05);
+
+    /* forge / ember accent (warm) */
+    --df-ember-400:    #ffa35c;
+    --df-ember-500:    #ff7a45;
+    --df-ember-600:    #ff5b2e;
+
+    /* spark accent (cool counterpoint) */
+    --df-spark-400:    #6fe3ff;
+    --df-spark-500:    #4fd1ff;
+
+    /* status */
+    --df-danger-500:   #ff4d6d;
+    --df-danger-600:   #ff2f56;
+
+    /* text */
+    --df-text-primary: #f5f6fa;
+    --df-text-muted:   #9aa0ae;
+    --df-text-dim:     #6b7080;
+
+    /* shape / motion */
+    --df-radius-sm:    8px;
+    --df-radius-md:    14px;
+    --df-radius-pill:  999px;
+    --df-ease:         cubic-bezier(0.22, 1, 0.36, 1);
+    --df-duration:     0.35s;
+
+    --df-font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --df-font-body:    'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ==========================================================================
+   NAV SHELL
+   ========================================================================== */
+
+.main-navigation {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    height: 70px;
+    padding: 0 clamp(18px, 4vw, 60px);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    background: rgba(18, 20, 28, 0.85);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--df-border);
+
+    font-family: var(--df-font-body);
+    color: var(--df-text-primary);
+
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* thin animated ember rule glowing along the bottom edge of the whole bar */
+.main-navigation::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--df-ember-500) 20%,
+        var(--df-spark-500) 50%,
+        var(--df-ember-500) 80%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    opacity: 0.55;
+    animation: df-rule-drift 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes df-rule-drift {
+    0%   { background-position: 0% 0%; }
+    100% { background-position: -200% 0%; }
+}
+
+/* ==========================================================================
+   LOGO
+   ========================================================================== */
+
+.nav-logo {
+    font-family: var(--df-font-display);
+    font-size: clamp(19px, 2.4vw, 23px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+
+    background: linear-gradient(100deg,
+        var(--df-ember-400) 0%,
+        var(--df-ember-500) 35%,
+        var(--df-spark-500) 70%,
+        var(--df-ember-400) 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--df-ember-500); /* fallback */
+
+    animation: df-logo-glow 6s ease-in-out infinite;
+    cursor: default;
+}
+
+@keyframes df-logo-glow {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+/* ==========================================================================
+   NAV MENU / LINKS
+   ========================================================================== */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2.4vw, 30px);
+
+    /* allows graceful horizontal scroll on very small screens without
+       touching markup or adding a burger toggle */
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+}
+
+.nav-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    position: relative;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--df-text-muted);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+
+    padding: 8px 2px;
+    transition: color var(--df-duration) var(--df-ease),
+                transform var(--df-duration) var(--df-ease),
+                text-shadow var(--df-duration) var(--df-ease);
+}
+
+/* gradient underline that draws in from the center on hover/focus */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 100%;
+    height: 2px;
+    border-radius: var(--df-radius-pill);
+    background: linear-gradient(90deg, var(--df-ember-500), var(--df-spark-500));
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    opacity: 0;
+    transition: transform var(--df-duration) var(--df-ease),
+                opacity var(--df-duration) var(--df-ease);
+}
+
+/* tiny spark dot that rides the underline in on hover */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0.5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--df-spark-400);
+    box-shadow: 0 0 8px 2px var(--df-spark-400);
+    opacity: 0;
+    transform: translate(-50%, 4px) scale(0.4);
+    transition: opacity var(--df-duration) var(--df-ease),
+                transform var(--df-duration) var(--df-ease);
+    pointer-events: none;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+    color: var(--df-text-primary);
+    transform: translateY(-1px);
+    text-shadow: 0 0 18px rgba(255, 122, 69, 0.35);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+}
+
+.nav-link:hover::before,
+.nav-link:focus-visible::before {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+}
+
+.nav-link:active {
+    transform: translateY(0);
+}
+
+.nav-link:focus-visible {
+    outline: none;
+    border-radius: var(--df-radius-sm);
+    box-shadow: 0 0 0 2px rgba(79, 209, 255, 0.5);
+}
+
+/* ==========================================================================
+   LOGOUT
+   ========================================================================== */
+
+.nav-logout-form {
+    margin: 0;
+    padding: 0;
+    flex: 0 0 auto;
+}
+
+.nav-logout {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--df-danger-500);
+
+    border: 1px solid rgba(255, 77, 109, 0.4);
+    background: rgba(255, 77, 109, 0.06);
+    border-radius: var(--df-radius-pill);
+    padding: 8px 18px;
+    cursor: pointer;
+
+    transition: color var(--df-duration) var(--df-ease),
+                border-color var(--df-duration) var(--df-ease),
+                box-shadow var(--df-duration) var(--df-ease),
+                transform var(--df-duration) var(--df-ease);
+}
+
+/* fill sweeps in from the left on hover, sitting behind the button text */
+.nav-logout::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(100deg, var(--df-danger-600), var(--df-ember-500));
+    transform: translateX(-100%);
+    transition: transform var(--df-duration) var(--df-ease);
+}
+
+.nav-logout:hover,
+.nav-logout:focus-visible {
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 47, 86, 0.4),
+                0 0 0 1px rgba(255, 122, 69, 0.3);
+}
+
+.nav-logout:hover::before,
+.nav-logout:focus-visible::before {
+    transform: translateX(0);
+}
+
+.nav-logout:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.nav-logout:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 77, 109, 0.6);
+}
+
+/* ==========================================================================
+   RESPONSIVE — SMALL TO LARGE
+   ========================================================================== */
+
+/* large desktop / ultra-wide: center content, cap runaway spacing */
+@media (min-width: 1600px) {
+    .main-navigation {
+        padding-left: max(60px, calc((100vw - 1600px) / 2));
+        padding-right: max(60px, calc((100vw - 1600px) / 2));
+    }
+}
+
+/* tablet */
+@media (max-width: 900px) {
+    .main-navigation {
+        height: 64px;
+    }
+
+    .nav-menu {
+        gap: 18px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    .nav-logout {
+        padding: 7px 14px;
+        font-size: 13px;
+    }
+}
+
+/* small phones */
+@media (max-width: 560px) {
+    .main-navigation {
+        height: 58px;
+        padding: 0 16px;
+        gap: 10px;
+
+        /* soft fade at the scrollable menu edges */
+        -webkit-mask-image: linear-gradient(90deg,
+            transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+        mask-image: linear-gradient(90deg,
+            transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+    }
+
+    .nav-logo {
+        font-size: 17px;
+    }
+
+    .nav-menu {
+        gap: 14px;
+    }
+
+    .nav-link {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .nav-logout {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+/* very small devices */
+@media (max-width: 360px) {
+    .main-navigation {
+        padding: 0 10px;
+    }
+
+    .nav-logo {
+        font-size: 15px;
+    }
+
+    .nav-menu {
+        gap: 10px;
+    }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .main-navigation::after,
+    .nav-logo,
+    .nav-link,
+    .nav-link::after,
+    .nav-link::before,
+    .nav-logout,
+    .nav-logout::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}
