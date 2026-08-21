@@ -212,9 +212,10 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # Login and logout redirects.
-LOGIN_URL = "/accounts/login/"
+
 LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/welcome/"
+LOGIN_URL = "/login/"
 
 
 # =========================================================

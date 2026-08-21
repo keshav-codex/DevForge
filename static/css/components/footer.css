@@ -1,399 +1,863 @@
 /* ==========================================================================
-   DevForge — Global Footer
-   --------------------------------------------------------------------------
-   Uses the SAME project color system defined in navigation.css.
-   If navigation.css is already loaded on the page, these :root vars are
-   redundant (browser just reuses them) — kept here too so footer.css also
-   works standalone.
+   DEVFORGE — FOOTER
+   Global footer styling
+   ========================================================================== */
 
-   --df-primary        #6C5CE7
-   --df-primary-dark    #5643d1
-   --df-primary-light   #A29BFE
-   --df-accent          #00D4B8
-   --df-accent-dark     #00b39c
-   --df-danger          #FF5C7A
-   --df-danger-dark     #e14563
-   --df-bg              #FFFFFF
-   --df-bg-alt          #F7F7FC
-   --df-border          #E9E9F3
-   --df-text            #2D2D3A
-   --df-text-light      #7A7A8C
+
+/* ==========================================================================
+   DESIGN TOKENS
    ========================================================================== */
 
 :root {
+
     --df-primary: #6C5CE7;
     --df-primary-dark: #5643d1;
     --df-primary-light: #A29BFE;
+
     --df-accent: #00D4B8;
     --df-accent-dark: #00b39c;
+
     --df-danger: #FF5C7A;
     --df-danger-dark: #e14563;
-    --df-bg: #FFFFFF;
-    --df-bg-alt: #F7F7FC;
-    --df-border: #E9E9F3;
-    --df-text: #2D2D3A;
-    --df-text-light: #7A7A8C;
 
-    --df-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Silver / graphite footer system */
+    --df-footer-bg: #252833;
+    --df-footer-bg-dark: #1f222b;
+    --df-footer-surface: rgba(255, 255, 255, 0.055);
+
+    --df-footer-text: #d8dbe2;
+    --df-footer-muted: #969ba8;
+    --df-footer-border: rgba(255, 255, 255, 0.10);
+
+    --df-footer-ease:
+        cubic-bezier(0.22, 1, 0.36, 1);
+
 }
 
-/* ---------------------------------------------------------------------- */
-/* Base                                                                    */
-/* ---------------------------------------------------------------------- */
 
-.main-footer {
-    margin-top: 60px;
-    background: linear-gradient(180deg, #ffffff 0%, var(--df-bg-alt) 100%);
-    border-top: 1px solid var(--df-border);
+/* ==========================================================================
+   FOOTER ROOT
+   ========================================================================== */
+
+#main-footer.main-footer {
+
     position: relative;
+
+    width: 100%;
+
+    margin-top: auto;
+
+    isolation: isolate;
+
     overflow: hidden;
+
+    color: var(--df-footer-text);
+
+    background:
+        linear-gradient(
+            135deg,
+            #252833 0%,
+            #292d39 35%,
+            #252833 65%,
+            #20232c 100%
+        );
+
+    border-top: 1px solid
+        rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 -12px 40px rgba(0, 0, 0, 0.18);
 }
 
-.main-footer::before {
+
+/* ==========================================================================
+   THREE-COLOR ANIMATED BACKGROUND
+   ========================================================================== */
+
+#main-footer.main-footer::before {
+
     content: "";
+
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--df-primary), var(--df-accent), var(--df-primary-light));
-    background-size: 200% auto;
-    animation: footerGlow 8s linear infinite;
+
+    inset: -45% -20%;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 15% 50%,
+            rgba(108, 92, 231, 0.30),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(0, 212, 184, 0.22),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 55%,
+            rgba(255, 92, 122, 0.24),
+            transparent 28%
+        );
+
+    filter: blur(45px);
+
+    animation:
+        footer-color-flow 14s ease-in-out infinite alternate;
 }
 
-@keyframes footerGlow {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
+
+/* ==========================================================================
+   SECOND ANIMATION LAYER
+   ========================================================================== */
+
+#main-footer.main-footer::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(108, 92, 231, 0.08),
+            transparent 28%,
+            rgba(0, 212, 184, 0.07),
+            transparent 58%,
+            rgba(255, 92, 122, 0.08)
+        );
+
+    background-size: 250% 250%;
+
+    animation:
+        footer-gradient-shift 11s ease-in-out infinite;
 }
 
-.footer-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 45px 60px 35px;
+
+/* ==========================================================================
+   FOOTER CONTAINER
+   ========================================================================== */
+
+#footer-container.footer-container {
+
+    position: relative;
+
+    width: min(
+        calc(100% - 48px),
+        1440px
+    );
+
+    margin-inline: auto;
+
+    padding:
+        42px
+        0
+        24px;
+
+    display: grid;
+
+    /*
+       IMPORTANT:
+       Exactly five footer areas remain in one row
+       on large screens.
+    */
+
+    grid-template-columns:
+        minmax(180px, 1.2fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(220px, 1.35fr);
+
+    gap: 28px;
+
+    align-items: start;
+}
+
+
+/* ==========================================================================
+   GENERIC FOOTER COLUMN
+   ========================================================================== */
+
+#footer-container > div {
+
+    min-width: 0;
+
+    position: relative;
+
+    padding: 4px 8px;
+}
+
+
+/* ==========================================================================
+   BRAND
+   ========================================================================== */
+
+#footer-brand.footer-brand {
 
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
 
-    animation: footerRise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-@keyframes footerRise {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ---------------------------------------------------------------------- */
-/* Brand                                                                   */
-/* ---------------------------------------------------------------------- */
-
-.footer-brand h3 {
-    margin: 0 0 8px;
-    font-size: 18px;
-    font-weight: 700;
-
-    background: linear-gradient(90deg, var(--df-primary), var(--df-accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: var(--df-primary);
-    display: inline-block;
-}
-
-.footer-brand p {
-    margin: 0;
-    color: var(--df-text-light);
-    font-size: 14px;
-    max-width: 260px;
-    line-height: 1.5;
-}
-
-/* ---------------------------------------------------------------------- */
-/* Contact                                                                 */
-/* ---------------------------------------------------------------------- */
-
-.footer-contact {
-    display: flex;
     flex-direction: column;
+
     gap: 10px;
 }
 
+
+#footer-brand h3 {
+
+    margin: 0;
+
+    font-family:
+        var(--df-font-display, "Space Grotesk", sans-serif);
+
+    font-size: 1.45rem;
+
+    font-weight: 700;
+
+    letter-spacing: -0.025em;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--df-primary-light),
+            var(--df-accent),
+            var(--df-danger)
+        );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        footer-brand-gradient 7s linear infinite;
+}
+
+
+#footer-brand p {
+
+    margin: 0;
+
+    max-width: 260px;
+
+    color: var(--df-footer-muted);
+
+    font-size: 0.88rem;
+
+    line-height: 1.65;
+}
+
+
+/* ==========================================================================
+   COLUMN TITLES
+   ========================================================================== */
+
+.footer-column-title,
+.footer-social-title {
+
+    margin: 0 0 15px;
+
+    font-family:
+        var(--df-font-display, "Space Grotesk", sans-serif);
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.09em;
+
+    color: #b9bdc8;
+}
+
+
+/* ==========================================================================
+   CONTACT / LEGAL / SUPPORT
+   ========================================================================== */
+
+.footer-contact,
+.footer-legal,
+.footer-support {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 9px;
+}
+
+
+/* ==========================================================================
+   FOOTER LINKS
+   ========================================================================== */
+
 .footer-link {
+
     position: relative;
-    color: var(--df-text-light);
-    font-size: 14px;
+
+    display: inline-flex;
+
+    align-items: center;
+
     width: fit-content;
-    transition: color var(--df-transition), transform var(--df-transition);
+
+    max-width: 100%;
+
+    color: var(--df-footer-muted);
+
+    text-decoration: none;
+
+    font-size: 0.86rem;
+
+    line-height: 1.5;
+
+    transition:
+        color 0.3s var(--df-footer-ease),
+        transform 0.3s var(--df-footer-ease),
+        text-shadow 0.3s var(--df-footer-ease);
 }
 
-.footer-link::before {
+
+.footer-link::after {
+
     content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    height: 1.5px;
-    width: 100%;
 
-    background: linear-gradient(90deg, var(--df-primary), var(--df-accent));
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform var(--df-transition);
+    position: absolute;
+
+    left: 0;
+    bottom: -3px;
+
+    width: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--df-primary-light),
+            var(--df-accent)
+        );
+
+    transition:
+        width 0.35s var(--df-footer-ease);
 }
+
 
 .footer-link:hover {
-    color: var(--df-primary);
-    transform: translateX(2px);
+
+    color: #e4e6ec;
+
+    transform: translateX(4px);
+
+    text-shadow:
+        0 0 14px rgba(162, 155, 254, 0.25);
 }
 
-.footer-link:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
+
+.footer-link:hover::after {
+
+    width: 100%;
 }
 
-/* ---------------------------------------------------------------------- */
-/* Social (new section — disabled placeholder links)                      */
-/* ---------------------------------------------------------------------- */
 
-.footer-social {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+/* ==========================================================================
+   SOCIAL SECTION
+   ========================================================================== */
+
+#footer-social.footer-social {
+
+    min-width: 0;
 }
 
-.footer-social-title {
-    margin: 0;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--df-text);
-}
 
 .footer-social-links {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
 }
+
+
+/* ==========================================================================
+   SOCIAL LINK
+   ========================================================================== */
 
 .footer-social-link {
+
     position: relative;
-    display: inline-flex;
+
+    display: flex;
+
     align-items: center;
-    justify-content: center;
 
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
+    gap: 8px;
 
-    background: var(--df-bg-alt);
-    border: 1.5px solid var(--df-border);
-    color: var(--df-text-light);
+    min-width: 0;
 
-    cursor: not-allowed;
+    padding:
+        8px
+        9px;
+
+    border: 1px solid
+        transparent;
+
+    border-radius: 9px;
+
+    color: var(--df-footer-muted);
+
+    text-decoration: none;
+
+    font-size: 0.82rem;
+
     overflow: hidden;
 
-    transition: transform var(--df-transition),
-                box-shadow var(--df-transition),
-                border-color var(--df-transition),
-                color var(--df-transition);
+    transition:
+        color 0.3s var(--df-footer-ease),
+        border-color 0.3s var(--df-footer-ease),
+        background 0.3s var(--df-footer-ease),
+        transform 0.3s var(--df-footer-ease),
+        box-shadow 0.3s var(--df-footer-ease);
 }
 
-.footer-social-icon {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    transition: transform var(--df-transition);
-}
 
-/* text labels hidden — icon-only chips, tooltip on hover */
-.footer-social-link span {
+.footer-social-link::before {
+
+    content: "";
+
     position: absolute;
-    bottom: -32px;
-    left: 50%;
-    transform: translateX(-50%);
 
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-    color: var(--df-bg);
-    background: var(--df-text);
-    padding: 3px 8px;
-    border-radius: 6px;
+    inset: 0;
+
+    z-index: -1;
 
     opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--df-transition), bottom var(--df-transition);
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(108, 92, 231, 0.16),
+            rgba(0, 212, 184, 0.10),
+            rgba(255, 92, 122, 0.14)
+        );
+
+    background-size: 200% 200%;
+
+    transition:
+        opacity 0.3s ease;
+
+    animation:
+        footer-social-flow 6s ease infinite;
 }
+
 
 .footer-social-link:hover {
-    transform: translateY(-3px) rotate(-4deg);
-    border-color: var(--df-primary-light);
-    color: var(--df-primary);
-    box-shadow: 0 8px 18px rgba(108, 92, 231, 0.18);
+
+    color: #eef0f5;
+
+    border-color:
+        rgba(162, 155, 254, 0.25);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.18);
 }
 
-.footer-social-link:hover .footer-social-icon {
-    transform: scale(1.1);
-}
 
-.footer-social-link:hover span {
+.footer-social-link:hover::before {
+
     opacity: 1;
-    bottom: -26px;
 }
 
-.footer-social-link:active {
-    transform: translateY(-1px) rotate(0deg);
+
+/* ==========================================================================
+   SOCIAL ICON
+   ========================================================================== */
+
+.footer-social-icon {
+
+    flex: 0 0 auto;
+
+    width: 17px;
+    height: 17px;
+
+    transition:
+        transform 0.35s var(--df-footer-ease),
+        filter 0.35s ease;
 }
 
-.footer-social-link:focus-visible {
-    outline: 2px solid var(--df-primary-light);
-    outline-offset: 3px;
+
+.footer-social-link:hover
+.footer-social-icon {
+
+    transform:
+        scale(1.15)
+        rotate(-4deg);
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(162, 155, 254, 0.45)
+        );
 }
 
-/* Per-platform hover tint (purely decorative, no structural change) */
-.footer-social-link[data-platform="linkedin"]:hover { color: #0A66C2; border-color: #0A66C2; }
-.footer-social-link[data-platform="github"]:hover { color: #24292f; border-color: #24292f; }
-.footer-social-link[data-platform="hackerrank"]:hover { color: #00A162; border-color: #00A162; }
-.footer-social-link[data-platform="leetcode"]:hover { color: #FFA116; border-color: #FFA116; }
-.footer-social-link[data-platform="instagram"]:hover { color: #E1306C; border-color: #E1306C; }
 
-/* ---------------------------------------------------------------------- */
-/* Copyright                                                               */
-/* ---------------------------------------------------------------------- */
+.footer-social-link span {
 
-.footer-copyright {
-    width: 100%;
-    margin-top: 10px;
-    padding-top: 20px;
-    border-top: 1px solid var(--df-border);
+    min-width: 0;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
-.footer-copyright p {
-    margin: 0;
-    color: var(--df-text-light);
-    font-size: 13px;
+
+/* ==========================================================================
+   COPYRIGHT
+   ========================================================================== */
+
+#footer-copyright.footer-copyright {
+
+    grid-column: 1 / -1;
+
+    margin-top: 8px;
+
+    padding:
+        18px
+        8px
+        0;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
     text-align: center;
 }
 
-/* ---------------------------------------------------------------------- */
-/* Responsive — large desktops / wide monitors                            */
-/* ---------------------------------------------------------------------- */
 
-@media (min-width: 1440px) {
-    .footer-container {
-        max-width: 1300px;
-        padding: 55px 100px 40px;
+#footer-copyright p {
+
+    margin: 0;
+
+    color: #858a97;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 0.02em;
+}
+
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes footer-color-flow {
+
+    0% {
+
+        transform:
+            translate3d(-5%, 0, 0)
+            scale(1);
+
     }
 
-    .footer-brand h3 {
-        font-size: 20px;
+    50% {
+
+        transform:
+            translate3d(5%, -3%, 0)
+            scale(1.08);
+
     }
 
-    .footer-social-link {
-        width: 42px;
-        height: 42px;
+    100% {
+
+        transform:
+            translate3d(-2%, 5%, 0)
+            scale(1.04);
+
     }
 }
 
-/* ---------------------------------------------------------------------- */
-/* Responsive — tablets                                                    */
-/* ---------------------------------------------------------------------- */
 
-@media (max-width: 1024px) {
-    .footer-container {
-        padding: 40px 32px 30px;
-        gap: 32px;
+@keyframes footer-gradient-shift {
+
+    0% {
+
+        background-position:
+            0% 50%;
+
+    }
+
+    50% {
+
+        background-position:
+            100% 50%;
+
+    }
+
+    100% {
+
+        background-position:
+            0% 50%;
+
     }
 }
 
-/* ---------------------------------------------------------------------- */
-/* Responsive — small tablets / large phones                              */
-/* ---------------------------------------------------------------------- */
 
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 32px 20px 24px;
-        gap: 26px;
+@keyframes footer-brand-gradient {
+
+    0% {
+
+        background-position:
+            0% center;
+
     }
 
-    .footer-brand p {
-        max-width: 100%;
+    100% {
+
+        background-position:
+            200% center;
+
+    }
+}
+
+
+@keyframes footer-social-flow {
+
+    0% {
+
+        background-position:
+            0% 50%;
+
     }
 
-    .footer-social {
-        width: 100%;
+    50% {
+
+        background-position:
+            100% 50%;
+
+    }
+
+    100% {
+
+        background-position:
+            0% 50%;
+
+    }
+}
+
+
+/* ==========================================================================
+   LARGE DESKTOP
+   ========================================================================== */
+
+@media (min-width: 1400px) {
+
+    #footer-container.footer-container {
+
+        gap: 38px;
+
+        padding-top: 48px;
+    }
+
+}
+
+
+/* ==========================================================================
+   DESKTOP
+   ========================================================================== */
+
+@media (max-width: 1199px) {
+
+    #footer-container.footer-container {
+
+        width: min(
+            calc(100% - 40px),
+            1100px
+        );
+
+        grid-template-columns:
+            1.1fr
+            1fr
+            1fr
+            1fr
+            1.2fr;
+
+        gap: 18px;
     }
 
     .footer-social-links {
-        gap: 10px;
+
+        grid-template-columns: 1fr;
     }
 
-    .footer-social-link span {
-        display: none;
-    }
 }
 
-/* ---------------------------------------------------------------------- */
-/* Responsive — phones                                                     */
-/* ---------------------------------------------------------------------- */
 
-@media (max-width: 480px) {
-    .main-footer {
-        margin-top: 40px;
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    #footer-container.footer-container {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 30px 22px;
     }
 
-    .footer-container {
-        padding: 26px 16px 20px;
-        gap: 22px;
+    #footer-brand {
+
+        grid-column: 1 / -1;
     }
 
-    .footer-brand h3 {
-        font-size: 16px;
+    #footer-social {
+
+        grid-column: 1 / -1;
     }
 
-    .footer-brand p,
-    .footer-link {
-        font-size: 13px;
+    .footer-social-links {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
     }
 
-    .footer-social-link {
-        width: 34px;
-        height: 34px;
-    }
-
-    .footer-social-icon {
-        width: 16px;
-        height: 16px;
-    }
-
-    .footer-copyright p {
-        font-size: 12px;
-    }
 }
 
-/* ---------------------------------------------------------------------- */
-/* Reduced motion                                                          */
-/* ---------------------------------------------------------------------- */
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    #footer-container.footer-container {
+
+        width: min(
+            calc(100% - 30px),
+            500px
+        );
+
+        padding:
+            34px
+            0
+            18px;
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    #footer-brand,
+    #footer-social,
+    #footer-copyright {
+
+        grid-column: 1;
+    }
+
+    .footer-social-links {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 400px) {
+
+    #footer-container.footer-container {
+
+        width: calc(100% - 24px);
+
+        padding-top: 28px;
+    }
+
+    .footer-social-links {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-    .main-footer::before,
-    .footer-container,
+
+    #main-footer.main-footer::before,
+    #main-footer.main-footer::after,
+    #footer-brand h3,
+    .footer-social-link::before {
+
+        animation: none;
+    }
+
     .footer-link,
     .footer-social-link,
-    .footer-social-icon,
-    .footer-social-link span {
-        animation: none !important;
-        transition: none !important;
+    .footer-social-icon {
+
+        transition: none;
     }
+
+}
+
+/* ==========================================================================
+   WELCOME PAGE — FOOTER BOTTOM LAYOUT
+   ========================================================================== */
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+#welcome-site {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#welcome-page {
+    flex: 1 0 auto;
+}
+
+#main-footer {
+    flex-shrink: 0;
 }

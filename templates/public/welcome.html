@@ -18,117 +18,123 @@
 
     <link rel="stylesheet"
           href="{% static 'css/public/welcome.css' %}">
+    
+          
+    <link rel="stylesheet"
+          href="{% static 'css/components/footer.css' %}">
 
 </head>
 
 <body>
 
-    <main id="welcome-page"
-          class="welcome-page">
+    <div id="welcome-site">
+        <main id="welcome-page"
+            class="welcome-page">
 
-        <div class="welcome-atmosphere"
-             aria-hidden="true">
+            <div class="welcome-atmosphere"
+                aria-hidden="true">
 
-            <span class="welcome-orb welcome-orb-one"></span>
-            <span class="welcome-orb welcome-orb-two"></span>
+                <span class="welcome-orb welcome-orb-one"></span>
+                <span class="welcome-orb welcome-orb-two"></span>
 
-        </div>
+            </div>
 
-        <section id="welcome-container"
-                 class="welcome-container">
+            <section id="welcome-container"
+                    class="welcome-container">
 
-            <div class="welcome-content">
+                <div class="welcome-content">
 
-                <div class="welcome-brand">
+                    <div class="welcome-brand">
 
-                    <span class="welcome-mark"
-                          aria-hidden="true">
-                        DF
-                    </span>
+                        <span class="welcome-mark"
+                            aria-hidden="true">
+                            DF
+                        </span>
 
-                    <span class="welcome-brand-name">
-                        DevForge
-                    </span>
+                        <span class="welcome-brand-name">
+                            DevForge
+                        </span>
 
-                </div>
+                    </div>
 
-                <div class="welcome-heading">
+                    <div class="welcome-heading">
 
-                    <p class="welcome-eyebrow">
-                        YOUR DEVELOPMENT WORKSPACE
-                    </p>
+                        <p class="welcome-eyebrow">
+                            YOUR DEVELOPMENT WORKSPACE
+                        </p>
 
-                    <h1>
-                        Welcome to DevForge
-                    </h1>
+                        <h1>
+                            Welcome to DevForge
+                        </h1>
 
-                    <p class="welcome-tagline">
-                        Build. Explore. Learn.
-                    </p>
+                        <p class="welcome-tagline">
+                            Build. Explore. Learn.
+                        </p>
 
-                    <p class="welcome-description">
-                        Explore development, technology, tools,
-                        and practical projects through one focused
-                        workspace built for learning and creation.
-                    </p>
-
-                </div>
-
-                <div id="login-section"
-                     class="login-section">
-
-                    <div class="login-copy">
-
-                        <h2>
-                            Ready to get started?
-                        </h2>
-
-                        <p>
-                            Sign in securely with your Google account
-                            to continue to your DevForge workspace.
+                        <p class="welcome-description">
+                            Explore development, technology, tools,
+                            and practical projects through one focused
+                            workspace built for learning and creation.
                         </p>
 
                     </div>
 
-                    <form class="google-login-form"
-                          action="{% provider_login_url 'google' %}"
-                          method="post">
+                    <div id="login-section"
+                        class="login-section">
 
-                        {% csrf_token %}
+                        <div class="login-copy">
 
-                        <button type="submit"
-                                class="google-login-button">
+                            <h2>
+                                Ready to get started?
+                            </h2>
 
-                            <span class="google-icon"
-                                  aria-hidden="true">
-                                G
-                            </span>
+                            <p>
+                                Sign in securely with your Google account
+                                to continue to your DevForge workspace.
+                            </p>
 
-                            <span>
-                                Continue with Google
-                            </span>
+                        </div>
 
-                            <span class="login-arrow"
-                                  aria-hidden="true">
-                                →
-                            </span>
+                        <form class="google-login-form"
+                            action="{% provider_login_url 'google' %}"
+                            method="post">
 
-                        </button>
+                            {% csrf_token %}
 
-                    </form>
+                            <button type="submit"
+                                    class="google-login-button">
 
-                    <p class="login-note">
-                        Secure authentication powered by Google
-                    </p>
+                                <span class="google-icon"
+                                    aria-hidden="true">
+                                    G
+                                </span>
+
+                                <span>
+                                    Continue with Google
+                                </span>
+
+                                <span class="login-arrow"
+                                    aria-hidden="true">
+                                    →
+                                </span>
+
+                            </button>
+
+                        </form>
+
+                        <p class="login-note">
+                            Secure authentication powered by Google
+                        </p>
+
+                    </div>
 
                 </div>
 
-            </div>
+            </section>
 
-        </section>
+        </main>
 
-    </main>
-
+    {% include "components/footer.html" %}
+    </div>
 </body>
-
 </html>

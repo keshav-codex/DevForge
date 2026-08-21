@@ -1,96 +1,61 @@
 /* ==========================================================================
-   DEVFORGE — PUBLIC WELCOME
+   DEVFORGE — WELCOME PAGE
+   Independent public landing / authentication page
    ========================================================================== */
 
 
 /* ==========================================================================
-   DESIGN TOKENS
+   WELCOME SITE
    ========================================================================== */
 
-:root {
-
-    --df-bg: #12141c;
-    --df-surface: #1a1d27;
-
-    --df-ember-300: #ffa35c;
-    --df-ember-400: #ff7a45;
-    --df-ember-500: #ff5b2e;
-
-    --df-spark-300: #6fe3ff;
-    --df-spark-400: #4fd1ff;
-
-    --df-text-primary: #f5f6fa;
-    --df-text-muted: #9aa0ae;
-    --df-text-dim: #6b7080;
-
-    --df-border: rgba(255, 255, 255, 0.08);
-
-    --df-ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-
-/* ==========================================================================
-   RESET
-   ========================================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
+#welcome-site {
     width: 100%;
-    min-height: 100%;
-    margin: 0;
-}
-
-body {
     min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    background: #12141c;
+
+    color: #f5f6fa;
+
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+
     overflow-x: hidden;
-
-    background: var(--df-bg);
-    color: var(--df-text-primary);
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    -webkit-font-smoothing: antialiased;
 }
 
 
 /* ==========================================================================
-   PAGE
+   WELCOME PAGE
    ========================================================================== */
 
-.welcome-page {
+#welcome-site #welcome-page {
     position: relative;
 
-    display: grid;
-    place-items: center;
-
     width: 100%;
     min-height: 100vh;
 
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     overflow: hidden;
-    isolation: isolate;
 
     background:
         radial-gradient(
-            circle at 50% 38%,
-            rgba(79, 209, 255, 0.055),
+            circle at 15% 10%,
+            rgba(255, 122, 69, 0.07),
             transparent 32%
         ),
         radial-gradient(
-            circle at 50% 72%,
-            rgba(255, 122, 69, 0.045),
-            transparent 34%
+            circle at 85% 20%,
+            rgba(79, 209, 255, 0.055),
+            transparent 30%
         ),
-        var(--df-bg);
+        #12141c;
 }
 
 
@@ -98,75 +63,126 @@ body {
    ATMOSPHERE
    ========================================================================== */
 
-.welcome-atmosphere {
+#welcome-site .welcome-atmosphere {
     position: absolute;
+
     inset: 0;
 
-    z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
 
     pointer-events: none;
-}
 
-.welcome-orb {
-    position: absolute;
-
-    width: clamp(220px, 32vw, 520px);
-    aspect-ratio: 1;
-
-    border-radius: 50%;
-
-    filter: blur(100px);
-
-    opacity: 0.065;
-
-    animation:
-        welcome-orb-drift
-        10s ease-in-out infinite alternate;
-}
-
-.welcome-orb-one {
-    top: 4%;
-    left: -12%;
-
-    background: var(--df-ember-500);
-}
-
-.welcome-orb-two {
-    right: -12%;
-    bottom: -5%;
-
-    background: var(--df-spark-400);
-
-    animation-delay: -4s;
+    z-index: 0;
 }
 
 
 /* ==========================================================================
-   CONTAINER
+   ATMOSPHERIC ORBS
    ========================================================================== */
 
-.welcome-container {
+#welcome-site .welcome-orb {
+    position: absolute;
+
+    display: block;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(1px);
+
+    opacity: 0.8;
+
+    animation:
+        welcome-orb-float 12s ease-in-out infinite;
+}
+
+
+#welcome-site .welcome-orb-one {
+    width: 420px;
+    height: 420px;
+
+    top: -220px;
+    left: -160px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 122, 69, 0.16) 0%,
+            rgba(255, 122, 69, 0.07) 38%,
+            transparent 72%
+        );
+}
+
+
+#welcome-site .welcome-orb-two {
+    width: 480px;
+    height: 480px;
+
+    right: -220px;
+    bottom: -260px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(79, 209, 255, 0.13) 0%,
+            rgba(139, 124, 255, 0.06) 38%,
+            transparent 72%
+        );
+
+    animation-delay: -5s;
+}
+
+
+@keyframes welcome-orb-float {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(0, -18px, 0) scale(1.04);
+    }
+}
+
+
+/* ==========================================================================
+   WELCOME CONTAINER
+   ========================================================================== */
+
+#welcome-site #welcome-container {
     position: relative;
+
     z-index: 1;
 
     width: min(
-        calc(100% - 40px),
-        760px
+        calc(100% - 32px),
+        920px
     );
 
-    padding: clamp(36px, 6vw, 72px) 0;
+    margin-inline: auto;
+
+    padding: 72px 0;
 }
 
-.welcome-content {
+
+/* ==========================================================================
+   WELCOME CONTENT
+   ========================================================================== */
+
+#welcome-site .welcome-content {
+    width: 100%;
+
     display: flex;
     flex-direction: column;
+
     align-items: center;
 
     text-align: center;
-
-    animation:
-        welcome-enter
-        0.8s var(--df-ease) both;
 }
 
 
@@ -174,352 +190,84 @@ body {
    BRAND
    ========================================================================== */
 
-.welcome-brand {
+#welcome-site .welcome-brand {
     display: inline-flex;
-    align-items: center;
-    gap: 11px;
 
-    margin-bottom: clamp(34px, 5vw, 52px);
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 36px;
+
+    animation:
+        welcome-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.welcome-mark {
-    display: grid;
-    place-items: center;
 
-    width: 40px;
-    height: 40px;
+#welcome-site .welcome-mark {
+    display: inline-flex;
 
-    border: 1px solid rgba(111, 227, 255, 0.2);
-    border-radius: 11px;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    flex: 0 0 46px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 12px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(255, 122, 69, 0.14),
-            rgba(79, 209, 255, 0.1)
+            rgba(255, 122, 69, 0.16),
+            rgba(79, 209, 255, 0.10)
         );
 
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 11px;
+    color: #f5f6fa;
+
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+
+    letter-spacing: 0.04em;
 
     box-shadow:
-        0 0 28px rgba(79, 209, 255, 0.07);
-
-    animation:
-        welcome-mark-pulse
-        4s ease-in-out infinite;
+        0 12px 30px rgba(0, 0, 0, 0.18);
 }
 
-.welcome-brand-name {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 19px;
-    font-weight: 650;
+
+#welcome-site .welcome-brand-name {
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+
     letter-spacing: -0.02em;
 
     background:
         linear-gradient(
-            105deg,
-            var(--df-ember-300),
-            var(--df-ember-400),
-            var(--df-spark-400)
+            100deg,
+            #ff7a45 0%,
+            #ff5b2e 28%,
+            #4fd1ff 58%,
+            #8b7cff 78%,
+            #ff7a45 100%
         );
 
-    background-size: 180% 100%;
+    background-size: 300% 100%;
 
     -webkit-background-clip: text;
     background-clip: text;
+
     -webkit-text-fill-color: transparent;
 
     animation:
-        welcome-brand-gradient
-        5s ease-in-out infinite;
+        welcome-brand-gradient 7s ease-in-out infinite;
 }
 
-
-/* ==========================================================================
-   HEADING
-   ========================================================================== */
-
-.welcome-eyebrow {
-    margin: 0 0 16px;
-
-    color: var(--df-spark-300);
-
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-}
-
-
-/* ==========================================================================
-   MAIN WELCOME HEADING
-   Three-color animated gradient:
-   White → Orange → Sky Blue
-   ========================================================================== */
-
-.welcome-heading h1 {
-    max-width: 720px;
-
-    margin: 0;
-
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(40px, 7vw, 72px);
-    font-weight: 700;
-    line-height: 1.02;
-    letter-spacing: -0.045em;
-
-    background:
-        linear-gradient(
-            110deg,
-            var(--df-text-primary) 0%,
-            var(--df-text-primary) 22%,
-            var(--df-ember-300) 42%,
-            var(--df-ember-400) 55%,
-            var(--df-spark-300) 78%,
-            var(--df-spark-400) 100%
-        );
-
-    background-size: 250% 100%;
-    background-position: 0% 50%;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    animation:
-        welcome-heading-gradient
-        7s ease-in-out infinite;
-}
-
-
-/* ==========================================================================
-   TAGLINE
-   ========================================================================== */
-
-.welcome-tagline {
-    margin: 22px 0 0;
-
-    color: var(--df-text-primary);
-
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(18px, 3vw, 24px);
-    font-weight: 500;
-}
-
-
-/* ==========================================================================
-   DESCRIPTION
-   ========================================================================== */
-
-.welcome-description {
-    max-width: 610px;
-
-    margin: 16px auto 0;
-
-    color: var(--df-text-muted);
-
-    font-size: clamp(14px, 1.8vw, 17px);
-    line-height: 1.75;
-}
-
-
-/* ==========================================================================
-   LOGIN SECTION
-   ========================================================================== */
-
-.login-section {
-    width: min(
-        100%,
-        480px
-    );
-
-    margin-top: clamp(40px, 6vw, 60px);
-    padding: clamp(24px, 4vw, 34px);
-
-    border: 1px solid var(--df-border);
-    border-radius: 16px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 122, 69, 0.045),
-            rgba(79, 209, 255, 0.025)
-        ),
-        rgba(26, 29, 39, 0.72);
-
-    box-shadow:
-        0 24px 70px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.025);
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    animation:
-        login-card-enter
-        0.8s var(--df-ease) 0.12s both;
-}
-
-.login-copy h2 {
-    margin: 0;
-
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(20px, 3vw, 25px);
-    font-weight: 600;
-}
-
-.login-copy p {
-    max-width: 360px;
-
-    margin: 10px auto 0;
-
-    color: var(--df-text-muted);
-
-    font-size: 13px;
-    line-height: 1.65;
-}
-
-
-/* ==========================================================================
-   GOOGLE BUTTON
-   ========================================================================== */
-
-.google-login-form {
-    margin-top: 24px;
-}
-
-.google-login-button {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 11px;
-
-    width: 100%;
-    min-height: 52px;
-
-    padding: 12px 16px;
-
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-
-    background: rgba(255, 255, 255, 0.96);
-
-    color: #202124;
-
-    font-family: Inter, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.35s var(--df-ease),
-        box-shadow 0.35s var(--df-ease),
-        background 0.35s var(--df-ease);
-}
-
-.google-login-button:hover {
-    transform: translateY(-2px);
-
-    background: #ffffff;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.2),
-        0 0 24px rgba(79, 209, 255, 0.08);
-}
-
-.google-login-button:active {
-    transform: translateY(0);
-}
-
-.google-login-button:focus-visible {
-    outline: 2px solid var(--df-spark-300);
-    outline-offset: 4px;
-}
-
-.google-icon {
-    display: grid;
-    place-items: center;
-
-    width: 20px;
-    height: 20px;
-
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-
-    color: #4285f4;
-}
-
-.login-arrow {
-    margin-left: auto;
-
-    font-size: 18px;
-
-    transition:
-        transform 0.35s var(--df-ease);
-}
-
-.google-login-button:hover .login-arrow {
-    transform: translateX(4px);
-}
-
-
-/* ==========================================================================
-   LOGIN NOTE
-   ========================================================================== */
-
-.login-note {
-    margin: 15px 0 0;
-
-    color: var(--df-text-dim);
-
-    font-size: 11px;
-    letter-spacing: 0.02em;
-}
-
-
-/* ==========================================================================
-   ANIMATIONS
-   ========================================================================== */
-
-@keyframes welcome-enter {
-
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-@keyframes login-card-enter {
-
-    from {
-        opacity: 0;
-        transform: translateY(22px) scale(0.985);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-}
-
-
-/* ==========================================================================
-   BRAND GRADIENT MOTION
-   ========================================================================== */
 
 @keyframes welcome-brand-gradient {
 
@@ -531,13 +279,78 @@ body {
     50% {
         background-position: 100% 50%;
     }
-
 }
 
 
 /* ==========================================================================
-   MAIN HEADING THREE-COLOR MOTION
+   HEADING
    ========================================================================== */
+
+#welcome-site .welcome-heading {
+    width: 100%;
+    max-width: 760px;
+
+    animation:
+        welcome-fade-up 0.7s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+#welcome-site .welcome-eyebrow {
+    margin: 0 0 14px;
+
+    color: #9aa0ae;
+
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+#welcome-site .welcome-heading h1 {
+    margin: 0;
+
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+
+    font-size: clamp(
+        2.7rem,
+        7vw,
+        5rem
+    );
+
+    font-weight: 700;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.055em;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ff7a45 0%,
+            #ff5b2e 24%,
+            #4fd1ff 50%,
+            #8b7cff 73%,
+            #ff7a45 100%
+        );
+
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        welcome-heading-gradient 8s ease-in-out infinite;
+}
+
 
 @keyframes welcome-heading-gradient {
 
@@ -545,8 +358,8 @@ body {
         background-position: 0% 50%;
     }
 
-    20% {
-        background-position: 25% 50%;
+    25% {
+        background-position: 35% 50%;
     }
 
     50% {
@@ -560,116 +373,666 @@ body {
     100% {
         background-position: 0% 50%;
     }
-
 }
 
 
 /* ==========================================================================
-   BRAND MARK PULSE
+   TAGLINE
    ========================================================================== */
 
-@keyframes welcome-mark-pulse {
+#welcome-site .welcome-tagline {
+    margin: 18px 0 0;
 
-    0%,
-    100% {
-        box-shadow:
-            0 0 24px rgba(79, 209, 255, 0.05);
-    }
+    color: #f5f6fa;
 
-    50% {
-        box-shadow:
-            0 0 34px rgba(79, 209, 255, 0.13);
-    }
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
 
+    font-size: clamp(
+        1.15rem,
+        2.5vw,
+        1.5rem
+    );
+
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    letter-spacing: -0.02em;
 }
 
 
 /* ==========================================================================
-   BACKGROUND ORB MOTION
+   DESCRIPTION
    ========================================================================== */
 
-@keyframes welcome-orb-drift {
+#welcome-site .welcome-description {
+    width: 100%;
+    max-width: 650px;
+
+    margin: 16px auto 0;
+
+    color: #9aa0ae;
+
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+
+    font-size: 0.95rem;
+
+    line-height: 1.75;
+}
+
+
+/* ==========================================================================
+   LOGIN SECTION
+   ========================================================================== */
+
+#welcome-site .login-section {
+    width: min(
+        100%,
+        540px
+    );
+
+    margin-top: 48px;
+
+    padding: 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(26, 29, 39, 0.90),
+            rgba(18, 20, 28, 0.82)
+        );
+
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    animation:
+        welcome-fade-up 0.75s 0.18s
+        cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+/* ==========================================================================
+   LOGIN COPY
+   ========================================================================== */
+
+#welcome-site .login-copy h2 {
+    margin: 0;
+
+    color: #f5f6fa;
+
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    letter-spacing: -0.025em;
+}
+
+
+#welcome-site .login-copy p {
+    max-width: 430px;
+
+    margin: 9px auto 0;
+
+    color: #9aa0ae;
+
+    font-size: 0.86rem;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   GOOGLE LOGIN FORM
+   ========================================================================== */
+
+#welcome-site .google-login-form {
+    width: 100%;
+
+    margin: 24px 0 0;
+}
+
+
+/* ==========================================================================
+   GOOGLE LOGIN BUTTON
+   ========================================================================== */
+
+#welcome-site .google-login-button {
+    position: relative;
+
+    width: 100%;
+    min-height: 54px;
+
+    padding: 0 54px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ff7a45 0%,
+            #ff5b2e 30%,
+            #4fd1ff 68%,
+            #8b7cff 100%
+        );
+
+    background-size: 220% 100%;
+
+    color: #ffffff;
+
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 30px rgba(255, 91, 46, 0.14);
+
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        background-position 0.5s ease;
+}
+
+
+#welcome-site .google-login-button::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.18) 50%,
+            transparent 80%
+        );
+
+    transform: translateX(-120%);
+
+    transition:
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+#welcome-site .google-login-button:hover {
+    transform: translateY(-2px);
+
+    background-position: 100% 50%;
+
+    box-shadow:
+        0 16px 38px rgba(255, 91, 46, 0.20);
+}
+
+
+#welcome-site .google-login-button:hover::before {
+    transform: translateX(120%);
+}
+
+
+#welcome-site .google-login-button:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   GOOGLE ICON
+   ========================================================================== */
+
+#welcome-site .google-icon {
+    position: relative;
+
+    z-index: 1;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    flex: 0 0 25px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #4285f4;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+#welcome-site .google-login-button > span:not(.google-icon):not(.login-arrow) {
+    position: relative;
+
+    z-index: 1;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================================
+   LOGIN ARROW
+   ========================================================================== */
+
+#welcome-site .login-arrow {
+    position: absolute;
+
+    z-index: 1;
+
+    right: 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 1.2rem;
+
+    line-height: 1;
+
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+#welcome-site .google-login-button:hover .login-arrow {
+    transform: translateX(4px);
+}
+
+
+/* ==========================================================================
+   LOGIN NOTE
+   ========================================================================== */
+
+#welcome-site .login-note {
+    margin: 14px 0 0;
+
+    color: #6b7080;
+
+    font-size: 0.72rem;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   GENERAL WELCOME ANIMATION
+   ========================================================================== */
+
+@keyframes welcome-fade-up {
 
     from {
+        opacity: 0;
+
         transform:
-            translate3d(-20px, -10px, 0)
-            scale(0.96);
+            translateY(18px);
     }
 
     to {
+        opacity: 1;
+
         transform:
-            translate3d(24px, 18px, 0)
-            scale(1.06);
+            translateY(0);
+    }
+}
+
+
+/* ==========================================================================
+   LARGE DESKTOP
+   ========================================================================== */
+
+@media (min-width: 1400px) {
+
+    #welcome-site #welcome-container {
+        width: min(
+            calc(100% - 120px),
+            1100px
+        );
+
+        padding-top: 92px;
+        padding-bottom: 92px;
+    }
+
+
+    #welcome-site .login-section {
+        margin-top: 56px;
+
+        padding: 34px;
     }
 
 }
 
 
 /* ==========================================================================
-   RESPONSIVE
+   DESKTOP
    ========================================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 1199px) {
 
-    .welcome-container {
+    #welcome-site #welcome-container {
         width: min(
-            calc(100% - 40px),
-            620px
+            calc(100% - 80px),
+            900px
         );
     }
 
-    .welcome-brand {
-        margin-bottom: 40px;
+}
+
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    #welcome-site #welcome-container {
+        width: calc(100% - 64px);
+
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+
+
+    #welcome-site .welcome-brand {
+        margin-bottom: 30px;
+    }
+
+
+    #welcome-site .login-section {
+        margin-top: 40px;
+    }
+
+
+    #welcome-site .welcome-orb-one {
+        width: 340px;
+        height: 340px;
+    }
+
+
+    #welcome-site .welcome-orb-two {
+        width: 380px;
+        height: 380px;
     }
 
 }
 
 
-@media (max-width: 480px) {
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
 
-    .welcome-container {
+@media (max-width: 600px) {
+
+    #welcome-site #welcome-page {
+        min-height: auto;
+
+        align-items: flex-start;
+    }
+
+
+    #welcome-site #welcome-container {
         width: calc(100% - 32px);
 
-        padding: 32px 0;
+        padding-top: 52px;
+        padding-bottom: 56px;
     }
 
-    .welcome-brand {
-        margin-bottom: 34px;
+
+    #welcome-site .welcome-brand {
+        gap: 9px;
+
+        margin-bottom: 26px;
     }
 
-    .welcome-mark {
-        width: 36px;
-        height: 36px;
+
+    #welcome-site .welcome-mark {
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+
+        border-radius: 10px;
+
+        font-size: 0.8rem;
     }
 
-    .welcome-brand-name {
-        font-size: 17px;
+
+    #welcome-site .welcome-brand-name {
+        font-size: 1.05rem;
     }
 
-    .welcome-description {
+
+    #welcome-site .welcome-eyebrow {
+        margin-bottom: 12px;
+
+        font-size: 0.65rem;
+
+        letter-spacing: 0.11em;
+    }
+
+
+    #welcome-site .welcome-heading h1 {
+        font-size: clamp(
+            2.2rem,
+            11vw,
+            3.4rem
+        );
+
+        letter-spacing: -0.045em;
+    }
+
+
+    #welcome-site .welcome-tagline {
+        margin-top: 15px;
+
+        font-size: 1.05rem;
+    }
+
+
+    #welcome-site .welcome-description {
+        margin-top: 13px;
+
+        font-size: 0.85rem;
+
         line-height: 1.65;
     }
 
-    .login-section {
-        padding: 22px 18px;
-        border-radius: 14px;
+
+    #welcome-site .login-section {
+        width: 100%;
+
+        margin-top: 34px;
+
+        padding: 24px 20px;
+
+        border-radius: 12px;
+    }
+
+
+    #welcome-site .login-copy h2 {
+        font-size: 1.1rem;
+    }
+
+
+    #welcome-site .login-copy p {
+        font-size: 0.8rem;
+    }
+
+
+    #welcome-site .google-login-button {
+        min-height: 52px;
+
+        padding-left: 44px;
+        padding-right: 44px;
+
+        font-size: 0.82rem;
+    }
+
+
+    #welcome-site .login-arrow {
+        right: 15px;
+    }
+
+
+    #welcome-site .welcome-orb-one {
+        width: 280px;
+        height: 280px;
+
+        top: -150px;
+        left: -140px;
+    }
+
+
+    #welcome-site .welcome-orb-two {
+        width: 300px;
+        height: 300px;
+
+        right: -170px;
+        bottom: -160px;
     }
 
 }
 
 
-@media (max-width: 360px) {
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
 
-    .welcome-container {
+@media (max-width: 400px) {
+
+    #welcome-site #welcome-container {
         width: calc(100% - 24px);
+
+        padding-top: 42px;
+        padding-bottom: 48px;
     }
 
-    .welcome-eyebrow {
-        font-size: 9px;
+
+    #welcome-site .welcome-heading h1 {
+        font-size: 2.05rem;
     }
 
-    .login-section {
-        padding: 20px 15px;
+
+    #welcome-site .welcome-description {
+        font-size: 0.8rem;
+    }
+
+
+    #welcome-site .login-section {
+        margin-top: 30px;
+
+        padding: 21px 16px;
+    }
+
+
+    #welcome-site .google-login-button {
+        min-height: 50px;
+
+        padding-left: 38px;
+        padding-right: 38px;
+
+        gap: 9px;
+
+        font-size: 0.76rem;
+    }
+
+
+    #welcome-site .google-icon {
+        width: 22px;
+        height: 22px;
+
+        flex-basis: 22px;
+
+        font-size: 0.82rem;
+    }
+
+
+    #welcome-site .login-arrow {
+        right: 12px;
+
+        font-size: 1rem;
+    }
+
+}
+
+
+/* ==========================================================================
+   VERY SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 320px) {
+
+    #welcome-site #welcome-container {
+        width: calc(100% - 20px);
+
+        padding-top: 34px;
+    }
+
+
+    #welcome-site .welcome-brand {
+        margin-bottom: 22px;
+    }
+
+
+    #welcome-site .welcome-heading h1 {
+        font-size: 1.8rem;
+    }
+
+
+    #welcome-site .welcome-tagline {
+        font-size: 0.95rem;
+    }
+
+
+    #welcome-site .login-section {
+        padding: 18px 13px;
+    }
+
+
+    #welcome-site .google-login-button {
+        padding-left: 34px;
+        padding-right: 34px;
+
+        font-size: 0.7rem;
     }
 
 }
@@ -681,18 +1044,25 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
 
-    .welcome-content,
-    .login-section,
-    .welcome-mark,
-    .welcome-brand-name,
-    .welcome-heading h1,
-    .welcome-orb {
-        animation: none;
+    #welcome-site .welcome-orb,
+    #welcome-site .welcome-brand,
+    #welcome-site .welcome-brand-name,
+    #welcome-site .welcome-heading,
+    #welcome-site .welcome-heading h1,
+    #welcome-site .login-section,
+    #welcome-site .google-login-button {
+        animation: none !important;
     }
 
-    .google-login-button,
-    .login-arrow {
-        transition: none;
+
+    #welcome-site .google-login-button::before {
+        display: none;
+    }
+
+
+    #welcome-site .google-login-button,
+    #welcome-site .login-arrow {
+        transition: none !important;
     }
 
 }

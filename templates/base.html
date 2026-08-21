@@ -36,16 +36,31 @@
 
 <body>
 
-    {% block navigation %}
-    {% endblock %}
+    <div id="site-wrapper"
+         class="site-wrapper">
 
-    {% block content %}
-    {% endblock %}
+        {% block navigation %}
+        {% endblock %}
 
-    {% include "components/footer.html" %}
+
+        <main id="site-main"
+              class="site-main">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+
+        {% include "components/footer.html" %}
+
+    </div>
+
 
     {% block extra_js %}
+
         <script src="{% static 'js/base.js' %}"></script>
+
     {% endblock %}
 
 </body>
