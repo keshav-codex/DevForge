@@ -1,6 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}AI Activity | DevForge{% endblock %}
+
+{% block extra_css %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/activity/activity_common.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/activity/ai.css' %}"
+    >
+
+{% endblock %}
 
 {% block navigation %}
     {% include "components/navigation.html" %}
@@ -12,39 +27,260 @@
 
     <div id="ai-activity-container" class="page-container">
 
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
+
         <header id="ai-activity-header" class="page-header">
 
             <h1>AI Activity</h1>
 
             <p>
-                View and manage your AI-related activity.
+                Ask AI a question, analyze information,
+                or work with your documents.
             </p>
 
         </header>
 
-        <section id="ai-activity-content" class="card-container">
+        <!-- =================================================
+             ERROR MESSAGE
+        ================================================== -->
 
-            <div id="ai-activity-status-card" class="card">
+        {% if error %}
 
-                <h2 class="card-title">
-                    AI Activity
-                </h2>
-
-                <p class="card-description">
-                    Your AI interactions and processing activity
-                    will appear here.
-                </p>
-
-                <span class="card-action">
-                    Coming Soon
-                </span>
-
+            <div
+                id="ai-error-message"
+                class="message error"
+            >
+                {{ error }}
             </div>
+
+        {% endif %}
+
+
+        <!-- =================================================
+             AI COMPOSER
+        ================================================== -->
+
+        <section id="ai-composer" class="card">
+
+            <!-- Composer Header -->
+
+            <header class="ai-composer-header">
+
+                <div>
+
+                    <h2 class="card-title">
+                        Ask AI
+                    </h2>
+
+                    <p class="ai-composer-description">
+                        Enter your request below. You can optionally
+                        attach documents for AI to analyze.
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form
+                id="ai-activity-form"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =============================================
+                     PROMPT
+                ============================================== -->
+
+                <div class="ai-form-group">
+
+                    <label
+                        for="{{ form.prompt.id_for_label }}"
+                        class="ai-field-label"
+                    >
+                        Ask AI
+                    </label>
+
+                    {{ form.prompt }}
+
+                    {% if form.prompt.errors %}
+
+                        <div class="field-error">
+                            {{ form.prompt.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- =============================================
+                     AI RESPONSE
+                ============================================== -->
+
+                {% if response %}
+
+                    <div
+                        id="ai-response-container"
+                        class="ai-form-group"
+                    >
+
+                        <div class="ai-response-header">
+
+                            <label
+                                for="ai-response-content"
+                                class="ai-field-label"
+                            >
+                                AI Response
+                            </label>
+
+                            <span class="ai-response-status">
+                                Generated
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            id="ai-response-content"
+                            class="ai-response-content"
+                        >
+                            {{ response|linebreaks }}
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- =============================================
+                     DOCUMENTS
+                ============================================== -->
+
+                <div
+                    id="ai-file-section"
+                    class="ai-form-group"
+                >
+
+                    <div class="ai-file-header">
+
+                        <div>
+
+                            <label class="ai-field-label">
+                                Documents
+                            </label>
+
+                            <p class="ai-field-help">
+                                Optional. Add documents if you want
+                                AI to analyze their content.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Upload Area -->
+
+                    <label
+                        id="ai-upload-area"
+                        class="ai-upload-area"
+                        for="{{ form.files.id_for_label }}"
+                    >
+
+                        <span
+                            id="ai-upload-icon"
+                            class="ai-upload-icon"
+                        >
+                            +
+                        </span>
+
+                        <strong>
+                            Add documents
+                        </strong>
+
+                        <span class="ai-upload-description">
+                            PDF, DOCX or TXT
+                        </span>
+
+                        <small>
+                            Maximum 5 files · Maximum total size 10 MB
+                        </small>
+
+                    </label>
+
+
+                    <!-- Django File Input -->
+
+                    {{ form.files }}
+
+
+                    <!-- Selected Files -->
+
+                    <div
+                        id="ai-selected-files"
+                        class="ai-selected-files"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     ACTION
+                ============================================== -->
+
+                <div class="ai-form-actions">
+
+                    <button
+                        type="submit"
+                        id="ai-submit-button"
+                        class="primary-button"
+                    >
+
+                        <span id="ai-submit-text">
+                            Ask AI
+                        </span>
+
+                        <span
+                            id="ai-submit-loading"
+                            class="ai-loading-text"
+                            hidden
+                        >
+                            Thinking...
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
 
         </section>
 
     </div>
 
 </main>
+
+
+<!-- =========================================================
+     PAGE JAVASCRIPT
+========================================================= -->
+
+{% block extra_js %}
+
+    {% load static %}
+
+    <script src="{% static 'js/activity/ai.js' %}"></script>
+
+{% endblock %}
 
 {% endblock %}
