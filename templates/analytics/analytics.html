@@ -1,6 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Analytics | DevForge{% endblock %}
+
+{% block extra_css %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/analytics/analytics.css' %}"
+    >
+
+{% endblock %}
 
 {% block navigation %}
     {% include "components/navigation.html" %}
