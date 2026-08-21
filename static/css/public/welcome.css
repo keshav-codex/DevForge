@@ -1,0 +1,698 @@
+/* ==========================================================================
+   DEVFORGE — PUBLIC WELCOME
+   ========================================================================== */
+
+
+/* ==========================================================================
+   DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+
+    --df-bg: #12141c;
+    --df-surface: #1a1d27;
+
+    --df-ember-300: #ffa35c;
+    --df-ember-400: #ff7a45;
+    --df-ember-500: #ff5b2e;
+
+    --df-spark-300: #6fe3ff;
+    --df-spark-400: #4fd1ff;
+
+    --df-text-primary: #f5f6fa;
+    --df-text-muted: #9aa0ae;
+    --df-text-dim: #6b7080;
+
+    --df-border: rgba(255, 255, 255, 0.08);
+
+    --df-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background: var(--df-bg);
+    color: var(--df-text-primary);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* ==========================================================================
+   PAGE
+   ========================================================================== */
+
+.welcome-page {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 50% 38%,
+            rgba(79, 209, 255, 0.055),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 50% 72%,
+            rgba(255, 122, 69, 0.045),
+            transparent 34%
+        ),
+        var(--df-bg);
+}
+
+
+/* ==========================================================================
+   ATMOSPHERE
+   ========================================================================== */
+
+.welcome-atmosphere {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+.welcome-orb {
+    position: absolute;
+
+    width: clamp(220px, 32vw, 520px);
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: 0.065;
+
+    animation:
+        welcome-orb-drift
+        10s ease-in-out infinite alternate;
+}
+
+.welcome-orb-one {
+    top: 4%;
+    left: -12%;
+
+    background: var(--df-ember-500);
+}
+
+.welcome-orb-two {
+    right: -12%;
+    bottom: -5%;
+
+    background: var(--df-spark-400);
+
+    animation-delay: -4s;
+}
+
+
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+
+.welcome-container {
+    position: relative;
+    z-index: 1;
+
+    width: min(
+        calc(100% - 40px),
+        760px
+    );
+
+    padding: clamp(36px, 6vw, 72px) 0;
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    animation:
+        welcome-enter
+        0.8s var(--df-ease) both;
+}
+
+
+/* ==========================================================================
+   BRAND
+   ========================================================================== */
+
+.welcome-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: clamp(34px, 5vw, 52px);
+}
+
+.welcome-mark {
+    display: grid;
+    place-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid rgba(111, 227, 255, 0.2);
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 122, 69, 0.14),
+            rgba(79, 209, 255, 0.1)
+        );
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+
+    box-shadow:
+        0 0 28px rgba(79, 209, 255, 0.07);
+
+    animation:
+        welcome-mark-pulse
+        4s ease-in-out infinite;
+}
+
+.welcome-brand-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 19px;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+
+    background:
+        linear-gradient(
+            105deg,
+            var(--df-ember-300),
+            var(--df-ember-400),
+            var(--df-spark-400)
+        );
+
+    background-size: 180% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        welcome-brand-gradient
+        5s ease-in-out infinite;
+}
+
+
+/* ==========================================================================
+   HEADING
+   ========================================================================== */
+
+.welcome-eyebrow {
+    margin: 0 0 16px;
+
+    color: var(--df-spark-300);
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   MAIN WELCOME HEADING
+   Three-color animated gradient:
+   White → Orange → Sky Blue
+   ========================================================================== */
+
+.welcome-heading h1 {
+    max-width: 720px;
+
+    margin: 0;
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+
+    background:
+        linear-gradient(
+            110deg,
+            var(--df-text-primary) 0%,
+            var(--df-text-primary) 22%,
+            var(--df-ember-300) 42%,
+            var(--df-ember-400) 55%,
+            var(--df-spark-300) 78%,
+            var(--df-spark-400) 100%
+        );
+
+    background-size: 250% 100%;
+    background-position: 0% 50%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        welcome-heading-gradient
+        7s ease-in-out infinite;
+}
+
+
+/* ==========================================================================
+   TAGLINE
+   ========================================================================== */
+
+.welcome-tagline {
+    margin: 22px 0 0;
+
+    color: var(--df-text-primary);
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 500;
+}
+
+
+/* ==========================================================================
+   DESCRIPTION
+   ========================================================================== */
+
+.welcome-description {
+    max-width: 610px;
+
+    margin: 16px auto 0;
+
+    color: var(--df-text-muted);
+
+    font-size: clamp(14px, 1.8vw, 17px);
+    line-height: 1.75;
+}
+
+
+/* ==========================================================================
+   LOGIN SECTION
+   ========================================================================== */
+
+.login-section {
+    width: min(
+        100%,
+        480px
+    );
+
+    margin-top: clamp(40px, 6vw, 60px);
+    padding: clamp(24px, 4vw, 34px);
+
+    border: 1px solid var(--df-border);
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 122, 69, 0.045),
+            rgba(79, 209, 255, 0.025)
+        ),
+        rgba(26, 29, 39, 0.72);
+
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    animation:
+        login-card-enter
+        0.8s var(--df-ease) 0.12s both;
+}
+
+.login-copy h2 {
+    margin: 0;
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(20px, 3vw, 25px);
+    font-weight: 600;
+}
+
+.login-copy p {
+    max-width: 360px;
+
+    margin: 10px auto 0;
+
+    color: var(--df-text-muted);
+
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+
+/* ==========================================================================
+   GOOGLE BUTTON
+   ========================================================================== */
+
+.google-login-form {
+    margin-top: 24px;
+}
+
+.google-login-button {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+
+    width: 100%;
+    min-height: 52px;
+
+    padding: 12px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    color: #202124;
+
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s var(--df-ease),
+        box-shadow 0.35s var(--df-ease),
+        background 0.35s var(--df-ease);
+}
+
+.google-login-button:hover {
+    transform: translateY(-2px);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.2),
+        0 0 24px rgba(79, 209, 255, 0.08);
+}
+
+.google-login-button:active {
+    transform: translateY(0);
+}
+
+.google-login-button:focus-visible {
+    outline: 2px solid var(--df-spark-300);
+    outline-offset: 4px;
+}
+
+.google-icon {
+    display: grid;
+    place-items: center;
+
+    width: 20px;
+    height: 20px;
+
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+
+    color: #4285f4;
+}
+
+.login-arrow {
+    margin-left: auto;
+
+    font-size: 18px;
+
+    transition:
+        transform 0.35s var(--df-ease);
+}
+
+.google-login-button:hover .login-arrow {
+    transform: translateX(4px);
+}
+
+
+/* ==========================================================================
+   LOGIN NOTE
+   ========================================================================== */
+
+.login-note {
+    margin: 15px 0 0;
+
+    color: var(--df-text-dim);
+
+    font-size: 11px;
+    letter-spacing: 0.02em;
+}
+
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes welcome-enter {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes login-card-enter {
+
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* ==========================================================================
+   BRAND GRADIENT MOTION
+   ========================================================================== */
+
+@keyframes welcome-brand-gradient {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+}
+
+
+/* ==========================================================================
+   MAIN HEADING THREE-COLOR MOTION
+   ========================================================================== */
+
+@keyframes welcome-heading-gradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    20% {
+        background-position: 25% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 65% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* ==========================================================================
+   BRAND MARK PULSE
+   ========================================================================== */
+
+@keyframes welcome-mark-pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 24px rgba(79, 209, 255, 0.05);
+    }
+
+    50% {
+        box-shadow:
+            0 0 34px rgba(79, 209, 255, 0.13);
+    }
+
+}
+
+
+/* ==========================================================================
+   BACKGROUND ORB MOTION
+   ========================================================================== */
+
+@keyframes welcome-orb-drift {
+
+    from {
+        transform:
+            translate3d(-20px, -10px, 0)
+            scale(0.96);
+    }
+
+    to {
+        transform:
+            translate3d(24px, 18px, 0)
+            scale(1.06);
+    }
+
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    .welcome-container {
+        width: min(
+            calc(100% - 40px),
+            620px
+        );
+    }
+
+    .welcome-brand {
+        margin-bottom: 40px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .welcome-container {
+        width: calc(100% - 32px);
+
+        padding: 32px 0;
+    }
+
+    .welcome-brand {
+        margin-bottom: 34px;
+    }
+
+    .welcome-mark {
+        width: 36px;
+        height: 36px;
+    }
+
+    .welcome-brand-name {
+        font-size: 17px;
+    }
+
+    .welcome-description {
+        line-height: 1.65;
+    }
+
+    .login-section {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+}
+
+
+@media (max-width: 360px) {
+
+    .welcome-container {
+        width: calc(100% - 24px);
+    }
+
+    .welcome-eyebrow {
+        font-size: 9px;
+    }
+
+    .login-section {
+        padding: 20px 15px;
+    }
+
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .welcome-content,
+    .login-section,
+    .welcome-mark,
+    .welcome-brand-name,
+    .welcome-heading h1,
+    .welcome-orb {
+        animation: none;
+    }
+
+    .google-login-button,
+    .login-arrow {
+        transition: none;
+    }
+
+}
