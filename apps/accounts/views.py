@@ -7,16 +7,16 @@ def loading(request):
     if request.user.is_authenticated:
         return redirect("dashboard")
 
-    return render(request, "accounts/loading.html")
+    return render(request, "public/loading.html")
 
 
 def welcome(request):
-    return render(request, "accounts/welcome.html")
+    return render(request, "public/welcome.html")
 
 
 @login_required
 def dashboard(request):
-    return render(request, "accounts/dashboard.html")
+    return render(request, "dashboard.html")
 
 @login_required
 def activity(request):
