@@ -4,25 +4,26 @@ from apps.accounts.models import Profile
 
 
 class AIInteraction(models.Model):
+
     profile = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE,
-        related_name='ai_interactions'
+        related_name="ai_interactions",
     )
 
     input_text = models.TextField()
 
-    response_text = models.TextField(
-        blank=True
+    output_text = models.TextField(
+        blank=True,
     )
 
     created_at = models.DateTimeField(
-        auto_now_add=True
+        auto_now_add=True,
     )
 
     updated_at = models.DateTimeField(
-        auto_now=True
+        auto_now=True,
     )
 
     def __str__(self):
-        return f"AI Interaction - {self.profile.email}"
+        return f"AI Interaction - {self.profile.user.email}"
