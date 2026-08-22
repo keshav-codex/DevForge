@@ -57,6 +57,14 @@
 
 </main>
 
-<script src="{% static 'js/reports/ai.js' %}"></script>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+    {{ block.super }}
+
+    <script src="{% static 'js/reports/ai.js' %}"></script>
 
 {% endblock %}

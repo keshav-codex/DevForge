@@ -527,9 +527,9 @@
 </main>
 
 {% endblock %}
-
-
 {% block extra_js %}
+
+    {{ block.super }}
 
 <script
     src="{% static 'js/activity/email.js' %}"

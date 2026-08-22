@@ -270,17 +270,16 @@
 
 </main>
 
-
+{% endblock %}
 <!-- =========================================================
      PAGE JAVASCRIPT
 ========================================================= -->
 
 {% block extra_js %}
 
-    {% load static %}
+    {{ block.super }}
 
     <script src="{% static 'js/activity/ai.js' %}"></script>
 
 {% endblock %}
 
-{% endblock %}

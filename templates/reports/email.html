@@ -77,7 +77,13 @@
 
 </main>
 
+{% endblock %}
 
-<script src="{% static 'js/reports/email.js' %}"></script>
+
+{% block extra_js %}
+
+    {{ block.super }}
+
+    <script src="{% static 'js/reports/email.js' %}"></script>
 
 {% endblock %}

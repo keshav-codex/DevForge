@@ -14,6 +14,11 @@
         href="{% static 'css/activity/map.css' %}"
     >
 
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
 {% endblock %}
 
 {% block navigation %}
@@ -404,7 +409,7 @@
 
 {% block extra_js %}
 
-    {% load static %}
+    {{ block.super }}
 
     <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
