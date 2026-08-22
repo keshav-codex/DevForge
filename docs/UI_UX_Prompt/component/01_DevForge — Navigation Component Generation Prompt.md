@@ -2,7 +2,7 @@ DEVFORGE NAVIGATION — COMPLETE GENERATION SPECIFICATION
 
 Generate the complete DevForge navigation component from this specification alone.
 
-Do not assume access to an existing HTML, CSS, or JavaScript file.
+Do not assume access to existing HTML, CSS, or JavaScript.
 Do not ask questions.
 Generate the required files directly.
 
@@ -15,15 +15,13 @@ Generate:
 templates/components/navigation.html
 static/css/components/navigation.css
 
-No JavaScript is required for navigation styling or animation.
+JavaScript is not required.
 
 ==================================================
-COMPONENT STRUCTURE
+COMPONENT
 ==================================================
 
-Create a semantic top-level navigation component.
-
-Required selectors:
+Create a semantic top navigation using:
 
 .main-navigation
 .nav-logo
@@ -32,20 +30,20 @@ Required selectors:
 .nav-logout-form
 .nav-logout
 
-The navigation must contain:
+Include:
 
-1. DevForge brand/logo
-2. Dashboard navigation item
-3. Activity navigation item
-4. Reports navigation item
-5. Analytics navigation item
-6. Logout action
+1. DevForge logo
+2. Dashboard
+3. Activity
+4. Reports
+5. Analytics
+6. Logout
 
 ==================================================
 DJANGO CONTRACT
 ==================================================
 
-Preserve these Django URL names:
+Preserve these URL names exactly:
 
 dashboard
 activity
@@ -53,138 +51,77 @@ reports
 analytics
 account_logout
 
-The logout action must remain a POST form.
+Logout must remain a POST form with:
 
-The logout form must include Django CSRF protection.
+{% csrf_token %}
 
-Do not convert logout into a normal GET link.
-
-Do not rename any required selector or Django URL name.
+Do not convert logout to a GET link.
 
 ==================================================
-UI TEXT
+DESIGN
 ==================================================
 
-Brand:
-DevForge
+Use the existing DevForge visual language:
 
-Navigation labels:
+- dark premium surface
+- subtle transparency
+- soft blur
+- compact but comfortable spacing
+- full-width top navigation
+- subtle Ember → Spark bottom accent
 
-Dashboard
-Activity
-Reports
-Analytics
-Logout
+Logo:
 
-Keep the wording clear and product-oriented.
+- Space Grotesk
+- bold
+- Ember → Spark gradient
+- subtle gradient movement
 
-==================================================
-VISUAL STRUCTURE
-==================================================
+Links:
 
-The navigation should be:
+Normal:
+- muted text
+- clean transparent surface
 
-- full width
-- positioned at the top
-- visually separated from page content
-- dark and premium
-- slightly translucent
-- subtly blurred
-- compact but comfortable
-- suitable for a productivity/development platform
-
-Use a restrained bottom accent based on the Ember → Spark gradient.
-
-==================================================
-LOGO
-==================================================
-
-The logo should:
-
-- use Space Grotesk
-- have strong visual weight
-- use the Ember → Spark gradient
-- have subtle gradient movement
-- remain readable at every screen size
-
-==================================================
-NAVIGATION LINKS
-==================================================
-
-Normal state:
-
-- muted/light text
-- transparent background
-- clean appearance
-
-Hover state:
-
+Hover:
 - brighter text
 - subtle upward movement
 - gradient underline reveal
-- small Spark accent
 - restrained glow
 
-Focus state:
+Logout:
 
-- clearly visible keyboard focus
-
-Do not use aggressive scaling.
-
-==================================================
-LOGOUT
-==================================================
-
-Use the Danger palette:
+Use:
 
 #ff4d6d
 #ff2f56
 
-Normal state:
-
-- subtle danger emphasis
-
-Hover state:
-
-- slight lift
-- danger gradient sweep
-- controlled glow
-- smooth transition
+Apply subtle danger emphasis, lift, gradient sweep, and controlled glow.
 
 ==================================================
-RESPONSIVE DESIGN
+RESPONSIVE
 ==================================================
 
 Support:
-
-- very small phones
-- phones
-- tablets
-- laptops
-- desktop
-- large desktop
-- ultra-wide
-
-Use fluid sizing and spacing.
-
-Use meaningful layout changes around:
 
 360px
 480px
 768px
 1024px
+large desktop
+ultra-wide
 
-At very small widths, the menu may wrap or horizontally scroll within the navigation.
+Use fluid spacing and sizing.
 
-Do not require JavaScript for responsive behavior.
+At smaller widths, the navigation must remain usable without causing page-level horizontal overflow.
 
-Never create horizontal overflow on the page.
+Keep the existing selectors stable.
 
 ==================================================
 ANIMATION
 ==================================================
 
-CSS ONLY.
+CSS only.
 
 Use:
 
@@ -194,16 +131,16 @@ Default duration:
 
 0.35s
 
-Allowed effects:
+Allowed:
 
 - logo gradient movement
-- accent movement
 - underline reveal
 - subtle hover translation
+- accent movement
 - logout gradient sweep
 - restrained glow
 
-Do not use JavaScript for animation or styling.
+No aggressive scaling or excessive animation.
 
 ==================================================
 ACCESSIBILITY
@@ -213,19 +150,17 @@ Provide:
 
 - semantic navigation
 - keyboard accessibility
-- visible focus-visible state
-- appropriate contrast
+- visible :focus-visible states
+- sufficient contrast
 - reduced-motion support
 
 Support:
 
-prefers-reduced-motion: reduce
+@media (prefers-reduced-motion: reduce)
 
 ==================================================
-DESIGN SYSTEM
+DESIGN TOKENS
 ==================================================
-
-Use the DevForge global system:
 
 Background:
 #12141c
@@ -251,7 +186,7 @@ Text:
 #9aa0ae
 #6b7080
 
-Typography:
+Fonts:
 
 Space Grotesk
 Inter
@@ -268,4 +203,6 @@ REPRODUCIBILITY
 
 The navigation must be independently reproducible from this specification.
 
-It must visually match every other DevForge component and must not introduce a separate design language.
+Preserve all required selectors and Django URL names.
+
+It must visually match the DevForge base, footer, and future components without introducing a separate design language.
