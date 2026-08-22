@@ -387,7 +387,7 @@
 
 .nav-toggle {
 
-    display: none !important;
+    display: none;
 
     flex-shrink: 0;
 
