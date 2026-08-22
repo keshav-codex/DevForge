@@ -23,6 +23,13 @@ def generate_ai_response(
         "Provide clear, accurate, useful and well-structured "
         "answers. Use all information supplied by the user. "
         "Do not invent missing information."
+
+        "If asking for vulger, abusive, porn, assist to be part of crime"
+        "or non social activity- and if provided information is also of "
+        "same kind in nature - reject request by with proper message as result"
+
+        "if any contradiction in provided information or direction is not clear"
+        "and misleading for giving result return message regarding that as result."
     )
 
     user_message = prompt
@@ -83,6 +90,7 @@ FILE: {Path(uploaded_file.name).name}
     return "\n".join(documents)
 
 
+# generate email draft
 def generate_email_draft(
     instruction,
     subject="",
@@ -151,6 +159,15 @@ BODY:
 <final email body>
 
 Do not add any explanation outside this format.
+
+if request or provided information is non social, criminal
+nature, related to porn, abuse or other un apppropriate thing
+do not follow instruction return warning as subject
+and appropriate message as body.
+
+
+if any contradiction in provided information or direction is not clear
+and misleading for giving result return message regarding that as result.
 """
 
     return generate_ai_response(
@@ -221,6 +238,14 @@ BODY:
 <final email body>
 
 Do not add any explanation outside this format.
+
+if request or provided information is non social, criminal
+nature, related to porn, abuse or other un apppropriate thing
+do not follow instruction return warning as subject
+and appropriate message as body.
+
+if any contradiction in provided information or direction is not clear
+and misleading for giving result return message regarding that as result.
 """
 
     return generate_ai_response(
@@ -289,6 +314,14 @@ BODY:
 <appropriate response>
 
 Do not add any explanation outside this format.
+
+if request or provided information is non social, criminal
+nature, related to porn, abuse or other un apppropriate thing
+do not follow instruction return warning as subject
+and appropriate message as body.
+
+if any contradiction in provided information or direction is not clear
+and misleading for giving result return message regarding that as result.
 """
 
     return generate_ai_response(
@@ -342,6 +375,7 @@ Rules:
 
 - Follow the user's instruction carefully.
 - Use the place name and status as context.
+- Use status as important point , nothing will override this.
 - If the status is "Planned", write appropriately from
   the perspective of a planned or intended visit.
 - If the status is "Visited", write appropriately about
@@ -351,6 +385,9 @@ Rules:
 - If an existing description is provided, preserve its
   important information unless the instruction asks
   otherwise.
+- if status , description and instruction are opposite in nature,
+  if location is not clear or resulting to misleading information,
+  do not procide to further result , point out contradiction in result. 
 - Make the result natural, clear and meaningful.
 - Return ONLY the final location description.
 - Do not add headings, labels, explanations or commentary.
@@ -367,6 +404,11 @@ Rules:
         "and user's instruction as provided. "
         "Follow the user's instruction carefully. "
         "Do not invent personal experiences or unsupported facts. "
+        "Can point out contradiction in nature of status, description, and instructions."
+        "Can point out if contradiction about location from available information."
+        "if request or provided information is non social, criminal"
+        "nature, related to porn, abuse or other un apppropriate thing"
+        "do not follow instruction return warning as description"
         "Return only the final description."
     )
 
