@@ -284,6 +284,17 @@
 
 
 /* ==========================================================================
+   TOGGLE ICON — hidden on desktop by default
+   Only shown/animated inside the mobile media query below.
+   ========================================================================== */
+
+.footer-toggle-icon {
+
+    display: none;
+}
+
+
+/* ==========================================================================
    CONTACT / LEGAL / SUPPORT
    ========================================================================== */
 
@@ -770,7 +781,7 @@
 
         grid-template-columns: 1fr;
 
-        gap: 25px;
+        gap: 18px;
     }
 
     #footer-brand,
@@ -865,14 +876,37 @@ body {
 
 /* ==========================================================================
    MOBILE FOOTER ACCORDION
-   Keeps the existing desktop footer completely unchanged.
-   ========================================================================== */
-/* ==========================================================================
-   MOBILE FOOTER ACCORDION
-   Clear silver surface + dark readable text
+   Same dark glass system as the rest of the footer — brand-color
+   accents instead of a mismatched light theme. One icon only.
    ========================================================================== */
 
 @media (max-width: 600px) {
+
+    /* ---------------------------------------------------------
+       Accordion section wrapper
+       --------------------------------------------------------- */
+
+    .footer-contact,
+    .footer-legal,
+    .footer-support,
+    .footer-social {
+
+        padding: 0;
+
+        border-radius: 12px;
+
+        border: 1px solid var(--df-footer-border);
+
+        background: var(--df-footer-surface);
+
+        overflow: hidden;
+
+        transition:
+            border-color 0.3s var(--df-footer-ease),
+            background 0.3s var(--df-footer-ease),
+            box-shadow 0.3s var(--df-footer-ease);
+    }
+
 
     /* ---------------------------------------------------------
        Accordion section titles
@@ -890,36 +924,26 @@ body {
         width: 100%;
 
         margin: 0;
-        padding: 13px 14px;
+        padding: 15px 16px;
 
         cursor: pointer;
         user-select: none;
 
-        /*
-         * Silver surface with strong readable contrast.
-         */
-        color: #30343d;
+        color: var(--df-footer-text);
 
-        background: rgba(190, 194, 202, 0.92);
+        background: transparent;
 
-        border: 1px solid rgba(255, 255, 255, 0.65);
-
-        border-radius: 8px;
-
-        font-weight: 600;
+        border: none;
 
         transition:
             color 0.3s var(--df-footer-ease),
-            background 0.3s var(--df-footer-ease),
-            border-color 0.3s var(--df-footer-ease),
-            box-shadow 0.3s var(--df-footer-ease),
-            transform 0.3s var(--df-footer-ease);
+            background 0.3s var(--df-footer-ease);
 
     }
 
 
     /* ---------------------------------------------------------
-       Title hover
+       Title hover / open state — brand gradient accent
        --------------------------------------------------------- */
 
     .footer-contact .footer-column-title:hover,
@@ -927,105 +951,128 @@ body {
     .footer-support .footer-column-title:hover,
     .footer-social .footer-social-title:hover {
 
-        color: #171a21;
+        color: #ffffff;
 
-        background: rgba(210, 213, 220, 0.98);
-
-        border-color: rgba(255, 255, 255, 0.9);
-
-        box-shadow:
-            0 4px 14px rgba(0, 0, 0, 0.14);
-
-        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.045);
     }
 
-
-    /* ---------------------------------------------------------
-       Accordion arrow
-       --------------------------------------------------------- */
-
-    .footer-contact .footer-column-title::after,
-    .footer-legal .footer-column-title::after,
-    .footer-support .footer-column-title::after,
-    .footer-social .footer-social-title::after {
-
-        content: "";
-
-        width: 8px;
-        height: 8px;
-
-        flex-shrink: 0;
-
-        margin-left: 12px;
-
-        border-right: 2px solid #454b56;
-        border-bottom: 2px solid #454b56;
-
-        transform: rotate(45deg);
-
-        transition:
-            transform 0.35s var(--df-footer-ease),
-            border-color 0.3s ease;
-    }
-
-
-    /* ---------------------------------------------------------
-       Arrow hover
-       --------------------------------------------------------- */
-
-    .footer-contact .footer-column-title:hover::after,
-    .footer-legal .footer-column-title:hover::after,
-    .footer-support .footer-column-title:hover::after,
-    .footer-social .footer-social-title:hover::after {
-
-        border-color: #5643d1;
-    }
-
-
-    /* ---------------------------------------------------------
-       Open title
-       --------------------------------------------------------- */
 
     .footer-contact.is-open .footer-column-title,
     .footer-legal.is-open .footer-column-title,
     .footer-support.is-open .footer-column-title,
     .footer-social.is-open .footer-social-title {
 
-        color: #252933;
+        color: #ffffff;
 
         background:
             linear-gradient(
-                135deg,
-                rgba(215, 217, 223, 0.98),
-                rgba(178, 182, 191, 0.96)
+                90deg,
+                rgba(108, 92, 231, 0.16),
+                rgba(0, 212, 184, 0.10)
             );
+    }
 
-        border-color: rgba(255, 255, 255, 0.85);
+
+    .footer-contact.is-open,
+    .footer-legal.is-open,
+    .footer-support.is-open,
+    .footer-social.is-open {
+
+        border-color: rgba(162, 155, 254, 0.35);
 
         box-shadow:
-            0 5px 18px rgba(0, 0, 0, 0.16);
+            0 8px 22px rgba(0, 0, 0, 0.18);
     }
 
 
     /* ---------------------------------------------------------
-       Open arrow
+       Toggle icon — plus/minus made from two bars,
+       rebuilt from the HTML span structure (no duplicate
+       CSS-drawn arrow, so only one icon ever renders).
        --------------------------------------------------------- */
 
-    .footer-contact.is-open
-    .footer-column-title::after,
+    .footer-toggle-icon {
 
-    .footer-legal.is-open
-    .footer-column-title::after,
+        position: relative;
 
-    .footer-support.is-open
-    .footer-column-title::after,
+        display: inline-flex;
 
-    .footer-social.is-open
-    .footer-social-title::after {
+        flex-shrink: 0;
 
-        transform: rotate(225deg);
+        width: 16px;
+        height: 16px;
 
-        border-color: #5643d1;
+        margin-left: 12px;
+    }
+
+
+    .footer-toggle-icon span {
+
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        border-radius: var(--df-footer-ease);
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--df-primary-light),
+                var(--df-accent)
+            );
+
+        transition:
+            transform 0.35s var(--df-footer-ease),
+            opacity 0.3s ease;
+    }
+
+
+    /* horizontal bar */
+
+    .footer-toggle-icon span:nth-child(1) {
+
+        width: 14px;
+        height: 2px;
+
+        transform: translate(-50%, -50%);
+    }
+
+
+    /* vertical bar */
+
+    .footer-toggle-icon span:nth-child(2) {
+
+        width: 2px;
+        height: 14px;
+
+        transform: translate(-50%, -50%);
+    }
+
+
+    /* open state → forms an "×" */
+
+    .footer-contact.is-open .footer-toggle-icon span:nth-child(2),
+    .footer-legal.is-open .footer-toggle-icon span:nth-child(2),
+    .footer-support.is-open .footer-toggle-icon span:nth-child(2),
+    .footer-social.is-open .footer-toggle-icon span:nth-child(2) {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(90deg);
+
+        opacity: 0;
+    }
+
+
+    .footer-contact.is-open .footer-toggle-icon span:nth-child(1),
+    .footer-legal.is-open .footer-toggle-icon span:nth-child(1),
+    .footer-support.is-open .footer-toggle-icon span:nth-child(1),
+    .footer-social.is-open .footer-toggle-icon span:nth-child(1) {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(45deg);
     }
 
 
@@ -1033,10 +1080,16 @@ body {
        Closed content
        --------------------------------------------------------- */
 
-    .footer-contact > .footer-link,
-    .footer-legal > .footer-link,
-    .footer-support > .footer-link,
-    .footer-social .footer-social-links {
+    .footer-contact .footer-column-content,
+    .footer-legal .footer-column-content,
+    .footer-support .footer-column-content,
+    .footer-social .footer-social-content {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 9px;
 
         max-height: 0;
 
@@ -1044,21 +1097,17 @@ body {
 
         opacity: 0;
 
-        visibility: hidden;
+        padding: 0 16px;
 
-        transform: translateY(-8px);
+        transform: translateY(-6px);
 
         pointer-events: none;
-
-        margin-top: 0;
-        margin-bottom: 0;
 
         transition:
             max-height 0.45s var(--df-footer-ease),
             opacity 0.3s ease,
-            visibility 0.3s ease,
-            transform 0.35s var(--df-footer-ease),
-            margin 0.35s var(--df-footer-ease);
+            padding 0.35s var(--df-footer-ease),
+            transform 0.35s var(--df-footer-ease);
     }
 
 
@@ -1066,21 +1115,19 @@ body {
        Open Contact / Legal / Support
        --------------------------------------------------------- */
 
-    .footer-contact.is-open > .footer-link,
-    .footer-legal.is-open > .footer-link,
-    .footer-support.is-open > .footer-link {
+    .footer-contact.is-open .footer-column-content,
+    .footer-legal.is-open .footer-column-content,
+    .footer-support.is-open .footer-column-content {
 
-        max-height: 60px;
+        max-height: 200px;
 
         opacity: 1;
 
-        visibility: visible;
+        padding: 4px 16px 16px;
 
         transform: translateY(0);
 
         pointer-events: auto;
-
-        margin-bottom: 9px;
     }
 
 
@@ -1088,44 +1135,25 @@ body {
        Open Social
        --------------------------------------------------------- */
 
-    .footer-social.is-open .footer-social-links {
+    .footer-social.is-open .footer-social-content {
 
         max-height: 500px;
 
         opacity: 1;
 
-        visibility: visible;
+        padding: 4px 16px 16px;
 
         transform: translateY(0);
 
         pointer-events: auto;
-
-        margin-top: 8px;
     }
 
 
     /* ---------------------------------------------------------
-       Section separator
+       Social links (inside accordion)
        --------------------------------------------------------- */
 
-    .footer-contact,
-    .footer-legal,
-    .footer-support,
-    .footer-social {
-
-        padding-bottom: 5px;
-
-        border-bottom:
-            1px solid
-            rgba(255, 255, 255, 0.07);
-    }
-
-
-    /* ---------------------------------------------------------
-       Social links
-       --------------------------------------------------------- */
-
-    .footer-social-links {
+    .footer-social-content .footer-social-links {
 
         display: grid;
 
@@ -1205,11 +1233,9 @@ body {
 
         outline:
             2px solid
-            #5643d1;
+            var(--df-primary-light);
 
-        outline-offset: 3px;
-
-        border-radius: 8px;
+        outline-offset: -2px;
     }
 
 }
@@ -1221,18 +1247,15 @@ body {
 
 @media (max-width: 600px) and (prefers-reduced-motion: reduce) {
 
-    .footer-contact > .footer-link,
-    .footer-legal > .footer-link,
-    .footer-support > .footer-link,
-    .footer-social .footer-social-links,
+    .footer-contact .footer-column-content,
+    .footer-legal .footer-column-content,
+    .footer-support .footer-column-content,
+    .footer-social .footer-social-content,
     .footer-contact .footer-column-title,
     .footer-legal .footer-column-title,
     .footer-support .footer-column-title,
     .footer-social .footer-social-title,
-    .footer-contact .footer-column-title::after,
-    .footer-legal .footer-column-title::after,
-    .footer-support .footer-column-title::after,
-    .footer-social .footer-social-title::after,
+    .footer-toggle-icon span,
     .footer-social.is-open .footer-social-link {
 
         animation: none !important;
