@@ -387,7 +387,7 @@
 
 .nav-toggle {
 
-    display: none;
+    display: none !important;
 
     flex-shrink: 0;
 
@@ -419,7 +419,6 @@
         border-color var(--df-nav-duration) var(--df-nav-ease),
         transform var(--df-nav-duration) var(--df-nav-ease);
 }
-
 
 .nav-toggle:hover {
 
